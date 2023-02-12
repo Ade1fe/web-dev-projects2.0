@@ -29,3 +29,53 @@
     });
   }); 
 })(jQuery); 
+
+
+
+
+
+
+
+
+
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+     <div class="carousel-item active c-item">
+      <img src="https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-4.
+      0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w
+      =600&q=60" class="d-block w-100 c-img" alt="...">
+      <div class="carousel-caption d-md-block">
+        <h1 class="">Sigmund Freud.</h1>
+        <p class="fw-bolder mt-3 text-capitalize">Time spent with cats is never wasted.</p>
+      </div>
+    </div>
+   <div class="carousel-item c-item">
+      <img src="https://cdn.pixabay.com/photo/2016/08/11/20/39/british-shorthair-1586725_1280.jpg" class="d-block w-100 c-img" alt="...">
+      <div class="carousel-caption  d-md-block ">
+        <h1>William S. Burroughs</h1>
+        <p class="fw-bolder mt-3 text-capitalize"> Like all pure creatures, cats are practical.</p>
+      </div>
+    </div>
+    <div class="carousel-item c-item">
+      <img src="https://cdn.pixabay.com/photo/2022/05/17/15/59/cat-7203072__480.jpg" class="d-block w-100 c-img" alt="...">
+      <div class="carousel-caption  d-md-block">
+        <h1>Kristin Cast.</h1>
+        <p class="fw-bolder mt-3 text-capitalize">Cats choose us; we don't own them.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
