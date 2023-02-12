@@ -1,31 +1,42 @@
-	(function($) { 
-  $(function() { 
 
-    //  open and close nav 
-    $('#navbar-toggle').click(function() {
-      $('nav ul').slideToggle();
-    });
+// scroll
+const scrollElements = document.querySelectorAll(".js-scroll");
 
+const elementInView = (el, dividend = 1) => {
+  const elementTop = el.getBoundingClientRect().top;
 
-    // Hamburger toggle
-    $('#navbar-toggle').on('click', function() {
-      this.classList.toggle('active');
-    });
+  return (
+    elementTop <=
+    (window.innerHeight || document.documentElement.clientHeight) / dividend
+  );
+};
 
+const elementOutofView = (el) => {
+  const elementTop = el.getBoundingClientRect().top;
 
-    // If a link has a dropdown, add sub menu toggle.
-    $('nav ul li a:not(:only-child)').click(function(e) {
-      $(this).siblings('.navbar-dropdown').slideToggle("slow");
+  return (
+    elementTop > (window.innerHeight || document.documentElement.clientHeight)
+  );
+};
 
-      // Close dropdown when select another dropdown
-      $('.navbar-dropdown').not($(this).siblings()).hide("slow");
-      e.stopPropagation();
-    });
+const displayScrollElement = (element) => {
+  element.classList.add("scrolled");
+};
 
+const hideScrollElement = (element) => {
+  element.classList.remove("scrolled");
+};
 
-    // Click outside the dropdown will remove the dropdown class
-    $('html').click(function() {
-      $('.navbar-dropdown').hide();
-    });
-  }); 
-})(jQuery); 
+const handleScrollAnimation = () => {
+  scrollElements.forEach((el) => {
+    if (elementInView(el, 1.25)) {
+      displayScrollElement(el);
+    } else if (elementOutofView(el)) {
+      hideScrollElement(el)
+    }
+  })
+}
+
+window.addEventListener("scroll", () => { 
+  handleScrollAnimation();
+});
