@@ -164,7 +164,7 @@
 }
 .cardHe{
     background-color: #cbd8cc;
-    height: 450px;
+    height: 500px;
     padding: 1rem 0.6rem !important;
 }
 
@@ -452,7 +452,13 @@
 
 
 
-
+@media (max-width:800px) {
+    .cardHe {
+            background-color: #cbd8cc;
+            height: 550px;
+            padding: 1rem 0.6rem !important;
+        }
+}
 
 
 
@@ -487,6 +493,7 @@
                     width: 100%;
                     grid-template-columns: repeat(1, 1fr);
                 }
+             
 
         .my-fix{
             display: grid;
