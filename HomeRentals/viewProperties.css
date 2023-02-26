@@ -1,5 +1,4 @@
 body {
-    min-height: 75rem;
     padding-top: 4.5rem;
 }
 .navbar{
@@ -99,7 +98,19 @@ body {
 
 
 
+/* rocket */
+.rocket {
+    position: fixed;
+    bottom: 3.5rem;
+    right: 2rem;
+    z-index: 999;
+    display: none;
+}
 
+.rocket span {
+    font-size: 30px;
+    color: #f18701;
+}
 
 
 
@@ -132,5 +143,8 @@ body {
 @media (max-width:500px) {
     .myflexy {
         grid-template-columns: repeat(1, 1fr);
+    }
+    .button-36{
+        display: none;
     }
 }
