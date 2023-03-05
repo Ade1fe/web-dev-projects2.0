@@ -57,8 +57,8 @@ createCard(
 let item2 = [  "https://media.istockphoto.com/id/1396856251/photo/colonial-house.jpg?b=1&s=170667a&w=0&k=20&c=gtwOJj8NhCVhDxz8_JxkN8sJFVjEiT9knHYT8VutTLI=",
   "three bedroom",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "04, Badmus Estate", 
+   "200,000", 
     "3", 
      "1", 
       "2"];
@@ -75,9 +75,9 @@ createCard(
 );
 
 let item3 = [  "https://media.istockphoto.com/id/1368330586/photo/front-porch-and-entrance-to-new-home.jpg?b=1&s=170667a&w=0&k=20&c=g2W2k7VFWMrreuPjL_JX7B8Ztswk0Ag9Wf8tkU4poDA=",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
+  "one bedroom",
+  "One Bedroom flat",
+  "23, Scroll In  Estate", 
    "20,000", 
     "3", 
      "1", 
@@ -95,12 +95,12 @@ createCard(
 );
 
 let item4 = [  "https://images.unsplash.com/photo-1576941089067-2de3c901e126?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
+  "four bedroom",
+  "Four Bedroom flat",
+  "10, Splash Me Estate", 
+   "220,000", 
+    "2", 
+     "3", 
       "2"];
 
 createCard(
@@ -115,12 +115,12 @@ createCard(
 );
 
 let item5 = [  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
+  "three bedroom flat",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
+  "78, Prettier Estate", 
+   "67,000", 
+    "4", 
+     "2", 
       "2"];
 
 createCard(
@@ -135,12 +135,12 @@ createCard(
 );
 
 let item6 = [  "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
+  "Mansion",
+  "Mansion",
+  "04, Bable Estate", 
+   "70,000", 
+    "5", 
+     "4", 
       "2"];
 
 createCard(
@@ -155,13 +155,13 @@ createCard(
 );
 
 let item7 = [  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
+  "mini flat",
+  "Mini flat",
+  "04, Spaces Estate", 
    "20,000", 
-    "3", 
+    "1", 
      "1", 
-      "2"];
+      "1"];
 
 createCard(
   item7[0],
@@ -175,12 +175,12 @@ createCard(
 );
 
 let item8 = [  "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
+  "duplex ",
+  "Duplex",
+  "04, BodeEdo Estate", 
+   "150,000", 
+    "6", 
+     "5", 
       "2"];
 
 createCard(
@@ -195,11 +195,11 @@ createCard(
 );
 
 let item9 = [  "https://media.istockphoto.com/id/1368330586/photo/front-porch-and-entrance-to-new-home.jpg?b=1&s=170667a&w=0&k=20&c=g2W2k7VFWMrreuPjL_JX7B8Ztswk0Ag9Wf8tkU4poDA=",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "Skyscraper",
+  "Skyscraper",
+  "64, Soladamma  Estate", 
+   "200,000", 
+    "15", 
      "1", 
       "2"];
 
@@ -216,11 +216,11 @@ createCard(
 
 
 let item10 = [  "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "One room",
+  "One room",
+  "01, Bodemada Estate", 
+   "40,000", 
+    "1", 
      "1", 
       "2"];
 
@@ -237,8 +237,8 @@ createCard(
 
 
 let item11 = [  "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
+  "self contain",
+  "Self Contain",
   "04, Bode Edo Estate", 
    "20,000", 
     "3", 
@@ -257,13 +257,13 @@ createCard(
 );
 
 let item12 = [  "https://media.istockphoto.com/id/1393885905/photo/real-estate-agent-showing-a-mature-couple-a-new-house.jpg?b=1&s=170667a&w=0&k=20&c=O6ROn4qlooIZo8xb124PcS3A3XncKnDRuASWJb3Jk3Y=",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "boys quatre ",
+  "Boy's quatre ",
+  "4, Bode Edo Estate", 
+   "8,000", 
+    "1", 
      "1", 
-      "2"];
+      "1"];
 
 createCard(
   item12[0],
@@ -278,10 +278,10 @@ createCard(
 
 
 let item13 = [  "https://media.istockphoto.com/id/1442689861/photo/old-fort-house-with-autumnal-trees-and-a-green-field-on-a-sunny-day.jpg?b=1&s=170667a&w=0&k=20&c=uMtOglJx-1QEh7MzG3Z2WaCXOD8bJKi6GEux5rZHe88=",
-  "three bedroom",
+  "three bedroom flat",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "2, Miradda Goda Estate", 
+   "68,000", 
     "3", 
      "1", 
       "2"];
@@ -298,10 +298,10 @@ createCard(
 );
 
 let item14 = [  "https://media.istockphoto.com/id/1390092018/photo/house-with-solar-panels.jpg?b=1&s=170667a&w=0&k=20&c=2XTUuRycexIqNtuKD4jKyG5F7lKvEP01pASeIw0RE1Q=",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "two bedroom flat",
+  "Two Bedroom flat",
+  "04, Colobus Dadlola Estate", 
+   "50,000", 
     "3", 
      "1", 
       "2"];
@@ -318,13 +318,13 @@ createCard(
 );
 
 let item15 = [  "https://images.unsplash.com/photo-1449844908441-8829872d2607?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGhvbWV8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
+  "one bedroom flat",
+  "One Bedroom flat",
+  "04, Qouar Estate", 
    "20,000", 
-    "3", 
+    "1", 
      "1", 
-      "2"];
+      "1"];
 
 createCard(
   item15[0],
@@ -338,10 +338,10 @@ createCard(
 );
 
 let item16 = [  "https://media.istockphoto.com/id/1390092018/photo/house-with-solar-panels.jpg?b=1&s=170667a&w=0&k=20&c=2XTUuRycexIqNtuKD4jKyG5F7lKvEP01pASeIw0RE1Q=",
-  "three bedroom",
-  "Three Bedroom flat",
+  "four bedroom flat",
+  "Four Bedroom flat",
   "04, Bode Edo Estate", 
-   "20,000", 
+   "60,000", 
     "3", 
      "1", 
       "2"];
@@ -358,12 +358,12 @@ createCard(
 );
 
 let item17 = [  "https://media.istockphoto.com/id/1427608956/photo/rear-view-of-dad-holding-her-little-girl-in-arms-and-showing-at-their-house-with-installed.jpg?b=1&s=170667a&w=0&k=20&c=V9cPqNDO4cIzaGPApLXT69iAgVHo8lttWXH1Kx4jzAY=",
-  "three bedroom",
-  "Three Bedroom flat",
+  "five bedroom flat",
+  "Five Bedroom flat",
   "04, Bode Edo Estate", 
-   "20,000", 
+   "67,000", 
     "3", 
-     "1", 
+     "0", 
       "2"];
 
 createCard(
@@ -378,11 +378,11 @@ createCard(
 );
 
 let item18 = [  "https://media.istockphoto.com/id/1442148484/photo/3d-rendering-of-modern-suburban-house-in-the-garden.jpg?b=1&s=170667a&w=0&k=20&c=acVdz2wMQAu_M9ZXOuECxSJwoKavvgo1_ZJUr8pOYWA=",
-  "three bedroom",
+  "three bedroom flat",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "56, Bode Edo Estate", 
+   "70,000", 
+    "2", 
      "1", 
       "2"];
 
@@ -398,11 +398,11 @@ createCard(
 );
 
 let item19 = [  "https://media.istockphoto.com/id/1390092018/photo/house-with-solar-panels.jpg?b=1&s=170667a&w=0&k=20&c=2XTUuRycexIqNtuKD4jKyG5F7lKvEP01pASeIw0RE1Q=",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "One Room",
+  "One Room",
+  "22, Sannjju Edo Estate", 
+   "24,000", 
+    "1", 
      "1", 
       "2"];
 
@@ -419,11 +419,11 @@ createCard(
 
 
 let item20 = [  "https://media.istockphoto.com/id/1415886888/photo/freshly-painted-craftsman-bungalow-house.jpg?b=1&s=170667a&w=0&k=20&c=lWGj1yZBmuZ-FB7401-NraD_tvhE36hw_zF363hsXAY=",
-  "three bedroom",
+  "three bedroom flat",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "88, Mabajje  Estate", 
+   "70,000", 
+    "2", 
      "1", 
       "2"];
 
@@ -439,11 +439,11 @@ createCard(
 );
 
 let item21 = [  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "two bedroom flat",
+  "Two Bedroom flat",
+  "04, Treegreen  Estate", 
+   "70,000", 
+    "1", 
      "1", 
       "2"];
 
@@ -460,11 +460,11 @@ createCard(
 
 
 let item22 = [  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8aG91c2V8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "Four bedroom flat",
+  "Four Bedroom flat",
+  "699, Lavelly Estate", 
+   "80,000", 
+    "2", 
      "1", 
       "2"];
 
@@ -481,10 +481,10 @@ createCard(
 
 
 let item23 = [  "https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjN8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
+  "Mansion",
+  "Mansion",
   "04, Bode Edo Estate", 
-   "20,000", 
+   "27,000", 
     "3", 
      "1", 
       "2"];
@@ -504,8 +504,8 @@ createCard(
 let item24 = [  "https://images.unsplash.com/photo-1582063289852-62e3ba2747f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
   "three bedroom",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "01, Damisi Estate", 
+   "27,000", 
     "3", 
      "1", 
       "2"];
@@ -524,11 +524,11 @@ createCard(
 // https://images.unsplash.com/photo-1609757754057-8a8e17eb73b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODd8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60
 
 let item25 = [  "https://images.unsplash.com/photo-1430285561322-7808604715df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "Single bedroom",
+  "Single Bedroom",
+  "400, Jookss Edo Estate", 
+   "33,000", 
+    "1", 
      "1", 
       "2"];
 
@@ -545,10 +545,10 @@ createCard(
 
 
 let item26 = [  "https://images.unsplash.com/photo-1531971589569-0d9370cbe1e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTN8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "Five bedroom flat",
+  "Five Bedroom flat",
+  "22, Omole Easre Estate", 
+   "50,000", 
     "3", 
      "1", 
       "2"];
@@ -566,11 +566,11 @@ createCard(
 
 
 let item27 = [  "https://images.unsplash.com/photo-1494526585095-c41746248156?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "Two bedroom flat",
+  "Two Bedroom flat",
+  "04, Laveh lolddo Estate", 
+   "35,000", 
+    "2", 
      "1", 
       "2"];
 
@@ -587,13 +587,13 @@ createCard(
 
 
 let item28 = [  "https://images.unsplash.com/photo-1623298317883-6b70254edf31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDh8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "One bedroom flat",
+  "One Bedroom flat",
+  "09, Mavel Jooanne Estate", 
+   "84,000", 
+    "2", 
      "1", 
-      "2"];
+      "0"];
 
 createCard(
   item28[0],
@@ -608,13 +608,13 @@ createCard(
 
 
 let item29 = [  "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTd8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
-      "2"];
+  "Mansion",
+  "Mansion",
+  "04, Melody Melodo Estate", 
+   "28,000", 
+    "2", 
+     "0", 
+      "1"];
 
 createCard(
   item29[0],
@@ -629,12 +629,12 @@ createCard(
 
 
 let item30 = [  "https://images.unsplash.com/photo-1558036117-15d82a90b9b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTN8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "duplex",
+  "duplex",
+  "04, Lexus Meddo Estate", 
+   "80,000", 
     "3", 
-     "1", 
+     "2", 
       "2"];
 
 createCard(
@@ -652,10 +652,10 @@ createCard(
 let item31 = [  "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzB8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
   "three bedroom",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
+  "3, EdoBode  Estate", 
+   "200,000", 
+    "2", 
+     "2", 
       "2"];
 
 createCard(
@@ -670,12 +670,12 @@ createCard(
 );
 
 let item32 = [  "https://images.unsplash.com/photo-1584752242818-b4bd7fb3fe10?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODN8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
+  "duplex",
+  "duplex",
+  "04, Lovelly mmaja Estate", 
+   "80,000", 
+    "1", 
+     "0", 
       "2"];
 
 createCard(
@@ -690,11 +690,11 @@ createCard(
 );
 
 let item33 = [  "https://images.unsplash.com/photo-1567428485548-c499e4931c10?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nzd8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
+  "Mansion",
+  "Mansion",
+  "04, Janne Edomma Estate", 
+   "80,000", 
+    "1", 
      "1", 
       "2"];
 
@@ -711,13 +711,13 @@ createCard(
 
 
 let item34 = [  "https://images.unsplash.com/photo-1626222628055-fb92dd194160?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODZ8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
+  "three bedroom flat",
   "Three Bedroom flat",
-  "04, Bode Edo Estate", 
+  "222, HooEdo Street", 
    "20,000", 
     "3", 
-     "1", 
-      "2"];
+     "3", 
+      "3"];
 
 createCard(
   item34[0],
@@ -732,10 +732,10 @@ createCard(
 
 
 let item36 = [  "https://images.unsplash.com/photo-1602075432748-82d264e2b463?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA1fHxob3VzZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
+  "One bedroom flat",
+  "One Bedroom flat",
+  "100,  Edo Estate", 
+   "22,000", 
     "3", 
      "1", 
       "2"];
@@ -753,13 +753,13 @@ createCard(
 
 
 let item37 = [  "https://images.unsplash.com/photo-1609757754057-8a8e17eb73b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODd8fGhvdXNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
-  "three bedroom",
-  "Three Bedroom flat",
-  "04, Bode Edo Estate", 
-   "20,000", 
-    "3", 
-     "1", 
-      "2"];
+  "Self Contain",
+  "Self Contain",
+  "01, mira  Estate", 
+   "30,000", 
+    "1", 
+     "2", 
+      "3"];
 
 createCard(
   item37[0],
