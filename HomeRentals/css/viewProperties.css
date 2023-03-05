@@ -3,6 +3,7 @@ body {
 }
 .navbar{
     background-color: #f1f1f1 !important;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px !important;
 }
 .navbar-toggler{
     margin-right: 20px !important;
@@ -10,10 +11,6 @@ body {
 .nav-link, .form-control{
     margin-left: 20px !important;
 }
-.myContainer {
-    /* padding: 4rem 0rem; */
-}
-
 .myflexy {
     display: grid;
     gap: 20px 15px;

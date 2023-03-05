@@ -1,4 +1,13 @@
+ $(window).on('scroll load', function(){
+    
 
+         if($(window).scrollTop() > 0){
+            $('.rocket').show();
+         }else{
+             $('.rocket').hide();
+         }
+
+    })
 
 // scroll effect
 const scrollElements = document.querySelectorAll(".js-scroll");
@@ -100,26 +109,32 @@ function deleteImage(index) {
 }
 
 
-// movie
+// play
+
 var btn = document.getElementById('btn');
-var play = false
+var play = false;
 
 $(document).ready(function() {
-   var ctrlVideo = document.getElementById("vid1");
-    $('#btn').click(function() {
-        play = !play
-        if(play){
-          var pl = String.fromCodePoint(9208);
-          btn.innerText = pl;
-          ctrlVideo.play();
-        }
-        else{
-          var ps = String.fromCodePoint(9654);
-          btn.innerText = ps
-          ctrlVideo.pause();
-        }
-    });
+  var ctrlVideo = document.getElementById("vid1");
+  $('#btn').click(function() {
+    play = !play;
+    if (play) {
+      var pl = "https://spng.pngfind.com/pngs/s/180-1803855_png-file-svg-play-button-svg-transparent-png.png";
+      btn.innerHTML = '<img src="' + pl + '" alt="Pause">';
+      ctrlVideo.play();
+    } else {
+      var ps = "https://www.freeiconspng.com/thumbs/pause-button-png/pause-button-png-24.png";
+      btn.innerHTML = '<img src="' + ps + '" alt="Play">';
+      ctrlVideo.pause();
+    }
+  });
 });
+
+
+
+
+
+
 
 
 // carousel
