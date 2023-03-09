@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="../css/single.css" />
+    <!-- <link rel="stylesheet" href="../css/index.css"> -->
+    <title>single</title>
+  </head>
+  <body>
+    <section>
+      <a href="../pages/food.html" id="link">Home</a>
+      <h1 id="title"></h1>
+      <div class="container">
+        <div id="image"></div>
+        <div class="holder">
+          <h2>How to Cook</h2>
+          <p id="description"></p>
+          <h2>Ingredients</h2>
+          <ul id="ingredients"></ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Copyrights © 2023 <span>Jojo's-Food</span>. Designed by O'Damisi</p>
+    </footer>
+
+    <script>
+      // Get the query parameters from the URL
+      const queryParams = new URLSearchParams(window.location.search);
+
+      // Get the value of the "id" query parameter
+      const mealId = queryParams.get("id");
+
+      // function declaration for getting a single meal
+      const getSingleMeal = async () => {
+        try {
+          const res = await fetch(
+            `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+          );
+          const data = await res.json();
+          const title = document.getElementById("title");
+          title.innerText = data.meals[0].strMeal;
+          title.style.textTransform = "capitalize";
+
+          // description
+          const descriptionHolder = document.getElementById("description");
+          descriptionHolder.innerHTML = `
+      <p class="description">
+        ${data.meals[0].strInstructions}
+      </p> 
+    `;
+
+          // ingredients
+          const ingredientsHolder = document.getElementById("ingredients");
+          const ingredientsList = document.createElement("ul");
+          ingredientsList.classList.add("ingredients");
+          for (let i = 1; i <= 40; i++) {
+            const ingredient = data.meals[0][`strIngredient${i}`];
+            const measure = data.meals[0][`strMeasure${i}`];
+            if (ingredient) {
+              const listItem = document.createElement("li");
+              listItem.innerText = `${ingredient} - ${measure}`;
+              ingredientsList.appendChild(listItem);
+            } else {
+              break;
+            }
+          }
+          ingredientsHolder.appendChild(ingredientsList);
+
+          // image
+          const imageContainer = document.getElementById("image");
+          const image = document.createElement("img");
+          image.className = "image";
+          image.src = data.meals[0].strMealThumb;
+          imageContainer.appendChild(image);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getSingleMeal();
+    </script>
+  </body>
+</html>
