@@ -78,7 +78,7 @@ if (fullName === '') {
   } else {
     submitForm();
     alert('Registration successful!');
-     window.location.href = '../pages/homepage.html';
+     window.location.href = '../pages/Journal.html';
   }
   
 }
