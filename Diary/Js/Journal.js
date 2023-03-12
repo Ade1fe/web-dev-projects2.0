@@ -16,6 +16,12 @@ function createNewNote() {
   date.type = 'date';
   date.className = 'date';
 
+  const title = document.createElement('input');
+title.type = 'text';
+title.className = 'title';
+title.placeholder = 'Title start here...';
+
+
   const selectOption = document.createElement('select');
   selectOption.id = 'folderSelect';
   selectOption.className = 'select'
@@ -36,6 +42,7 @@ function createNewNote() {
     selectOption.appendChild(option);
   }
 
+  div.appendChild(title);
   div.appendChild(selectOption);
   div.appendChild(date);
 

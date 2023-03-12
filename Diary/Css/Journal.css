@@ -89,6 +89,20 @@ nav ul li{
 box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
+/* Style the scrollbar */
+.side-bar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.side-bar::-webkit-scrollbar-thumb {
+  background-color: var(--hover);
+  border-radius: 10px;
+}
+
+.side-bar::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}
+
 
 .side-bar h2{
   margin-top: 1rem;
@@ -109,6 +123,18 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
 }
 .usersInfo li a{
   text-decoration: none;
+  color: var(--black);
+}
+.usersInfo li:first-child i{
+  color: var(--yellow);
+}
+.usersInfo li:nth-child(2) i {
+  color: var(--light-green);
+}
+.usersInfo li:nth-child(3) i {
+  color: red;
+}
+.usersInfo li:nth-child(4) i {
   color: var(--black);
 }
 
@@ -205,10 +231,20 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
 .div {
   display: flex;
   /* border: 2px red solid; */
-  max-width: 400px;
+  width: 90%;
+  /* max-width: 400px; */
   gap: 20px 30px;
   margin-left: auto;
   padding: 10px;
+}
+.title{
+  width: 50%;
+  font-size: 1.1rem;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    padding: 0.5rem 1rem;
+    border: none;
+    /* margin-left: auto; */
+    margin-bottom: 0.5rem;
 }
 
 .newNoteDiv {
@@ -246,7 +282,7 @@ box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2
   border: none;
   margin-bottom: 0.5rem;
 }
-.div select,
+.div select, .div .title,
 .div .date:focus{
   outline: none;
 }
@@ -306,6 +342,9 @@ footer span{
   button, .div select, .div .date{
     padding: 0.5rem 1rem;
     font-size: .9rem;
+  }
+  .title{
+    width: 100%;
   }
 }
 
