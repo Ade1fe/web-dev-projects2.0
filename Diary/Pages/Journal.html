@@ -11,10 +11,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   </head>
   <body>
-
-    <header>
-
+ <header>
+      <h1>Jojo's Diary</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
     </header>
+
+    <hr class="hr">
 
     <div class="menu-btn">
       <i class="fas fa-bars"></i>
@@ -24,64 +32,65 @@
         <i class="fas fa-times"></i>
       </div>
 
-      <h2>My Sidebar</h2>
-		<ul>
-    <li><a href="#">Starred</a></li>
-    <li><a href="#">Archived</a></li>
-    <li><a href="#">Trash</a></li>
-    <li><a href="#">Notification</a></li>
+      <h2>John Smith</h2>
+		<ul class="usersInfo">
+    <li> <a class="sub-btn"><i class="bi bi-star"></i>Personal</a></li>
+    <li><a class="sub-btn"><i class="bi bi-archive"></i>Archived</a></li>
+    <li><a class="sub-btn"><i class="bi bi-trash"></i>Trash</a></li>
+    <li><a class="sub-btn"><i class="bi bi-box2"></i>Notification</a></li>
 </ul>
       <div class="menu">
 
       <div class="item">
-          <a class="sub-btn"> <i class="bi bi-folder-fill"></i>Personal<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>😎</span> Personal<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Personal" class="sub-menu">
-            <li href="#" class="sub-item">Sub Item 01</li>
+            <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
           </ul>
         </div>
 
         <div class="item">
-          <a class="sub-btn"><i class="bi bi-folder-fill"></i>Label<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>🤙</span> Label<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Label" class="sub-menu">
-            <li href="#" class="sub-item">Sub Item 01</li>
+            <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
           </ul>
         </div>
 
         <div class="item">
-          <a class="sub-btn"><i class="bi bi-folder-fill"></i>Work<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>💼</span> Work<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Work" class="sub-menu">
-            <li href="#" class="sub-item">Sub Item 01</li>
+            <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
           </ul>
         </div>
 
          <div class="item">
-          <a class="sub-btn"><i class="bi bi-folder-fill"></i>Design Insight<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>📑</span> Design Insight<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Design Insight" class="sub-menu">
-            <li href="#" class="sub-item">Sub Item 01</li>
+            <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
           </ul>
         </div>
 
           <div class="item">
-          <a class="sub-btn"><i class="bi bi-folder-fill"></i> Business<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>📌</span>  Business<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Business" class="sub-menu">
-            <li href="#" class="sub-item">Sub Item 01</li>
+            <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
           </ul>
         </div>
-<h3 id="new-note-btn">+ New Notes</h3>
+    <h3 id="new-note-btn">+ New Notes</h3>
 
       </div>
       
     </div>
+      <!-- <div id="div"></div> -->
     <section class="main" id="main-content">
       <!-- <h1>Sidebar Menu With<br>Sub-Menus</h1> -->
 
@@ -93,7 +102,7 @@
 
 
     <footer>
-		<p>&copy; 2023 My Website</p>
+		<p>Copyrights © 2023<span> Jojo's-Diary</span>. Designed by O'Damisi</p>
 	</footer>
 
     <script type="text/javascript">

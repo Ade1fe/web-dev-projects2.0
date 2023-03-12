@@ -6,16 +6,75 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-
-body{
-  min-height: 100vh;
-  /* background: url(bg.jpg)no-repeat;
-  background-size: cover;
-  background-position: center; */
-  background-color: #8621F8;
+:root {
+  --orange: #fb8500;
+  --white: #fff;
+  --black: #000;
+  --yellow: #ffb703;
+  --dark-blue: #040535;
+  --light-green: #2ec4b6;
+  --hover:#d5f0ed;
 }
 
-.side-bar{
+body {
+  min-height: 100vh;
+  background-color: var(--white);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header styles */
+
+header {
+  background-color: var(--white);
+  color: var(--black);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  align-items: center;
+}
+
+.hr{
+  width: 95%;
+  margin: auto;
+  border-bottom: 2px solid var(--light-green);
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+header nav {
+  display: flex;
+  gap: 20px;
+}
+
+header nav a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: var(--light-green);
+}
+
+nav ul{
+  display: flex;
+  list-style: none;
+}
+
+nav ul li{
+  margin: 10px;
+}
+.side-bar {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
   width: 290px;
@@ -26,122 +85,196 @@ body{
   overflow-y: auto;
   transition: 0.6s ease;
   transition-property: left;
+ font-weight: 600;
+box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 
-.side-bar.active{
+
+.side-bar h2{
+  margin-top: 1rem;
+  margin-left: 1rem;
+  color: var(--light-green);
+}
+.usersInfo {
+  list-style: none;
+}
+.usersInfo li{
+  margin: 10px;
+  margin-left: 1rem;
+}
+.usersInfo li a{
+   display: flex;
+  text-align: center;
+  gap: 0px 20px;
+}
+.usersInfo li a{
+  text-decoration: none;
+  color: var(--black);
+}
+
+.side-bar.active {
   left: 0;
 }
 
-.side-bar .menu{
+.side-bar .menu {
   width: 100%;
   margin-top: 80px;
 }
 
-.side-bar .menu .item{
+.side-bar .menu .item {
   position: relative;
   cursor: pointer;
 }
 
-.side-bar .menu .item a{
-  color: #fff;
+.side-bar .menu .item a ,#new-note-btn {
+  color: var(--black);
   font-size: 16px;
   text-decoration: none;
   display: block;
   padding: 5px 30px;
   line-height: 60px;
+  cursor: pointer;
 }
 
-.side-bar .menu .item a:hover{
-  background: #8621F8;
+.side-bar .menu .item a:hover {
+  background: var(--hover);
+  transition: 0.3s ease;
+}
+#new-note-btn:hover{
+  background: var(--hover);
   transition: 0.3s ease;
 }
 
-.side-bar .menu .item i{
+.side-bar .menu .item span {
   margin-right: 15px;
 }
 
-.side-bar .menu .item a .dropdown{
+.side-bar .menu .item a .dropdown {
   position: absolute;
   right: 0;
   margin: 20px;
   transition: 0.3s ease;
 }
 
-.side-bar .menu .item .sub-menu{
+.side-bar .menu .item .sub-menu {
   background: rgba(255, 255, 255, 0.1);
   display: none;
 }
 
-.side-bar .menu .item .sub-menu li{
+.side-bar .menu .item .sub-menu li {
   padding: 10px;
   padding-left: 20px;
 }
 
-.rotate{
+.rotate {
   transform: rotate(90deg);
 }
 
-.close-btn{
+.close-btn {
   position: absolute;
-  color: #fff;
+  color: var(--black);
   font-size: 20px;
   right: 0;
   margin: 25px;
   cursor: pointer;
+   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
 }
 
-.menu-btn{
+.menu-btn {
   position: absolute;
-  color: #fff;
+  color: var(--black);
   font-size: 20px;
   margin: 25px;
   margin-top: 3px;
   cursor: pointer;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   /* position: fixed; */
 }
 
-.main{
+.main {
   height: 100vh;
   width: 90%;
   margin-left: auto;
-  /* display: flex;
-  justify-content: center;
-  align-items: left; */
-  /* padding: 50px; */
 }
 
-/* .main h1{
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 60px;
-  text-align: center;
-  line-height: 80px;
-} */
+/* newNoteDiv */
+.div {
+  display: flex;
+  /* border: 2px red solid; */
+  max-width: 400px;
+  gap: 20px 30px;
+  margin-left: auto;
+  padding: 10px;
+}
 
- /* newNoteDiv */
- .newNoteDiv {
-   width: 100%;
-   height: 100%;
-   border: 2px solid red;
-   display: flex;
-   flex-direction: column;
-   padding: 1rem;
- }
+.newNoteDiv {
+  width: 100%;
+  height: 100vh;
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
 
- .newNoteDiv textarea {
-   width: 100%;
-   height: 100%;
-   background-color: #0077cc;
- }
-
-.saveFile{
+.newNoteDiv textarea {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: var(--black);
+  resize: none;
+  border: 0;
+  margin-bottom: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  box-sizing: border-box;
+    word-wrap: break-word;
+    /* overflow-y: auto; */
+}
+.newNoteDiv textarea:focus{
+  border: #f1f1f1 2px solid;
+  outline: none;
+}
+.div select, .div .date{
+  font-size: 1.1rem;
+box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  padding: 0.5rem 1rem;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+.div select,
+.div .date:focus{
+  outline: none;
+}
+button{
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+button:hover{
+  background-color: var(--light-green);
+  color: var(--white);
+  border-radius: 20px;
+}
+.saveFile {
   margin-left: auto;
   margin-top: auto;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 footer {
   width: 100%;
-  border: 2px saddlebrown solid;
+  text-align: center;
+  padding: 0.5rem;
+}
+footer span{
+  color: #2ec4b6;
 }
 
 
@@ -159,9 +292,42 @@ footer {
 
 
 
-@media (max-width: 900px){
-  .main h1{
+@media (max-width: 900px) {
+  .main h1 {
     font-size: 40px;
     line-height: 60px;
+  }
+}
+
+@media (max-width:550px) {
+.div {
+    display: grid;
+  }
+  button, .div select, .div .date{
+    padding: 0.5rem 1rem;
+    font-size: .9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  
+   header{
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    gap: 0;
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
+
+
+@media (max-width: 375px) {
+  .div {
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    gap: 0;
+    text-align: center;
   }
 }

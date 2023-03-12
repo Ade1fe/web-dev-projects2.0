@@ -1,12 +1,24 @@
+
+
+
 const newNoteBtn = document.getElementById('new-note-btn');
 const mainContent = document.getElementById('main-content');
+// const div = document.getElementById('div');
 
 function createNewNote() {
   const newNote = document.createElement('div');
   newNote.className = 'newNoteDiv';
 
+    const div = document.createElement('div');
+    div.className = 'div';
+
+  const date = document.createElement('input');
+  date.type = 'date';
+  date.className = 'date';
+
   const selectOption = document.createElement('select');
   selectOption.id = 'folderSelect';
+  selectOption.className = 'select'
 
   // Create the default option "Select a Folder"
   const defaultOption = document.createElement('option');
@@ -24,9 +36,13 @@ function createNewNote() {
     selectOption.appendChild(option);
   }
 
-  newNote.appendChild(selectOption);
+  div.appendChild(selectOption);
+  div.appendChild(date);
+
+  newNote.appendChild(div);
 
   const textArea = document.createElement('textarea');
+  textArea.className ='textarea'
   newNote.appendChild(textArea);
 
   const saveFileBtn = document.createElement('button');
@@ -66,6 +82,7 @@ function saveFile() {
     const folder = folders[folderName];
     if (folder !== undefined) {
       const listItem = document.createElement('li');
+      listItem.className = 'sub-item'
       listItem.textContent = fileName;
       listItem.addEventListener('click', function() {
         openFile(fileName, textToSave);
@@ -131,19 +148,19 @@ function openFile(fileName, fileContent, previousFolder) {
 
 
 //  file count
-// function updateFileCounts() {
-//   for (const folderName in folders) {
-//     const files = JSON.parse(localStorage.getItem(folderName)) || [];
-//     // const files = folderName || [];
-//     const count = files.length;
-//     console.log(`Folder "${folderName}" has ${count} files.`);
-//     console.log(files);
-//   }
-// }
+function updateFileCounts() {
+  for (const folderName in folders) {
+    const files = JSON.parse(localStorage.getItem(folderName)) || [];
+    // const files = folderName || [];
+    const count = files.length;
+    console.log(`Folder "${folderName}" has ${count} files.`);
+    console.log(files);
+  }
+}
 
 
 // Call the function to update file counts on page load
-// updateFileCounts();
+updateFileCounts();
 
 // Toggle nested list items
 const itemsWithNestedLists = document.querySelectorAll('li > ul');
