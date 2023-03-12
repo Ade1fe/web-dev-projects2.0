@@ -52,29 +52,29 @@ const folders = {
   business: document.getElementById('Business')
 };
 
-// Save file button
+
+
+//save file
 function saveFile() {
   const textToSave = document.querySelector('.newNoteDiv textarea').value;
-  const blob = new Blob([textToSave], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-
   const fileName = prompt('Please enter a file name:', 'note.txt');
+
   if (fileName !== null) {
     const folderSelect = document.getElementById('folderSelect');
     const folderName = folderSelect.value;
 
     const folder = folders[folderName];
     if (folder !== undefined) {
-      const link = document.createElement('a');
-      link.download = fileName;
-      link.href = url;
-      link.textContent = fileName;
       const listItem = document.createElement('li');
-      listItem.appendChild(link);
+      listItem.textContent = fileName;
+      listItem.addEventListener('click', function() {
+        openFile(fileName, textToSave);
+        console.log("here")
+      });
       folder.appendChild(listItem);
       console.log('File saved to ' + folderName);
 
-      // Save file to local storage
+   
       const files = JSON.parse(localStorage.getItem(folderName)) || [];
       files.push({ name: fileName, content: textToSave });
       localStorage.setItem(folderName, JSON.stringify(files));
@@ -87,23 +87,63 @@ function saveFile() {
 
 
 
+//openfile
+function openFile(fileName, fileContent, previousFolder) {
+ 
+  const existingOpenFileDiv = document.querySelector('.open-file');
+  if (existingOpenFileDiv) {
+    existingOpenFileDiv.remove();
+  }
+
+
+  const newNoteDiv = document.querySelector('.newNoteDiv');
+  if (newNoteDiv) {
+    newNoteDiv.remove();
+  }
+
+
+  const openFileDiv = document.createElement('div');
+  openFileDiv.classList.add('open-file');
+
+ 
+  const title = document.createElement('h2');
+  title.textContent = fileName;
+  openFileDiv.appendChild(title);
+
+
+  let content = document.createElement('textarea');
+  content.value = fileContent;
+  openFileDiv.appendChild(content);
+
+  const saveButton = document.createElement('button');
+  saveButton.textContent = 'Save';
+  saveButton.addEventListener('click', () => {
+   
+    saveFile(previousFolder, fileName, content.value);
+    displayFolder(previousFolder);
+  });
+  openFileDiv.appendChild(saveButton);
+
+  mainContent.appendChild(openFileDiv);
+}
+
 
 
 
 //  file count
-function updateFileCounts() {
-  for (const folderName in folders) {
-    const files = JSON.parse(localStorage.getItem(folderName)) || [];
-    // const files = folderName || [];
-    const count = files.length;
-    console.log(`Folder "${folderName}" has ${count} files.`);
-    console.log(files);
-  }
-}
+// function updateFileCounts() {
+//   for (const folderName in folders) {
+//     const files = JSON.parse(localStorage.getItem(folderName)) || [];
+//     // const files = folderName || [];
+//     const count = files.length;
+//     console.log(`Folder "${folderName}" has ${count} files.`);
+//     console.log(files);
+//   }
+// }
 
 
 // Call the function to update file counts on page load
-updateFileCounts();
+// updateFileCounts();
 
 // Toggle nested list items
 const itemsWithNestedLists = document.querySelectorAll('li > ul');
@@ -134,87 +174,3 @@ itemsWithNestedLists.forEach(item => {
         $('.menu-btn').css("visibility", "visible");
       });
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //new update
-
-    function saveFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea').value;
-  const blob = new Blob([textToSave], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-
-  const fileName = prompt('Please enter a file name:', 'note.txt');
-  if (fileName !== null) {
-    const folderSelect = document.getElementById('folderSelect');
-    const folderName = folderSelect.value;
-
-    const folder = folders[folderName];
-    if (folder !== undefined) {
-      // Create a new link element for the file
-      const link = document.createElement('a');
-      link.download = fileName;
-      link.href = url;
-      link.textContent = fileName;
-
-      // Create a new list item and append the link to it
-      const listItem = document.createElement('li');
-      listItem.appendChild(link);
-
-      // Append the list item to the selected folder in the UI
-      folder.appendChild(listItem);
-
-      // Save file to local storage
-      const files = JSON.parse(localStorage.getItem(folderName)) || [];
-      files.push({ name: fileName, content: textToSave });
-      localStorage.setItem(folderName, JSON.stringify(files));
-
-      // Update the file counts in the UI
-      updateFileCounts();
-    } else {
-      console.log('Folder does not exist.');
-    }
-  }
-}
-
-function removeFile(linkElement) {
-  // Find the list item that contains the link element
-  const listItem = linkElement.parentNode;
-
-  // Find the folder that contains the list item
-  const folderSelect = document.getElementById('folderSelect');
-  const folderName = folderSelect.value;
-  const files = JSON.parse(localStorage.getItem(folderName)) || [];
-
-  // Find the file object in the array of files for the folder
-  const fileName = linkElement.textContent;
-  const fileIndex = files.findIndex(file => file.name === fileName);
-
-  if (fileIndex !== -1) {
-    // Remove the link element from the DOM
-    listItem.remove();
-
-    // Remove the file object from the array of files
-    files.splice(fileIndex, 1);
-    localStorage.setItem(folderName, JSON.stringify(files));
-
-    // Update the file counts in the UI
-    updateFileCounts();
-  }
-}
