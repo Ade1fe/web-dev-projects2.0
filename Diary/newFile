@@ -89,21 +89,14 @@ const dates = `${currentMonth} ${currentDay}, ${currentYear} <i class="bi bi-cal
 
 //save file
 function saveFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
-  const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
-  const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
+  const textToSave = document.querySelector('.newNoteDiv textarea').value;
+  const textTitleToSave = document.querySelector('.newNoteDiv input.title').value;
+  const textDateToSave = document.querySelector('.newNoteDiv h3.date').innerText;
 
   const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
   const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
   if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
     const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
-
-    const folderSelect = document.getElementById('folderSelect');
-    const folderName = folderSelect ? folderSelect.value : null;
-    if (folderName === null) {
-      console.log('Could not find folder.');
-      return;
-    }
 
     const listItem = document.createElement('li');
     listItem.className = 'sub-item';
@@ -111,10 +104,10 @@ function saveFile() {
     listItem.addEventListener('click', function() {
       openFile(fileName, textToSave);
     });
-
+    const folderSelect = document.getElementById('folderSelect');
+    const folderName = folderSelect.value;
     const folder = folders[folderName];
     folder.appendChild(listItem);
-
     console.log('File saved to ' + folderName);
 
     const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
@@ -140,7 +133,6 @@ function saveFile() {
     console.log('Invalid file name.');
   }
 }
-
 
 
 
@@ -199,14 +191,7 @@ function openFile(fileName, fileContent, previousFolder) {
 
 function displayFolder(folderName) {
   const folder = getFolder(folderName);
-  const mainContent = document.querySelector('#main-content');
-
-  if (!mainContent) {
-    console.error('Could not find .main-content element.');
- const mainContent = document.createElement('div');
-  mainContent.classList.add('main-content');
-    return;
-  }
+  const mainContent = document.querySelector('.main-content');
 
   // Remove any existing content
   mainContent.innerHTML = '';
@@ -238,22 +223,6 @@ function displayFolder(folderName) {
     fileList.appendChild(listItem);
   }
   mainContent.appendChild(fileList);
-}
-
-
-
-//
-function getFolder(folderName) {
-  const folder = folders[folderName];
-  if (folder) {
-    return folder;
-  } else {
-    // If the folder doesn't exist, create a new empty one
-    const newFolder = { files: [] };
-    folders[folderName] = newFolder;
-    localStorage.setItem(folderName, JSON.stringify(newFolder));
-    return newFolder;
-  }
 }
 
 

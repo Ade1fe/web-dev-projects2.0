@@ -82,76 +82,46 @@ const currentYear = currentDate.getFullYear();
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const currentMonth = monthNames[currentDate.getMonth()];
 const currentDay = currentDate.getDate();
-const dates = `${currentMonth} ${currentDay}, ${currentYear} <i class="bi bi-calendar4-week"></i>`
+const dates = `${currentMonth} ${currentDay}, ${currentYear} <span class="material-symbols-outlined">calendar_month</span>`
 
 
 
 
 //save file
 function saveFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
-  const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
-  const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
+  const textToSave = document.querySelector('.newNoteDiv textarea').value;
+  const fileName = prompt('Please enter a file name:', 'note.txt');
 
-  const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
-  const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
-  if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
-    const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
-
+  if (fileName !== null) {
     const folderSelect = document.getElementById('folderSelect');
-    const folderName = folderSelect ? folderSelect.value : null;
-    if (folderName === null) {
-      console.log('Could not find folder.');
-      return;
-    }
-
-    const listItem = document.createElement('li');
-    listItem.className = 'sub-item';
-    listItem.textContent = fileName;
-    listItem.addEventListener('click', function() {
-      openFile(fileName, textToSave);
-    });
+    const folderName = folderSelect.value;
 
     const folder = folders[folderName];
-    folder.appendChild(listItem);
+    if (folder !== undefined) {
+      const listItem = document.createElement('li');
+      listItem.className = 'sub-item'
+      listItem.textContent = fileName;
+      listItem.addEventListener('click', function() {
+        openFile(fileName, textToSave);
+        console.log("here")
+      });
+      folder.appendChild(listItem);
+      console.log('File saved to ' + folderName);
 
-    console.log('File saved to ' + folderName);
-
-    const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
-    const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
-
-    if (textToSave.trim()) { // Check if textToSave is not empty or only whitespace
-      // code to save file using the blob object here
+   
+      const files = JSON.parse(localStorage.getItem(folderName)) || [];
+      files.push({ name: fileName, content: textToSave });
+      localStorage.setItem(folderName, JSON.stringify(files));
+      updateFileCounts();
     } else {
-      console.log('Invalid file content.');
-      return;
+      console.log('Folder does not exist.');
     }
-
-    const note = {
-      title: textTitleToSave,
-      content: textToSave,
-      date: textDateToSave
-    };
-    const files = JSON.parse(localStorage.getItem(folderName)) || [];
-    files.push({ name: fileName, note: note });
-    localStorage.setItem(folderName, JSON.stringify(files));
-    updateFileCounts();
-  } else {
-    console.log('Invalid file name.');
   }
 }
 
 
 
-
-
-
-
-
-
-
 //openfile
-// i want this function allow textarea editable and allow change to be save and update save file with the current value in thisteaxtarea
 function openFile(fileName, fileContent, previousFolder) {
  
   const existingOpenFileDiv = document.querySelector('.open-file');
@@ -159,35 +129,30 @@ function openFile(fileName, fileContent, previousFolder) {
     existingOpenFileDiv.remove();
   }
 
+
   const newNoteDiv = document.querySelector('.newNoteDiv');
   if (newNoteDiv) {
     newNoteDiv.remove();
   }
 
+
   const openFileDiv = document.createElement('div');
   openFileDiv.classList.add('open-file');
 
+ 
   const title = document.createElement('h2');
   title.textContent = fileName;
   openFileDiv.appendChild(title);
 
-  // const newNoteDiv = document.querySelector('.newNoteDiv');
-  if (newNoteDiv) {
-    const textDateToSave = newNoteDiv.querySelector('h3.date').innerText;
-    const textTitleToSave = newNoteDiv.querySelector('input.title').value;
-   
-    const fileContentToSave = `${textDateToSave}\n\nTitle: ${textTitleToSave}\n\n${fileContent}`
-    //  textDateToSave + " " + textTitleToSave + " " + fileContent;
-    fileContent = fileContentToSave; // update the fileContent variable
-  }
 
   let content = document.createElement('textarea');
   content.value = fileContent;
   openFileDiv.appendChild(content);
 
   const saveButton = document.createElement('button');
-  saveButton.textContent = 'SaveSecond';
+  saveButton.textContent = 'Save';
   saveButton.addEventListener('click', () => {
+   
     saveFile(previousFolder, fileName, content.value);
     displayFolder(previousFolder);
   });
@@ -195,67 +160,6 @@ function openFile(fileName, fileContent, previousFolder) {
 
   mainContent.appendChild(openFileDiv);
 }
-
-
-function displayFolder(folderName) {
-  const folder = getFolder(folderName);
-  const mainContent = document.querySelector('#main-content');
-
-  if (!mainContent) {
-    console.error('Could not find .main-content element.');
- const mainContent = document.createElement('div');
-  mainContent.classList.add('main-content');
-    return;
-  }
-
-  // Remove any existing content
-  mainContent.innerHTML = '';
-
-  // Add the folder name as a title
-  const title = document.createElement('h2');
-  title.textContent = folderName;
-  mainContent.appendChild(title);
-
-  // Add a button to create a new note
-  const newNoteButton = document.createElement('button');
-  newNoteButton.textContent = 'New Note';
-  newNoteButton.addEventListener('click', () => {
-    displayNewNoteForm(folderName);
-  });
-  mainContent.appendChild(newNoteButton);
-
-  // Add a list of files in the folder
-  const fileList = document.createElement('ul');
-  for (const fileName of folder.files) {
-    const listItem = document.createElement('li');
-    const link = document.createElement('a');
-    link.textContent = fileName;
-    link.addEventListener('click', () => {
-      const fileContent = getFileContent(folderName, fileName);
-      openFile(fileName, fileContent, folderName);
-    });
-    listItem.appendChild(link);
-    fileList.appendChild(listItem);
-  }
-  mainContent.appendChild(fileList);
-}
-
-
-
-//
-function getFolder(folderName) {
-  const folder = folders[folderName];
-  if (folder) {
-    return folder;
-  } else {
-    // If the folder doesn't exist, create a new empty one
-    const newFolder = { files: [] };
-    folders[folderName] = newFolder;
-    localStorage.setItem(folderName, JSON.stringify(newFolder));
-    return newFolder;
-  }
-}
-
 
 
 

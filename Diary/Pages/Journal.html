@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    
   </head>
   <body>
  <header>
@@ -33,16 +34,40 @@
       </div>
 
       <h3 id="name">John Smith</h3>
-		<ul class="usersInfo">
-    <li> <a class="sub-btn"><i class="bi bi-star-fill"></i>Personal</a></li>
-    <li><a class="sub-btn"><i class="bi bi-archive-fill"></i>Archived</a></li>
-    <li><a class="sub-btn"><i class="bi bi-trash-fill"></i>Trash</a></li>
-    <li><a class="sub-btn"><i class="bi bi-box2-fill"></i>Notification</a></li>
-</ul>
-      <div class="menu">
+		<div class=" menu2">
+         <div class="item">
+          <a class="sub-btn"><i class="bi bi-person-circle"></i> Profile<i class="fas fa-angle-right dropdown"></i></a>
+          <ul  id="" class="sub-menu">
+             <li href="#" class="sub-item" id="email"></li>
+            <li href="#" class="sub-item" id="password"></li>
+          </ul>
+        </div>
 
+          <div class="item">
+          <a class="sub-btn"><i class="bi bi-star-fill"></i> Starred<i class="fas fa-angle-right dropdown"></i></a>
+          <ul  id="" class="sub-menu">
+          </ul>
+        </div>
+
+         <div class="item">
+          <a class="sub-btn"><i class="bi bi-trash-fill"></i> Trash<i class="fas fa-angle-right dropdown"></i></a>
+          <ul  id="" class="sub-menu">
+          </ul>
+        </div>
+
+        <div class="item">
+          <a class="sub-btn"><i class="bi bi-box2-fill"></i> Notification<i class="fas fa-angle-right dropdown"></i></a>
+          <ul  id="" class="sub-menu">
+          </ul>
+        </div>
+
+    </div>
+
+      
+
+      <div class="menu">
       <div class="item">
-          <a class="sub-btn"><span>😎</span> Personal<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>😎</span>Personal<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Personal" class="sub-menu">
             <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
@@ -51,7 +76,7 @@
         </div>
 
         <div class="item">
-          <a class="sub-btn"><span>🤙</span> Label<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>🤙</span>Label<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Label" class="sub-menu">
             <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
@@ -60,7 +85,7 @@
         </div>
 
         <div class="item">
-          <a class="sub-btn"><span>💼</span> Work<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>💼</span>Work<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Work" class="sub-menu">
             <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
@@ -69,7 +94,7 @@
         </div>
 
          <div class="item">
-          <a class="sub-btn"><span>📑</span> Design Insight<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>📑</span>Design Insight<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Design Insight" class="sub-menu">
             <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>
@@ -78,7 +103,7 @@
         </div>
 
           <div class="item">
-          <a class="sub-btn"><span>📌</span>  Business<i class="fas fa-angle-right dropdown"></i></a>
+          <a class="sub-btn"><span>📌</span>Business<i class="fas fa-angle-right dropdown"></i></a>
           <ul  id="Business" class="sub-menu">
             <!-- <li href="#" class="sub-item">Sub Item 01</li>
             <li href="#" class="sub-item">Sub Item 02</li>

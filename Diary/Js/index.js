@@ -29,7 +29,22 @@ function validation() {
   console.log(email,fullName,password)
 
   const inputElement = document.getElementById("fullName");
-    localStorage.setItem("myInputValue", inputElement.value);
+const inputElementPassword = document.getElementById("password");
+const inputElementEmail = document.getElementById("email");
+
+// Retrieve existing input values from localStorage, or initialize an empty array if there are none
+let inputValues = JSON.parse(localStorage.getItem("inputValues")) || [];
+
+// Push the new input values into the array
+inputValues.push({
+  fullName: inputElement.value,
+  password: inputElementPassword.value,
+  email: inputElementEmail.value
+});
+
+// Store the updated input values array back into localStorage
+localStorage.setItem("inputValues", JSON.stringify(inputValues));
+
 
     console.log(inputElement)
 

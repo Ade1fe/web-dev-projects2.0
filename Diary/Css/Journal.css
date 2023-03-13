@@ -35,6 +35,8 @@ header {
   justify-content: space-between;
   margin-bottom: 0.6rem;
   align-items: center;
+  width: 80%;
+  margin: auto;
 }
 
 .hr{
@@ -110,33 +112,22 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
   padding: 1rem;
   color: var(--light-green);
 }
-.usersInfo {
-  list-style: none;
-}
-.usersInfo li{
-  margin: 10px;
-  margin-left: 1rem;
-}
-.usersInfo li a{
-   display: flex;
-  text-align: center;
-  gap: 0px 20px;
-}
-.usersInfo li a{
-  text-decoration: none;
-  color: var(--black);
-}
-.usersInfo li:first-child i{
+
+.menu2 .bi-star-fill{
   color: var(--yellow);
+  margin-right: 5px;
 }
-.usersInfo li:nth-child(2) i {
+.menu2 .bi-person-circle {
   color: var(--light-green);
+  margin-right: 5px;
 }
-.usersInfo li:nth-child(3) i {
+.menu2 .bi-trash-fill {
   color: red;
 }
-.usersInfo li:nth-child(4) i {
+.menu2 .bi-box2-fill {
   color: var(--black);
+  margin-right: 5px;
+
 }
 
 .side-bar.active {
@@ -148,10 +139,55 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
   margin-top: 80px;
 }
 
+.menu2{
+  width: 100%;
+  margin-top: 10px;
+}
+.menu2 .item {
+  position: relative;
+  cursor: pointer;
+}
+
 .side-bar .menu .item {
   position: relative;
   cursor: pointer;
 }
+.menu2 .item a {
+  color: var(--black);
+  font-size: 16px;
+  text-decoration: none;
+  display: block;
+  padding: 5px 30px;
+  line-height: 40px;
+  cursor: pointer;
+}
+.menu2 .item a:hover {
+  background: var(--hover);
+  transition: 0.3s ease;
+}
+.menu2 .item a .dropdown {
+  position: absolute;
+  right: 0;
+  margin: 15px;
+  transition: 0.3s ease;
+}
+
+.menu2 .item .sub-menu {
+  background: rgba(255, 255, 255, 0.1);
+  display: none;
+}
+
+.menu2 .item .sub-menu li {
+  padding: 10px;
+  padding-left: 20px;
+}
+#email, #password{
+  display: flex;
+  align-items: center;
+  gap:0px 10px;
+}
+
+
 
 .side-bar .menu .item a ,#new-note-btn {
   color: var(--black);
@@ -237,6 +273,8 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0
   gap: 20px 30px;
   margin-left: auto;
   padding: 10px;
+  margin-bottom: 1rem;
+ box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 .title{
   width: 50%;
@@ -282,6 +320,14 @@ box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2
   padding: 0.5rem 1rem;
   border: none;
   margin-bottom: 0.5rem;
+}
+.date{
+  display: flex;
+  align-items: center;
+  gap: 0px 10px;
+}
+.date i{
+  color: var(--light-green);
 }
 .div select, .div .title,
 .div .date:focus{
@@ -329,24 +375,30 @@ footer span{
 
 
 
-@media (max-width: 900px) {
-  .main h1 {
-    font-size: 40px;
-    line-height: 60px;
+@media (max-width: 790px) {
+.div {
+    display: grid;
+    gap: 3px 3px;
+  }
+   .title{
+    width: 100%;
+    order: 2;
+  }
+  select{
+    order: 3;
+  }
+  .date{
+    order: 1;
   }
 }
 
 @media (max-width:550px) {
-.div {
-    display: grid;
-  }
+
   button, .div select, .div .date{
     padding: 0.5rem 1rem;
     font-size: .9rem;
   }
-  .title{
-    width: 100%;
-  }
+ 
 }
 
 @media (max-width: 400px) {
