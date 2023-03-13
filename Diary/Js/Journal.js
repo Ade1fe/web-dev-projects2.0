@@ -198,3 +198,12 @@ itemsWithNestedLists.forEach(item => {
         $('.menu-btn').css("visibility", "visible");
       });
     });
+
+    // localStorage.clear();
+
+
+//Get the Name
+    const myInputValue = localStorage.getItem("myInputValue");
+    console.log(myInputValue , "my Name"); 
+    const usersName = document.getElementById("name");
+usersName.innerText = myInputValue.charAt(0).toUpperCase() + myInputValue.slice(1);

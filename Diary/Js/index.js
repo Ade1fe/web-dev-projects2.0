@@ -12,7 +12,8 @@ function validation() {
     emailInput.value = email;
     passwordInput.value = password;
 
-    localStorage.removeItem('form_data');
+    // localStorage.removeItem('form_data');
+    
   }
 
 
@@ -26,6 +27,11 @@ function validation() {
   const email = emailInput.value.trim();
   const password = passwordInput.value;
   console.log(email,fullName,password)
+
+  const inputElement = document.getElementById("fullName");
+    localStorage.setItem("myInputValue", inputElement.value);
+
+    console.log(inputElement)
 
 
 
@@ -100,6 +106,8 @@ function displayErrors(errors) {
     errorList.appendChild(li);
   });
 }
+
+
 
 
 function submitForm() {
