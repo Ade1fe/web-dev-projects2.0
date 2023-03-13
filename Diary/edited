@@ -1,194 +1,175 @@
-const newNoteBtn = document.getElementById('new-note-btn');
-const mainContent = document.getElementById('main-content');
-
-function createNewNote() {
-  const newNote = document.createElement('div');
-  newNote.className = 'newNoteDiv';
-  const textArea = document.createElement('textarea');
-  newNote.append(textArea);
-  mainContent.appendChild(newNote);
-  newNoteBtn.removeEventListener('click', createNewNote);
-  // Load existing notes from local storage
-const existingNotes = JSON.parse(localStorage.getItem('notes')) || [];
-
-// Add new note to existing notes
-existingNotes.push(textToSave);
-
-// Save updated notes to local storage
-localStorage.setItem('notes', JSON.stringify(existingNotes));
-
-}
-
-newNoteBtn.addEventListener('click', createNewNote);
-
-// Folders
-const folders = {
-  personal: document.getElementById('Personal'),
-  label: document.getElementById('Label'),
-  work: document.getElementById('Work'),
-  design: document.getElementById('Design Insight'),
-  business: document.getElementById('Business')
-};
-
-// Add file button
-const addFileBtn = document.getElementById('saveFile');
-addFileBtn.addEventListener('click', addFile);
-
-function addFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea').value;
-
-  const fileName = prompt('Please enter a file name:', 'note.txt');
-  if (fileName !== null) {
-    const foldersList = Object.keys(folders);
-    const folderName = prompt('Please choose a folder to save the file to:\n\n' + foldersList.join('\n').toUpperCase() + '\n\n', 'Personal');
-    const folder = folders[folderName.toLowerCase()];
-    if (folder !== undefined) {
-      const files = JSON.parse(localStorage.getItem(folderName)) || [];
-      if (files.find(file => file.name === fileName)) {
-        alert('A file with that name already exists in the folder.');
-      } else {
-        const newFile = { name: fileName, content: textToSave };
-        files.push(newFile);
-        localStorage.setItem(folderName, JSON.stringify(files));
-        const listItem = createFileListItem(newFile);
-        folder.appendChild(listItem);
-        console.log('File saved to ' + folderName);
-      }
-    } else {
-      console.log('Folder does not exist.');
-    }
-  }
-}
-
-// Save file button
-const saveFileBtn = document.getElementById('saveFile');
-saveFileBtn.addEventListener('click', saveFile);
-
+// Save file
 function saveFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea').value;
-  const blob = new Blob([textToSave], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
+  const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
+  const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
+  const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
 
-  const fileName = prompt('Please enter a file name:', 'note.txt');
-  if (fileName !== null) {
-    const foldersList = Object.keys(folders);
-    const folderName = prompt('Please choose a folder to save the file to:\n\n' + foldersList.join('\n').toUpperCase() + '\n\n', 'Personal');
-    const folder = folders[folderName.toLowerCase()];
-    if (folder !== undefined) {
-      const files = JSON.parse(localStorage.getItem(folderName)) || [];
-      if (files.find(file => file.name === fileName)) {
-        if (!confirm('A file with that name already exists in the folder. Do you want to overwrite it?')) {
-          return;
-        }
-      }
-      const newFile = { name: fileName, content: textToSave };
-      files.push(newFile);
-      localStorage.setItem(folderName, JSON.stringify(files));
-      const link = document.createElement('a');
-      link.download = fileName;
-      link.href = url;
-      link.textContent = fileName;
-      const listItem = createFileListItem(newFile);
-      folder.appendChild(listItem);
-      console.log('File saved to ' + folderName);
-    } else {
-      console.log('Folder does not exist.');
+  const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
+  const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
+  if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
+    const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
+
+    const folderSelect = document.getElementById('folderSelect');
+    const folderName = folderSelect ? folderSelect.value : null;
+    if (folderName === null) {
+      console.log('Could not find folder.');
+      return;
     }
+
+    const listItem = document.createElement('li');
+    listItem.className = 'sub-item';
+    listItem.textContent = fileName;
+    listItem.addEventListener('click', function() {
+      openFile(fileName, folderName);
+    });
+
+    const folder = folders[folderName];
+    folder.appendChild(listItem);
+
+    console.log('File saved to ' + folderName);
+
+    const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
+    const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
+
+    if (textToSave.trim()) { // Check if textToSave is not empty or only whitespace
+      saveAs(blob, fileName); // Save file using FileSaver.js library
+    } else {
+      console.log('Invalid file content.');
+      return;
+    }
+
+    const note = {
+      title: textTitleToSave,
+      content: textToSave,
+      date: textDateToSave
+    };
+    const files = JSON.parse(localStorage.getItem(folderName)) || [];
+    files.push({ name: fileName, note: note });
+    localStorage.setItem(folderName, JSON.stringify(files));
+    updateFileCounts();
+  } else {
+    console.log('Invalid file name.');
   }
 }
 
-// Create a list item for a file object
-function createFileListItem(file) {
-  const link = document.createElement('a');
-  link.textContent = file.name;
-  link.addEventListener('click', () => {
-    const textArea = document.querySelector('.newNoteDiv textarea');
-    textArea.value = file.content;
-  });
+// Open file
+function openFile(fileName, folderName) {
+  const existingOpenFileDiv = document.querySelector('.open-file');
+  if (existingOpenFileDiv) {
+    existingOpenFileDiv.remove();
+  }
 
-  const deleteBtn = document.createElement('button');
-  deleteBtn.textContent = 'Delete';
-  deleteBtn.addEventListener('click', () => {
-    const files = JSON.parse(localStorage.getItem(folderName)) || [];
-    const filteredFiles = files.filter(f => f.name !== file.name);
-localStorage.setItem(folderName, JSON.stringify(filteredFiles));
-const listItem = event.target.parentNode;
-listItem.parentNode.removeChild(listItem);
-console.log('File deleted from ' + folderName);
-});
+  const newNoteDiv = document.querySelector('.newNoteDiv');
+  if (newNoteDiv) {
+    newNoteDiv.remove();
+  }
 
-const listItem = document.createElement('li');
-listItem.appendChild(link);
-listItem.appendChild(deleteBtn);
-return listItem;
-}
+  const files = JSON.parse(localStorage.getItem(folderName)) || [];
+  const file = files.find((file) => file.name === fileName);
+  if (file) {
+    const note = file.note;
+    const openFileDiv = document.createElement('div');
+    openFileDiv.classList.add('open-file');
 
-// Display files in the default folder (Personal)
-displayFiles('Personal');
+    const title = document.createElement('h2');
+    title.textContent = note.title;
+    openFileDiv.appendChild(title);
 
-// Display files for the selected folder
-function displayFiles(folderName) {
-const folder = folders[folderName.toLowerCase()];
-if (folder !== undefined) {
-folder.innerHTML = '';
-const files = JSON.parse(localStorage.getItem(folderName)) || [];
-files.forEach(file => {
-const listItem = createFileListItem(file);
-folder.appendChild(listItem);
-});
-} else {
-console.log('Folder does not exist.');
-}
-}
+    const date = document.createElement('h3');
+    date.className = 'date';
+    date.innerHTML = note.date;
+    openFileDiv.appendChild(date);
 
-// Switch between folders
-const folderLinks = document.querySelectorAll('#folders a');
-folderLinks.forEach(link => {
-link.addEventListener('click', event => {
-const folderName = event.target.dataset.folder;
-displayFiles(folderName);
-});
-});
+    const textArea = document.createElement('textarea');
+    textArea.className ='textarea';
+    textArea.value = note.content;
+    openFileDiv.appendChild(textArea);
 
-// Clear all files from localStorage
-const clearBtn = document.getElementById('clear');
-clearBtn.addEventListener('click', () => {
-localStorage.clear();
-Object.keys(folders).forEach(folderName => {
-const folder = folders[folderName];
-folder.innerHTML = '';
-});
-console.log('All files deleted.');
-});
+    const updateFileBtn
+class FileManager {
+  constructor() {
+    this.folders = {
+      personal: document.getElementById('Personal'),
+      label: document.getElementById('Label'),
+      work: document.getElementById('Work'),
+      design: document.getElementById('Design Insight'),
+      business: document.getElementById('Business')
+    };
+  }
 
-// Search functionality
-const searchInput = document.getElementById('search');
-searchInput.addEventListener('input', event => {
-const query = event.target.value.toLowerCase();
-const folderLinks = document.querySelectorAll('#folders a');
-folderLinks.forEach(link => {
-const folderName = link.dataset.folder.toLowerCase();
-const folder = folders[folderName];
-if (folder !== undefined) {
-const files = JSON.parse(localStorage.getItem(folderName)) || [];
-files.forEach(file => {
-const listItem = folder.querySelector(li.contains('${file.name}'));
-if (listItem !== null) {
-const isMatch = file.name.toLowerCase().includes(query);
-listItem.style.display = isMatch ? 'block' : 'none';
-}
-});
-}
-});
-});
+  saveFile() {
+    const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
+    const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
+    const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
 
+    const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
+    const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
+    if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
+      const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
 
+      const folderSelect = document.getElementById('folderSelect');
+      const folderName = folderSelect ? folderSelect.value : null;
+      if (folderName === null) {
+        console.log('Could not find folder.');
+        return;
+      }
 
+      const listItem = document.createElement('li');
+      listItem.className = 'sub-item';
+      listItem.textContent = fileName;
+      listItem.addEventListener('click', () => {
+        this.openFile(fileName);
+      });
 
-// Toggle nested list items
-const itemsWithNestedLists = document.querySelectorAll('li > ul');
-itemsWithNestedLists.forEach(item => {
-  item.parentElement.addEventListener('click', () => {
-    item.classList.toggle('open');
-  });
-});
+      const folder = this.folders[folderName];
+      folder.appendChild(listItem);
+
+      console.log('File saved to ' + folderName);
+
+      const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
+      const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
+
+      if (textToSave.trim()) { // Check if textToSave is not empty or only whitespace
+        // code to save file using the blob object here
+      } else {
+        console.log('Invalid file content.');
+        return;
+      }
+
+      const note = {
+        title: textTitleToSave,
+        content: textToSave,
+        date: textDateToSave
+      };
+      const files = JSON.parse(localStorage.getItem(folderName)) || [];
+      files.push({ name: fileName, note: note });
+      localStorage.setItem(folderName, JSON.stringify(files));
+      this.updateFileCounts();
+    } else {
+      console.log('Invalid file name.');
+    }
+  }
+
+  openFile(fileName) {
+    const fileData = JSON.parse(localStorage.getItem(folderName)).find(file => file.name === fileName);
+    const note = fileData.note;
+    const textTitleToOpen = note.title;
+    const textDateToOpen = note.date;
+    const textContentToOpen = note.content;
+
+    const newNoteDiv = document.querySelector('.newNoteDiv');
+    if (newNoteDiv) {
+      newNoteDiv.remove();
+    }
+
+    const openFileDiv = document.createElement('div');
+    openFileDiv.classList.add('open-file');
+
+    const title = document.createElement('h3');
+    title.innerHTML = textTitleToOpen;
+    title.className = 'title';
+    openFileDiv.appendChild(title);
+
+    const date = document.createElement('h3');
+    date.innerHTML = textDateToOpen;
+    date.className

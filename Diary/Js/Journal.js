@@ -1,35 +1,38 @@
 
 
-
 const newNoteBtn = document.getElementById('new-note-btn');
 const mainContent = document.getElementById('main-content');
 // const div = document.getElementById('div');
 
 function createNewNote() {
+  const newNoteDiv = document.querySelector('.newNoteDiv');
+  if (newNoteDiv) {
+    return; // If the new note div is already open, do nothing
+  }
+
   const newNote = document.createElement('div');
   newNote.className = 'newNoteDiv';
 
-    const div = document.createElement('div');
-    div.className = 'div';
+  const div = document.createElement('div');
+  div.className = 'div';
 
- const date = document.createElement('h3');
-date.className = 'date';
-date.innerHTML = dates;
+  const date = document.createElement('h3');
+  date.className = 'date';
+  date.innerHTML = dates;
 
   const title = document.createElement('input');
-title.type = 'text';
-title.className = 'title';
-title.placeholder = 'Title start here...';
-
+  title.type = 'text';
+  title.className = 'title';
+  title.placeholder = 'Title start here...';
 
   const selectOption = document.createElement('select');
   selectOption.id = 'folderSelect';
-  selectOption.className = 'select'
+  selectOption.className = 'select';
 
   // Create the default option "Select a Folder"
   const defaultOption = document.createElement('option');
-  defaultOption.value = "";
-  defaultOption.textContent = "Select a Folder";
+  defaultOption.value = '';
+  defaultOption.textContent = 'Select a Folder';
   defaultOption.disabled = true;
   defaultOption.selected = true;
   selectOption.appendChild(defaultOption);
@@ -49,7 +52,7 @@ title.placeholder = 'Title start here...';
   newNote.appendChild(div);
 
   const textArea = document.createElement('textarea');
-  textArea.className ='textarea'
+  textArea.className = 'textarea';
   newNote.appendChild(textArea);
 
   const saveFileBtn = document.createElement('button');
@@ -60,11 +63,18 @@ title.placeholder = 'Title start here...';
   newNote.appendChild(saveFileBtn);
 
   mainContent.appendChild(newNote);
-  newNoteBtn.removeEventListener('click', createNewNote);
+
+  const openFileDiv = document.querySelector('.open-file');
+  if (openFileDiv) {
+    openFileDiv.remove();
+    newNoteBtn.disabled = false;
+  }
 }
 
 
+
 newNoteBtn.addEventListener('click', createNewNote);
+//  newNoteBtn.removeEventListener('click', createNewNote);
 
 // Folders
 const folders = {
@@ -89,44 +99,70 @@ const dates = `${currentMonth} ${currentDay}, ${currentYear} <i class="bi bi-cal
 
 //save file
 function saveFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
-  const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
-  const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
+  const textToSave = document.querySelector('.newNoteDiv textarea').value;
+  const textTitleToSave = document.querySelector('.newNoteDiv input.title').value;
+  const textDateToSave = document.querySelector('.newNoteDiv h3.date').innerText;
 
   const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
   const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
+  
   if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
     const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
 
-    const folderSelect = document.getElementById('folderSelect');
-    const folderName = folderSelect ? folderSelect.value : null;
-    if (folderName === null) {
-      console.log('Could not find folder.');
-      return;
-    }
-
     const listItem = document.createElement('li');
     listItem.className = 'sub-item';
-    listItem.textContent = fileName;
+
+    // Create a delete icon
+const deleteIcon = document.createElement('i');
+deleteIcon.className = 'bi bi-trash-fill';
+deleteIcon.addEventListener('click', function(event) {
+  event.stopPropagation(); // Prevent the click event from bubbling up to the list item
+  
+  // Remove the icon and `i` tag from the listItem
+  const listItemIcon = listItem.querySelector('.bi-trash-fill');
+  if (listItemIcon) {
+    listItemIcon.parentNode.removeChild(listItemIcon);
+  }
+
+  listItem.remove(); // Remove the list item from the folder
+  const moveToTrash = document.getElementById("trash");
+  moveToTrash.appendChild(listItem); // Add the removed list item to the trash folder
+
+
+  // Add a click event listener to the moved listItem in the trash folder
+  listItem.addEventListener('click', function(event) {
+    event.stopPropagation(); // Prevent the click event from bubbling up to the list item
+    listItem.remove(); // Remove the list item from the trash folder
+    updateFileCounts();
+  });
+
+  updateFileCounts();
+});
+
+
+    
+
+
+    const fileNameText = document.createElement('span');
+    fileNameText.textContent = fileName;
+
+    // Add the delete icon and file name text to the list item
+    listItem.appendChild(deleteIcon);
+    listItem.appendChild(fileNameText);
+
     listItem.addEventListener('click', function() {
       openFile(fileName, textToSave);
     });
-
+    
+    const folderSelect = document.getElementById('folderSelect');
+    const folderName = folderSelect.value;
     const folder = folders[folderName];
     folder.appendChild(listItem);
-
     console.log('File saved to ' + folderName);
 
     const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
     const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
-
-    if (textToSave.trim()) { // Check if textToSave is not empty or only whitespace
-      // code to save file using the blob object here
-    } else {
-      console.log('Invalid file content.');
-      return;
-    }
-
+    
     const note = {
       title: textTitleToSave,
       content: textToSave,
@@ -148,10 +184,7 @@ function saveFile() {
 
 
 
-
-
 //openfile
-// i want this function allow textarea editable and allow change to be save and update save file with the current value in thisteaxtarea
 function openFile(fileName, fileContent, previousFolder) {
  
   const existingOpenFileDiv = document.querySelector('.open-file');
@@ -185,76 +218,17 @@ function openFile(fileName, fileContent, previousFolder) {
   content.value = fileContent;
   openFileDiv.appendChild(content);
 
-  const saveButton = document.createElement('button');
-  saveButton.textContent = 'SaveSecond';
-  saveButton.addEventListener('click', () => {
-    saveFile(previousFolder, fileName, content.value);
-    displayFolder(previousFolder);
-  });
-  openFileDiv.appendChild(saveButton);
+  // const saveButton = document.createElement('button');
+  // saveButton.textContent = 'Save';
+  // saveButton.addEventListener('click', () => {
+  //   saveFile(previousFolder, fileName, content.value);
+  //   displayFolder(previousFolder);
+  // });
+  // openFileDiv.appendChild(saveButton);
 
   mainContent.appendChild(openFileDiv);
 }
 
-
-function displayFolder(folderName) {
-  const folder = getFolder(folderName);
-  const mainContent = document.querySelector('#main-content');
-
-  if (!mainContent) {
-    console.error('Could not find .main-content element.');
- const mainContent = document.createElement('div');
-  mainContent.classList.add('main-content');
-    return;
-  }
-
-  // Remove any existing content
-  mainContent.innerHTML = '';
-
-  // Add the folder name as a title
-  const title = document.createElement('h2');
-  title.textContent = folderName;
-  mainContent.appendChild(title);
-
-  // Add a button to create a new note
-  const newNoteButton = document.createElement('button');
-  newNoteButton.textContent = 'New Note';
-  newNoteButton.addEventListener('click', () => {
-    displayNewNoteForm(folderName);
-  });
-  mainContent.appendChild(newNoteButton);
-
-  // Add a list of files in the folder
-  const fileList = document.createElement('ul');
-  for (const fileName of folder.files) {
-    const listItem = document.createElement('li');
-    const link = document.createElement('a');
-    link.textContent = fileName;
-    link.addEventListener('click', () => {
-      const fileContent = getFileContent(folderName, fileName);
-      openFile(fileName, fileContent, folderName);
-    });
-    listItem.appendChild(link);
-    fileList.appendChild(listItem);
-  }
-  mainContent.appendChild(fileList);
-}
-
-
-
-//
-function getFolder(folderName) {
-  const folder = folders[folderName];
-  if (folder) {
-    return folder;
-  } else {
-    // If the folder doesn't exist, create a new empty one
-    const newFolder = { files: [] };
-    folders[folderName] = newFolder;
-    localStorage.setItem(folderName, JSON.stringify(newFolder));
-    return newFolder;
-  }
-}
 
 
 
@@ -270,6 +244,7 @@ function updateFileCounts() {
     console.log(files);
   }
 }
+
 
 
 // Call the function to update file counts on page load
