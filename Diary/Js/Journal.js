@@ -109,10 +109,46 @@ function saveFile() {
   if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
     const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
 
-    const listItem = document.createElement('li');
-    listItem.className = 'sub-item';
+ const listItem = document.createElement('li');
+listItem.className = 'sub-item';
+
+
+// create star icon and add it to the listItem
+const starIcon = document.createElement('i');
+starIcon.className = 'bi bi-star'; // assuming you're using Bootstrap icons
+listItem.appendChild(starIcon);
+
+// add event listener to the star icon
+starIcon.addEventListener('click', (event) => {
+  event.preventDefault(); // prevent file from opening
+  starIcon.classList.toggle('bi-star-fill'); // toggle full star icon
+  starIcon.classList.toggle('bi-star'); // toggle empty star icon
+  if (starIcon.classList.contains('bi-star-fill')) {
+    const cloneItem = listItem.cloneNode(true); // create a clone of the listItem
+    const iTags = cloneItem.querySelectorAll('i'); // select all i tags in the cloned list item
+    iTags.forEach(tag => tag.remove()); // remove all i tags from the cloned list item
+    moveToStar.appendChild(cloneItem); // add the clone to moveToStar
+  } else {
+    const cloneItem = moveToStar.querySelector('.sub-item:last-child'); // get the last added clone item
+    if (cloneItem) {
+      moveToStar.removeChild(cloneItem); // remove the clone item from moveToStar
+    }
+  }
+});
+
+// assuming moveToStar already exists in the DOM
+const moveToStar = document.getElementById('starred');
+
+
+
+
+
+
+
+
 
     // Create a delete icon
+// Create a delete icon
 const deleteIcon = document.createElement('i');
 deleteIcon.className = 'bi bi-trash-fill';
 deleteIcon.addEventListener('click', function(event) {
@@ -124,15 +160,24 @@ deleteIcon.addEventListener('click', function(event) {
     listItemIcon.parentNode.removeChild(listItemIcon);
   }
 
-  listItem.remove(); // Remove the list item from the folder
+  listItem.remove();
+
+   // Remove the cloned item from `moveToStar`
+  const clonedItems = moveToStar.querySelectorAll('.sub-item');
+  clonedItems.forEach((clonedItem) => {
+    if (clonedItem.dataset.originalId === listItem.dataset.id) {
+      clonedItem.remove();
+    }
+  });
+
   const moveToTrash = document.getElementById("trash");
-  moveToTrash.appendChild(listItem); // Add the removed list item to the trash folder
+  moveToTrash.appendChild(listItem); 
 
 
   // Add a click event listener to the moved listItem in the trash folder
   listItem.addEventListener('click', function(event) {
-    event.stopPropagation(); // Prevent the click event from bubbling up to the list item
-    listItem.remove(); // Remove the list item from the trash folder
+    event.stopPropagation();
+    listItem.remove(); 
     updateFileCounts();
   });
 
@@ -151,7 +196,7 @@ deleteIcon.addEventListener('click', function(event) {
     listItem.appendChild(fileNameText);
 
     listItem.addEventListener('click', function() {
-      openFile(fileName, textToSave);
+      openFile(fileName, textToSave,textTitleToSave);
     });
     
     const folderSelect = document.getElementById('folderSelect');
@@ -185,7 +230,7 @@ deleteIcon.addEventListener('click', function(event) {
 
 
 //openfile
-function openFile(fileName, fileContent, previousFolder) {
+function openFile(fileName, fileContent, titleToSave, previousFolder) {
  
   const existingOpenFileDiv = document.querySelector('.open-file');
   if (existingOpenFileDiv) {
@@ -212,22 +257,33 @@ function openFile(fileName, fileContent, previousFolder) {
     const fileContentToSave = `${textDateToSave}\n\nTitle: ${textTitleToSave}\n\n${fileContent}`
     //  textDateToSave + " " + textTitleToSave + " " + fileContent;
     fileContent = fileContentToSave; // update the fileContent variable
+    titleToSave = textTitleToSave; // update the titleToSave variable
   }
 
-  let content = document.createElement('textarea');
-  content.value = fileContent;
+  let content = document.createElement('div');
+  content.innerText = fileContent;
   openFileDiv.appendChild(content);
 
-  // const saveButton = document.createElement('button');
-  // saveButton.textContent = 'Save';
-  // saveButton.addEventListener('click', () => {
-  //   saveFile(previousFolder, fileName, content.value);
-  //   displayFolder(previousFolder);
-  // });
-  // openFileDiv.appendChild(saveButton);
+ const newNoteButton = document.createElement('button');
+newNoteButton.textContent = 'Create New Note';
+newNoteButton.addEventListener('click', () => {
+  createNewNote(titleToSave);
+  
+
+   const existingOpenFileDiv = document.querySelector('.open-file');
+if (existingOpenFileDiv) {
+  existingOpenFileDiv.remove(); // remove the current open file div after creating a new note
+}
+
+ 
+ 
+});
+openFileDiv.appendChild(newNoteButton);
+
 
   mainContent.appendChild(openFileDiv);
 }
+
 
 
 

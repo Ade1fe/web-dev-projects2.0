@@ -1,175 +1,37 @@
-// Save file
-function saveFile() {
-  const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
-  const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
-  const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
-
-  const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
-  const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
-  if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
-    const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
-
-    const folderSelect = document.getElementById('folderSelect');
-    const folderName = folderSelect ? folderSelect.value : null;
-    if (folderName === null) {
-      console.log('Could not find folder.');
-      return;
-    }
-
-    const listItem = document.createElement('li');
-    listItem.className = 'sub-item';
-    listItem.textContent = fileName;
-    listItem.addEventListener('click', function() {
-      openFile(fileName, folderName);
-    });
-
-    const folder = folders[folderName];
-    folder.appendChild(listItem);
-
-    console.log('File saved to ' + folderName);
-
-    const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
-    const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
-
-    if (textToSave.trim()) { // Check if textToSave is not empty or only whitespace
-      saveAs(blob, fileName); // Save file using FileSaver.js library
-    } else {
-      console.log('Invalid file content.');
-      return;
-    }
-
-    const note = {
-      title: textTitleToSave,
-      content: textToSave,
-      date: textDateToSave
-    };
-    const files = JSON.parse(localStorage.getItem(folderName)) || [];
-    files.push({ name: fileName, note: note });
-    localStorage.setItem(folderName, JSON.stringify(files));
-    updateFileCounts();
-  } else {
-    console.log('Invalid file name.');
+// Create a delete icon
+const deleteIcon = document.createElement('i');
+deleteIcon.className = 'bi bi-trash-fill';
+deleteIcon.addEventListener('click', function(event) {
+  event.stopPropagation(); // Prevent the click event from bubbling up to the list item
+  
+  // Remove the icon and `i` tag from the listItem
+  const listItemIcon = listItem.querySelector('.bi-trash-fill');
+  if (listItemIcon) {
+    listItemIcon.parentNode.removeChild(listItemIcon);
   }
+
+  // Remove any click event listeners from the listItem
+  listItem.removeEventListener('click', onItemClick);
+
+  listItem.remove();
+  const moveToTrash = document.getElementById("trash");
+  
+  if (moveToStar.contains(listItem)) {
+    const cloneItem = moveToStar.querySelector('.sub-item:last-child'); // get the last added clone item
+    if (cloneItem) {
+      moveToStar.removeChild(cloneItem); // remove the clone item from moveToStar
+    }
+  }
+  
+  moveToTrash.appendChild(listItem); 
+});
+
+// add delete icon to listItem
+listItem.appendChild(deleteIcon);
+
+// add click event listener to listItem
+function onItemClick() {
+  // open the item when clicked
 }
 
-// Open file
-function openFile(fileName, folderName) {
-  const existingOpenFileDiv = document.querySelector('.open-file');
-  if (existingOpenFileDiv) {
-    existingOpenFileDiv.remove();
-  }
-
-  const newNoteDiv = document.querySelector('.newNoteDiv');
-  if (newNoteDiv) {
-    newNoteDiv.remove();
-  }
-
-  const files = JSON.parse(localStorage.getItem(folderName)) || [];
-  const file = files.find((file) => file.name === fileName);
-  if (file) {
-    const note = file.note;
-    const openFileDiv = document.createElement('div');
-    openFileDiv.classList.add('open-file');
-
-    const title = document.createElement('h2');
-    title.textContent = note.title;
-    openFileDiv.appendChild(title);
-
-    const date = document.createElement('h3');
-    date.className = 'date';
-    date.innerHTML = note.date;
-    openFileDiv.appendChild(date);
-
-    const textArea = document.createElement('textarea');
-    textArea.className ='textarea';
-    textArea.value = note.content;
-    openFileDiv.appendChild(textArea);
-
-    const updateFileBtn
-class FileManager {
-  constructor() {
-    this.folders = {
-      personal: document.getElementById('Personal'),
-      label: document.getElementById('Label'),
-      work: document.getElementById('Work'),
-      design: document.getElementById('Design Insight'),
-      business: document.getElementById('Business')
-    };
-  }
-
-  saveFile() {
-    const textToSave = document.querySelector('.newNoteDiv textarea') ? document.querySelector('.newNoteDiv textarea').value : '';
-    const textTitleToSave = document.querySelector('.newNoteDiv input.title') ? document.querySelector('.newNoteDiv input.title').value : '';
-    const textDateToSave = document.querySelector('.newNoteDiv h3.date') ? document.querySelector('.newNoteDiv h3.date').innerText : '';
-
-    const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
-    const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
-    if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
-      const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
-
-      const folderSelect = document.getElementById('folderSelect');
-      const folderName = folderSelect ? folderSelect.value : null;
-      if (folderName === null) {
-        console.log('Could not find folder.');
-        return;
-      }
-
-      const listItem = document.createElement('li');
-      listItem.className = 'sub-item';
-      listItem.textContent = fileName;
-      listItem.addEventListener('click', () => {
-        this.openFile(fileName);
-      });
-
-      const folder = this.folders[folderName];
-      folder.appendChild(listItem);
-
-      console.log('File saved to ' + folderName);
-
-      const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
-      const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
-
-      if (textToSave.trim()) { // Check if textToSave is not empty or only whitespace
-        // code to save file using the blob object here
-      } else {
-        console.log('Invalid file content.');
-        return;
-      }
-
-      const note = {
-        title: textTitleToSave,
-        content: textToSave,
-        date: textDateToSave
-      };
-      const files = JSON.parse(localStorage.getItem(folderName)) || [];
-      files.push({ name: fileName, note: note });
-      localStorage.setItem(folderName, JSON.stringify(files));
-      this.updateFileCounts();
-    } else {
-      console.log('Invalid file name.');
-    }
-  }
-
-  openFile(fileName) {
-    const fileData = JSON.parse(localStorage.getItem(folderName)).find(file => file.name === fileName);
-    const note = fileData.note;
-    const textTitleToOpen = note.title;
-    const textDateToOpen = note.date;
-    const textContentToOpen = note.content;
-
-    const newNoteDiv = document.querySelector('.newNoteDiv');
-    if (newNoteDiv) {
-      newNoteDiv.remove();
-    }
-
-    const openFileDiv = document.createElement('div');
-    openFileDiv.classList.add('open-file');
-
-    const title = document.createElement('h3');
-    title.innerHTML = textTitleToOpen;
-    title.className = 'title';
-    openFileDiv.appendChild(title);
-
-    const date = document.createElement('h3');
-    date.innerHTML = textDateToOpen;
-    date.className
+listItem.addEventListener('click', onItemClick);
