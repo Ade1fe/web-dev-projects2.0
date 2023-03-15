@@ -1,4 +1,4 @@
-
+// have setting option you can change password and email 
 
 const newNoteBtn = document.getElementById('new-note-btn');
 const mainContent = document.getElementById('main-content');
@@ -41,7 +41,8 @@ function createNewNote() {
   for (const folderName in folders) {
     const option = document.createElement('option');
     option.value = folderName;
-    option.textContent = folderName;
+    // option.textContent = folderName;
+      option.textContent = folderName.charAt(0).toUpperCase() + folderName.slice(1);
     selectOption.appendChild(option);
   }
 
@@ -52,6 +53,7 @@ function createNewNote() {
   newNote.appendChild(div);
 
   const textArea = document.createElement('textarea');
+  textArea.placeholder = "Write your thought(s) here..."
   textArea.className = 'textarea';
   newNote.appendChild(textArea);
 
@@ -74,6 +76,10 @@ function createNewNote() {
 
 
 newNoteBtn.addEventListener('click', createNewNote);
+document.addEventListener('DOMContentLoaded', function() {
+  createNewNote();
+});
+
 //  newNoteBtn.removeEventListener('click', createNewNote);
 
 // Folders
@@ -122,6 +128,7 @@ listItem.appendChild(starIcon);
 starIcon.addEventListener('click', (event) => {
   event.preventDefault(); // prevent file from opening
   starIcon.classList.toggle('bi-star-fill'); // toggle full star icon
+ starIcon.style.color = '#FFB703';
   starIcon.classList.toggle('bi-star'); // toggle empty star icon
   if (starIcon.classList.contains('bi-star-fill')) {
     const cloneItem = listItem.cloneNode(true); // create a clone of the listItem
@@ -140,17 +147,10 @@ starIcon.addEventListener('click', (event) => {
 const moveToStar = document.getElementById('starred');
 
 
-
-
-
-
-
-
-
     // Create a delete icon
-// Create a delete icon
-const deleteIcon = document.createElement('i');
+  const deleteIcon = document.createElement('i');
 deleteIcon.className = 'bi bi-trash-fill';
+ deleteIcon.style.color = 'red';
 deleteIcon.addEventListener('click', function(event) {
   event.stopPropagation(); // Prevent the click event from bubbling up to the list item
   
@@ -170,6 +170,12 @@ deleteIcon.addEventListener('click', function(event) {
     }
   });
 
+
+const icon = listItem.querySelector('i');
+if (icon) {
+  icon.remove();
+}
+
   const moveToTrash = document.getElementById("trash");
   moveToTrash.appendChild(listItem); 
 
@@ -178,22 +184,22 @@ deleteIcon.addEventListener('click', function(event) {
   listItem.addEventListener('click', function(event) {
     event.stopPropagation();
     listItem.remove(); 
-    updateFileCounts();
   });
 
-  updateFileCounts();
 });
 
 
-    
 
 
     const fileNameText = document.createElement('span');
     fileNameText.textContent = fileName;
 
-    // Add the delete icon and file name text to the list item
-    listItem.appendChild(deleteIcon);
+    // Add the file name text to the list item
     listItem.appendChild(fileNameText);
+
+    // Add the delete icon to the list item after the file name text
+    fileNameText.insertAdjacentElement('afterend', deleteIcon);
+
 
     listItem.addEventListener('click', function() {
       openFile(fileName, textToSave,textTitleToSave);
@@ -216,13 +222,90 @@ deleteIcon.addEventListener('click', function(event) {
     const files = JSON.parse(localStorage.getItem(folderName)) || [];
     files.push({ name: fileName, note: note });
     localStorage.setItem(folderName, JSON.stringify(files));
-    updateFileCounts();
+
+
+// const listItemCount = countListItems(folderName);
+// console.log(`The number of list items in ${folderName} is: ${listItemCount}`);
+
+// const folders2 = {
+//   personal: document.getElementById('personal-span'),
+//   label: document.getElementById('label-span'),
+//   work: document.getElementById('work-span'),
+//   design: document.getElementById('design-span'),
+//   business: document.getElementById('business-span')
+// };
+// const listItemCount = countListItems(folderName);
+// const personalUl = document.querySelector("folders2");
+// personalUl.innerText = listItemCount;
+// console.log(`The number of list items in ${folderName} is: ${listItemCount}`);
+const folders2 = {
+  personal: {
+    span: document.getElementById('personal-span'),
+    count: countListItems('personal')
+  },
+  label: {
+    span: document.getElementById('label-span'),
+    count: countListItems('label')
+  },
+  work: {
+    span: document.getElementById('work-span'),
+    count: countListItems('work')
+  },
+  design: {
+    span: document.getElementById('design-span'),
+    count: countListItems('design')
+  },
+  business: {
+    span: document.getElementById('business-span'),
+    count: countListItems('business')
+  }
+};
+
+// Update the text content of each folder span to show the corresponding list item count
+for (const folder in folders2) {
+  folders2[folder].span.innerText = folders2[folder].count;
+}
+
+function updateFolderItemCount(folderName) {
+  const folder = folders2[folderName];
+  const listItemCount = countListItems(folderName);
+  folder.count = listItemCount;
+  folder.span.innerText = listItemCount;
+}
+
+// Call this function whenever a file is deleted from a folder
+function onDeleteFile(folderName) {
+  updateFolderItemCount(folderName);
+}
+
+// Call this function whenever a file is added to a folder
+function onAddFile(folderName) {
+  updateFolderItemCount(folderName);
+}
+
+// Log the folder name and corresponding list item count for each folder
+for (const folder in folders2) {
+  console.log(`The number of list items in ${folder} is: ${folders2[folder].count}`);
+}
+
+
+
+
+
+
   } else {
     console.log('Invalid file name.');
   }
 }
 
 
+//count li in list item
+
+function countListItems(folderName) {
+  const folder = folders[folderName];
+  const listItems = folder.querySelectorAll('li.sub-item');
+  return listItems.length;
+}
 
 
 
@@ -266,6 +349,7 @@ function openFile(fileName, fileContent, titleToSave, previousFolder) {
 
  const newNoteButton = document.createElement('button');
 newNoteButton.textContent = 'Create New Note';
+  newNoteButton.className = 'saveFile';
 newNoteButton.addEventListener('click', () => {
   createNewNote(titleToSave);
   
@@ -286,25 +370,6 @@ openFileDiv.appendChild(newNoteButton);
 
 
 
-
-
-
-
-//  file count
-function updateFileCounts() {
-  for (const folderName in folders) {
-    const files = JSON.parse(localStorage.getItem(folderName)) || [];
-    // const files = folderName || [];
-    const count = files.length;
-    console.log(`Folder "${folderName}" has ${count} files.`);
-    console.log(files);
-  }
-}
-
-
-
-// Call the function to update file counts on page load
-updateFileCounts();
 
 // Toggle nested list items
 const itemsWithNestedLists = document.querySelectorAll('li > ul');

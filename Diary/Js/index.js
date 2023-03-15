@@ -99,7 +99,7 @@ if (fullName === '') {
   } else {
     submitForm();
     alert('Registration successful!');
-     window.location.href = '../pages/Journal.html';
+     window.location.href = '../edited.html';
   }
   
 }
