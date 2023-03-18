@@ -110,9 +110,10 @@ function saveFile() {
   const textDateToSave = document.querySelector('.newNoteDiv h3.date').innerText;
 
   const fileNameRegex = /^[^<>:"/\\|?*\u0000-\u001F]+$/; // Regular expression to check for invalid characters in file name
-  const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave + '.txt');
-  
-  if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt)) { // Check if file name is valid
+  const fileNamePrompt = prompt('Please enter a file name:', textTitleToSave );
+  if(textTitleToSave !== ""){
+
+    if (fileNamePrompt !== undefined && fileNameRegex.test(fileNamePrompt &&textTitleToSave)) { // Check if file name is valid
     const fileName = fileNamePrompt.trim(); // Trim any leading/trailing spaces and add .txt extension
 
  const listItem = document.createElement('li');
@@ -205,11 +206,16 @@ if (icon) {
       openFile(fileName, textToSave,textTitleToSave);
     });
     
-    const folderSelect = document.getElementById('folderSelect');
+     const folderSelect = document.getElementById('folderSelect');
     const folderName = folderSelect.value;
+   if(folderName !== ""){
+    
     const folder = folders[folderName];
     folder.appendChild(listItem);
-    console.log('File saved to ' + folderName);
+    alert(textTitleToSave +' saved to ' + folderName);
+   }else{
+    alert('Kindly pick a folder')
+   }
 
     const fileContent = `${textTitleToSave}\n\n${textDateToSave}\n\n${textToSave}`; // Combine title, date, and content into a single string
     const blob = new Blob([fileContent], {type: "text/plain;charset=utf-8"});
@@ -223,21 +229,6 @@ if (icon) {
     files.push({ name: fileName, note: note });
     localStorage.setItem(folderName, JSON.stringify(files));
 
-
-// const listItemCount = countListItems(folderName);
-// console.log(`The number of list items in ${folderName} is: ${listItemCount}`);
-
-// const folders2 = {
-//   personal: document.getElementById('personal-span'),
-//   label: document.getElementById('label-span'),
-//   work: document.getElementById('work-span'),
-//   design: document.getElementById('design-span'),
-//   business: document.getElementById('business-span')
-// };
-// const listItemCount = countListItems(folderName);
-// const personalUl = document.querySelector("folders2");
-// personalUl.innerText = listItemCount;
-// console.log(`The number of list items in ${folderName} is: ${listItemCount}`);
 const folders2 = {
   personal: {
     span: document.getElementById('personal-span'),
@@ -296,6 +287,11 @@ for (const folder in folders2) {
   } else {
     console.log('Invalid file name.');
   }
+
+  }else{
+    alert("Title must not be blank")
+  }
+  
 }
 
 
@@ -404,23 +400,55 @@ itemsWithNestedLists.forEach(item => {
     // localStorage.clear();
 
 
-//Get the profile
- const inputValues = JSON.parse(localStorage.getItem("inputValues"));
+// Get the profile
+const inputValues = JSON.parse(localStorage.getItem("inputValues"));
 
 if (inputValues && inputValues.length > 0) {
   const lastInput = inputValues[inputValues.length - 1];
   if (lastInput && lastInput.fullName && lastInput.email && lastInput.password) {
-    const usersName = document.getElementById("name");
+    const usersName = document.querySelector("#name");
     usersName.innerHTML = `${lastInput.fullName.charAt(0).toUpperCase() + lastInput.fullName.slice(1)}`;
-    const userEmail = document.getElementById("email");
+    const userEmail = document.querySelector("#email");
     userEmail.innerHTML = `<i class="bi bi-envelope"></i> ${lastInput.email}`;
-    const userPassword = document.getElementById("password");
+    const userPassword = document.querySelector("#password");
     userPassword.innerHTML = `<span class="material-symbols-outlined">key</span> ${lastInput.password}`;
   }
 }
 
+function isValidEmail(email) {
+  // This regex matches most valid email addresses
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
+// Hide changePassword
+// $(".changePassword").hide();
+const changePassword = document.querySelector("#changePassword");
+changePassword.addEventListener("click", () => {
+  console.log("changePassword");
+  const changePasswordPrompt = prompt("Enter new Password?");
+  console.log(changePasswordPrompt);
+  if (changePasswordPrompt === "") {
+    alert("Password is required");
+  } else if (changePasswordPrompt.length < 8) {
+    alert("Password must be at least 8 characters");
+  } else {
+    const userPassword = document.querySelector("#password");
+    userPassword.innerHTML = `<span class="material-symbols-outlined">key</span> ${changePasswordPrompt}`;
+    alert("Password Changed Successfully");
+  }
+});
 
-
-
-
+const changeEmail = document.querySelector("#changeEmail");
+changeEmail.addEventListener("click", () => {
+  const changeEmailPrompt = prompt("Enter new Email?");
+  if (changeEmailPrompt === "") {
+    alert("Email is required");
+  } else if (!isValidEmail(changeEmailPrompt)) {
+    alert("Email is invalid");
+  } else {
+    const userEmail = document.querySelector("#email");
+    userEmail.innerHTML = `<i class="bi bi-envelope"></i> ${changeEmailPrompt}`;
+    alert("Email Changed Successfully");
+  }
+});

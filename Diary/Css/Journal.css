@@ -387,11 +387,6 @@ button:hover{
     flex-direction: column;
     padding: 1rem;
 }
-.editDate{
-  font-size: 1.2rem;
-  text-decoration: underline;
-  color: var(--light-green);
-}
 .menu .sub-item{
   display: flex;
   /* gap: 3px 10px; */
@@ -402,7 +397,6 @@ button:hover{
   margin-left: 2rem;
   color: var(--light-green);
 }
-
 
 footer {
   width: 100%;
