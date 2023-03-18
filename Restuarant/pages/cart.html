@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/cart.css">
+    <style>
+        a{
+          font-size: 1.2rem;
+        }
+        li{
+          color: #fff;
+        }
+    </style>
+</head>
+<body>
+   <a href="food.html">Back</a>
+   
+  <div id="cartItems">
+     <ul id="cart-items"></ul>
+  </div>
+
+  <script>
+    const cartItemsContainer = document.getElementById('cartItems');
+
+    function displayCartItems() {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      const cartItemsDisplay = document.getElementById('cart-items');
+      if (cartItemsDisplay) {
+        cartItemsDisplay.innerHTML = '';
+        cartItems.forEach(item => {
+          const li = document.createElement('li');
+          li.classList.add("li")
+          li.innerHTML = `
+           <div class="card">
+            <div class="imgCard">  <img src="${item.image}" alt="${item.name}"> </div>
+           
+                <p><h3>${item.name} <br>
+              <p>Quantity: ${item.quantity}</p> </p?
+              
+            </div>
+          `;
+          const deleteButton = document.createElement('button');
+          deleteButton.innerText = 'Delete';
+          deleteButton.classList.add("button")
+          deleteButton.addEventListener('click', () => {
+            deleteCartItem(item);
+          });
+          li.appendChild(deleteButton);
+          cartItemsDisplay.appendChild(li);
+
+         // Inside the displayCartItems function
+const numItems = countListItems('cart-items');
+localStorage.setItem('numItemsInCart', numItems);
+
+
+             const numItemsInCartElement = document.getElementById('numItemsInCart');
+      if (numItemsInCartElement) {
+        numItemsInCartElement.innerText = ` (${numItems})`;
+      }
+      
+    
+        });
+      }
+    }
+
+    function deleteCartItem(item) {
+      const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+      const updatedCartItems = cartItems.filter(cartItem => cartItem.name !== item.name);
+      localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+      displayCartItems(); // re-render cart items display
+    }
+
+    function countListItems(ulId) {
+      const list = document.getElementById(ulId);
+      const listItems = list.getElementsByTagName('li');
+      return listItems.length;
+    }
+
+ // logs the number of li elements in the 'cart-items' ul element
+
+    displayCartItems(); // render cart items display on page load
+  </script>
+</body>
+</html>

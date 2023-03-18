@@ -73,6 +73,9 @@ buttonElements.forEach(button => {
   });
 });
 
+
+
+
 function handleCartClick(event) {
   const cartButton = event.target;
   const mealCard = cartButton.closest('.carousel__item');
@@ -80,17 +83,22 @@ function handleCartClick(event) {
   const mealImage = mealCard.querySelector('img').src;
   const mealQuantity = prompt(`How many ${mealName} meals would you like to add to your cart?`);
   if (mealQuantity) {
-    const cartItem = {
-      name: mealName,
-      image: mealImage,
-      quantity: mealQuantity
-    };
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    cartItems.push(cartItem);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    alert(`${mealQuantity} ${mealName} meal(s) added to cart!`);
-    window.location.href = 'cart.html'; // redirect to cart page
-     console.log("3")
+    const cartItem = document.createElement('div');
+    cartItem.classList.add('cart__item');
+    const cartImage = document.createElement('img');
+    cartImage.src = mealImage;
+    cartImage.alt = mealName;
+    cartItem.appendChild(cartImage);
+    const cartText = document.createElement('div');
+    cartText.classList.add('cart__text');
+    const cartName = document.createElement('h4');
+    cartName.textContent = mealName;
+    cartText.appendChild(cartName);
+    const cartQuantity = document.createElement('span');
+    cartQuantity.textContent = mealQuantity;
+    cartText.appendChild(cartQuantity);
+    cartItem.appendChild(cartText);
+    cartSection.appendChild(cartItem);
   }
 }
 
@@ -196,10 +204,59 @@ function openContact() {
 
 
 
-//cart
-// On the other HTML file, inside a script tag
-const numItemsInCart = localStorage.getItem('numItemsInCart');
-const numItemsInCartElement = document.getElementById('numItemsInCart');
-if (numItemsInCartElement) {
-  numItemsInCartElement.innerText = `( ${numItemsInCart} )`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------
+function displayCartItems() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cartItemsDisplay = document.getElementById('cart-items');
+  cartItemsDisplay.innerHTML = '';
+  cartItems.forEach(item => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <img src="${item.image}" width="50px" alt="${item.name}">
+      <div>
+        <h3>${item.name}</h3>
+        <p>Quantity: ${item.quantity}</p>
+      </div>
+    `;
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Delete';
+    deleteButton.addEventListener('click', () => {
+      deleteCartItem(item);
+    });
+    li.appendChild(deleteButton);
+    cartItemsDisplay.appendChild(li);
+  });
 }
