@@ -1,0 +1,64 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+:root{
+    --black: #000;
+    --white: #fff;
+    --green :#517664;
+    --greenTwo: #9FD8CB;
+}
+*{
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'EB Garamond', serif;
+}
+
+span{
+    color: var(--green);
+}
+.buttons{
+    margin: 1rem 0;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.buttons button,.nameButton{
+    padding:0.5rem 1rem;
+    outline: none;
+    color: var(--greenTwo);
+    background: transparent;
+    border: 2px solid var(--green);
+    border-radius: 10px;
+    /* word-break: keep-all; */
+}
+.nameButton{
+    width: 100%;
+}
+
+.buttons button:hover, .nameButton:hover{
+    border: var(--greenTwo) 2px solid;
+    color: var(--green);
+}
+
+
+
+
+
+
+@media (max-width:550px) {
+    .buttons button {
+     padding: 0.1rem 1rem;
+    }
+
+    .buttons{
+    padding: 0 1rem ;
+    gap: 10px;
+}
+}

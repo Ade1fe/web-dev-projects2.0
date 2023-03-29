@@ -1,0 +1,155 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="./css/index.css?v=1">
+
+  <title>Document</title>
+
+  <script>
+	function calculateGrade(score) {
+		if (score >= 90) {
+			return "A";
+		} else if (score >= 80) {
+			return "B";
+		} else if (score >= 70) {
+			return "C";d
+		} else if (score >= 60) {
+			return "D";
+		} else {
+			return "F";
+		}
+	}
+
+// Retrieve courses from localStorage
+var courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+function addCourse() {
+    var courseName = document.getElementById("courseName").value;
+    var courseScore = parseInt(document.getElementById("courseScore").value);
+    var courseGrade = calculateGrade(courseScore);
+
+    // Check if course already exists
+    var table = document.getElementById("gradesTable");
+    for (var i = 0; i < table.rows.length; i++) {
+        if (table.rows[i].cells[0].innerHTML.toUpperCase() === courseName.toUpperCase()) {
+            alert("Course already exists!");
+            return;
+        }
+    }
+
+    // Validate course name
+    var courseNameRegex = /^[a-zA-Z]+[a-zA-Z0-9]*$/;
+    if (!courseNameRegex.test(courseName)) {
+        alert("Please enter a course name that begins with letters and may contain numbers.");
+        return;
+    }
+
+    // Add course to table
+    var row = table.insertRow(-1);
+    var nameCell = row.insertCell(0);
+    var scoreCell = row.insertCell(1);
+    var gradeCell = row.insertCell(2);
+    var deleteCell = row.insertCell(3);
+    nameCell.innerHTML = courseName.charAt(0).toUpperCase() + courseName.slice(1);
+    scoreCell.innerHTML = courseScore;
+    gradeCell.innerHTML = courseGrade;
+    deleteCell.innerHTML = '<button onclick="deleteCourse(this) class="del">Delete</button>';
+
+    // Add course to localStorage
+    courses.push({
+        name: courseName,
+        score: courseScore,
+        grade: courseGrade
+    });
+    localStorage.setItem("courses", JSON.stringify(courses));
+    location.reload();
+}
+
+function deleteCourse(button) {
+    var row = button.parentNode.parentNode;
+    var name = row.cells[0].innerHTML.toLowerCase();
+    row.parentNode.removeChild(row);
+    // Remove course from localStorage
+    courses = courses.filter(function(course) {
+        return course.name.toLowerCase() !== name;
+    });
+    localStorage.setItem("courses", JSON.stringify(courses));
+}
+
+window.onload = function() {
+    // Display courses from localStorage
+    var table = document.getElementById("gradesTable");
+    for (var i = 0; i < courses.length; i++) {
+        var row = table.insertRow(-1);
+        var nameCell = row.insertCell(0);
+        var scoreCell = row.insertCell(1);
+        var gradeCell = row.insertCell(2);
+        var deleteCell = row.insertCell(3);
+        nameCell.innerHTML = courses[i].name.charAt(0).toUpperCase() + courses[i].name.slice(1);
+        scoreCell.innerHTML = courses[i].score;
+        gradeCell.innerHTML = courses[i].grade;
+        deleteCell.innerHTML = '<button onclick="deleteCourse(this)" class="del">Delete</button>';
+    }
+}
+
+
+
+function changeScore() {
+  var courseName = document.getElementById("courseName").value.toLowerCase();
+  var newScore = parseInt(document.getElementById("courseScore").value);
+
+  // check if course name is not empty
+ if (courseName.trim() === "") {
+    alert("Please enter a course name.");
+    return;
+}
+
+  // check if new score is a valid number
+  if (isNaN(newScore) || newScore < 0 || newScore > 100) {
+    alert("Please enter a valid score between 0 and 100.");
+    return;
+  }
+
+  var table = document.getElementById("gradesTable");
+  for (var i = 0; i < table.rows.length; i++) {
+    if (table.rows[i].cells[0].innerHTML.toLowerCase() === courseName) {
+      table.rows[i].cells[1].innerHTML = newScore;
+      table.rows[i].cells[2].innerHTML = calculateGrade(newScore);
+      return;
+    }
+  }
+   location.reload();
+  alert("Course not found!");
+}
+
+
+</script>
+
+</head>
+<body>
+	<h1> <span>Jojo's</span> Students Grades</h1>
+<div class="container">
+  	<form>
+		<label for="courseName">Course Name:</label>
+		<input type="text" id="courseName"><br><br>
+		<label for="courseScore">Course Score:</label>
+		<input type="number" id="courseScore"><br><br>
+		<div class="buttons">
+      <button type="button" onclick="addCourse()">Add Course</button>
+        <button type="button" onclick="changeScore()">Change Score</button>
+    </div>
+	</form>
+	<br>
+	<table id="gradesTable">
+		<tr>
+			<th>Course Name</th>
+			<th>Course Score</th>
+			<th>Course Grade</th>
+		</tr>
+	</table>
+</div>
+  
+</body>
+</html>

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+:root {
+    --black: #000;
+    --white: #fff;
+    --green: #517664;
+    --greenTwo: #9FD8CB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'EB Garamond', serif;
+}
+h1{
+    text-align: center;
+    margin: 0.5rem 0;
+}
+span {
+    color: var(--green);
+}
+
+.buttons,.del {
+    margin: 1rem 0;
+    /* width: 100%; */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+input{
+    padding: 0.3rem 0.7rem;
+    outline: var(--green);
+    border: var(--green) 2px solid;
+    border-radius: 8px;
+    width: 90%;
+}
+
+.buttons button,
+.nameButton , .del{
+    padding: 0.5rem 1rem;
+    outline: none;
+    color: var(--greenTwo);
+    background: transparent;
+    border: 2px solid var(--green);
+    border-radius: 10px;
+    /* word-break: keep-all; */
+}
+
+.nameButton {
+    width: 100%;
+}
+
+.buttons button:hover,
+.nameButton:hover , .del:hover{
+    border: var(--greenTwo) 2px solid;
+    color: var(--green);
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1rem;
+    width: 100%;
+    gap: 0.7rem;
+}
+#gradesTable {
+    /* width: 100%; */
+    border-collapse: collapse;
+}
+
+#gradesTable th {
+    background-color: transparent;
+    color: var(--white);
+    text-align: left;
+    padding: 3px 8px;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+#gradesTable td {
+    border-bottom: 2px solid var(--green);
+    margin-bottom: 0.2rem;
+    /* padding:0 3px; */
+}
+
+#gradesTable tr{
+    border-bottom: 2px solid var(--green);
+    margin-bottom: 0.2rem;
+}
+
+@media (max-width:692px) {
+    .container{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    width: 100%;
+}
+
+}
