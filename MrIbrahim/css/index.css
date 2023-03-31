@@ -86,7 +86,7 @@ input{
 
 #gradesTable td {
     border-bottom: 2px solid var(--green);
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.1rem;
     /* padding:0 3px; */
 }
 
@@ -103,5 +103,10 @@ input{
     padding: 1rem 2rem;
     width: 100%;
 }
+form{
+    padding: 0 2rem;
+}
 
 }
+
+
