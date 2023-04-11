@@ -1,0 +1,180 @@
+
+/*  */
+*{
+    margin: 0;
+    padding: 0;
+}
+:ROOT{
+    --gold: #FDBE39;
+    --white : #fff;
+    --black: #000;
+}
+
+nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 10px 0;
+    
+}
+nav h3{
+    color: var(--white)!important;
+    width: 100%;
+    margin-left: 2rem;
+}
+h1,h2,h3,h4,h5,h5,p{
+    color: var(--white) !important;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+nav ul li {
+    margin: 0 2rem;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    color: var(--white) !important;
+    text-decoration: none;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    color: var(--gold)!important;
+}
+
+nav ul li.active a {
+    color: var(--gold)!important;
+    border-bottom: var(--gold) 2px solid !important;
+}
+
+
+/* main */
+main{
+    width: 100%;
+    height: 100vh;
+      background-image: url('https://cdn.pixabay.com/photo/2017/11/29/16/12/berries-2986532__480.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+
+/* carousel */
+.carousel-caption{
+    height: 20% !important;
+    
+}
+ 
+/* our partners */
+ .container-fluid {
+     overflow: hidden;
+ }
+
+ .container-fluid .slider {
+     animation: slidein 30s linear infinite;
+     white-space: nowrap;
+ }
+
+ .container-fluid .slider .logos {
+     width: 100%;
+     display: inline-block;
+     margin: 0px 0;
+ }
+
+ .container-fluid .slider .logos img {
+     width: 200px;
+     margin: 0 40px;
+ }
+
+ .container-fluid .slider .logos .fab {
+     width: calc(100% / 5);
+     animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
+ }
+
+ @keyframes slidein {
+     from {
+         transform: translate3d(0, 0, 0);
+     }
+
+     to {
+         transform: translate3d(-100%, 0, 0);
+     }
+ }
+
+ @keyframes fade-in {
+     0% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 1;
+     }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:800px) {
+    
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    background-color: var(--white)!important;
+    background-color: rgba(0, 0, 0, 0.6);
+    background: transparent;
+    color: var(--white)!important;
+    padding: 20px 0;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+}
+nav{
+    background: none;
+    padding: 0;
+}
+nav h3{
+    display: none;
+}
+nav ul li a {
+    color: var(--black) !important;
+   
+}
+}
+
+
+@media (max-width:550px) {
+    nav ul li {
+    margin: 0 1.5rem;
+}
+.carousel-caption {
+    height: 70% !important;
+}
+ .container-fluid .slider .logos img {
+     width: 100px;
+     margin: 0 15px;
+ }
+}
