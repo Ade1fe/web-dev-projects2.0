@@ -38,6 +38,44 @@
   });
  
 });
+function countUpOnScroll() {
+  const counter = document.querySelector('#counter');
+  const counters = document.querySelectorAll('.count.percent');
+  let isCounting = false;
+
+  function startCounting() {
+    counters.forEach(counter => {
+      const targetCount = parseInt(counter.getAttribute('data-count'));
+      let count = 0;
+      const increment = Math.ceil(targetCount / 100);
+
+      const timer = setInterval(() => {
+        count += increment;
+        counter.innerText = count;
+
+        if (count >= targetCount) {
+          clearInterval(timer);
+          counter.innerText = targetCount;
+        }
+      }, 10);
+    });
+
+    isCounting = true;
+  }
+
+  function handleScroll() {
+    const counterTop = counter.getBoundingClientRect().top;
+
+    if (!isCounting && counterTop <= window.innerHeight * 0.9) {
+      startCounting();
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+}
+
+// Call the countUpOnScroll function when the page loads
+window.addEventListener('load', countUpOnScroll);
 
 
 const price = document.querySelector('.price');

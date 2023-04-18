@@ -1,0 +1,148 @@
+
+/*========== GOOGLE FONTS ==========*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*========== VARIABLES CSS ==========*/
+:root {
+    --header-height: 3.5rem;
+    --nav-width: 219px;
+
+    /*========== Colors ==========*/
+    --first-color: #6923D0;
+    --first-color-light: #F4F0FA;
+    --title-color: #5c4191;
+    --text-color: #000;
+    --text-color-light: #A5A1AA;
+    --body-color: #fff;
+    --container-color: #FFFFFF;
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: .938rem;
+    --small-font-size: .75rem;
+    --smaller-font-size: .75rem;
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-fixed: 100;
+}
+
+
+@media screen and (min-width: 1024px) {
+    :root {
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/*========== BASE ==========*/
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: var(--header-height) 0 0 0;
+
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.container{
+    /* border: 2px solid red; */
+    display: flex;
+    gap: 0 10px;
+    width: 70%;
+    padding: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+.imgContainer{
+    /* border: #000 1px solid; */
+}
+img{
+    height: 100%;
+    object-fit: cover;
+}
+.myImgs{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    border-bottom: #A5A1AA 1px solid;
+}
+.divImg{
+   max-width: 400px;
+   height: 300px;
+}
+.imgOne, .imgTwo{
+    width: 60px;
+    height: 60px;
+    /* border: var(--first-color) 1px solid; */
+}
+.text i{
+    border: 1px solid var(--text-color);
+    padding: 0.3rem;
+    border-radius: 50%;
+}
+.productInfo{
+    /* border: #5c4191 1px dashed; */
+    padding: 0 0.5rem;
+}
+#productStars{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+#productName{
+    margin: 0;
+}
+#productStars i{
+    margin: 0;
+    padding: 0;
+    color: orange;
+}
+.theProduct{
+    border-radius: 5px;
+    border: #5c4191 1px solid;
+    overflow: hidden;
+}
+.theProduct h4{
+    margin: 0;
+    padding: 0.5rem;
+    background-color: var(--first-color);
+    color: var(--body-color);
+}
+
+button{
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--first-color);
+    color: var(--body-color);
+    border: transparent;
+    outline: none;
+    width: 100%;
+    border-radius: 5px;
+    border: #5c4191 1px solid;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}

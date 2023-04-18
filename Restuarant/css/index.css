@@ -659,6 +659,7 @@ input[type=date]:focus{
     width: 100%;
     height: auto;
 }
+
 /* Modified rule for .centered class */
 .centered {
     position: absolute;
@@ -1434,4 +1435,7 @@ footer span{
         .centered p:first-child i:nth-child(4) {
             padding: 0.4rem 0.2rem;
         }
+        .item h1, .item p{
+    font-size: 14px;
+}
 }
