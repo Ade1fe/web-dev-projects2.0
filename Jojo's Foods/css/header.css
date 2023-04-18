@@ -1,0 +1,134 @@
+/*  */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:ROOT {
+    --gold: #FDBE39;
+    --white: #fff;
+    --black: #000;
+}
+
+body {
+    font-family: 'EB Garamond', serif;
+    /* margin-bottom: 2rem; */
+}
+
+nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 10px 0;
+    /* background-color: rgba(0, 0, 0, 0.9); */
+
+}
+
+nav h3 {
+    color: var(--black);
+    width: 100%;
+    margin-left: 2rem;
+    font-weight: bolder;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+nav ul li {
+    margin: 0 1.7rem;
+
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    color: var(--black);
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+
+}
+
+nav ul li a:hover {
+    color: var(--gold);
+}
+
+nav ul li.active a {
+    color: var(--gold);
+    border-bottom: var(--gold) 3px solid;
+}
+
+.lastConatiner {
+    display: none;
+}
+
+
+
+
+
+
+
+
+@media (max-width:800px) {
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        /* background-color: var(--white) !important; */
+        background-color: rgba(0, 0, 0, 0.6);
+        background: transparent;
+        /* color: var(--white) !important; */
+        box-shadow: none;
+        /* padding: 20px 0; */
+        box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+        background-color: var(--white);
+        z-index: 9999;
+        /* margin-top: 3rem; */
+    }
+
+    nav {
+        background: none;
+        padding: 3px 0;
+    }
+
+    nav h3 {
+        display: none;
+    }
+
+    nav ul li a {
+        color: var(--black) !important;
+
+    }
+
+    .lastConatiner {
+        display: block;
+        height: 50px;
+        border: 2px solid red;
+    }
+}
+
+
+@media (max-width:550px) {
+    nav ul li {
+        margin: 0 0.9rem;
+    }
+
+    .item h4 {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,187 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.search-container input[type=text] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 70%;
+    margin-right: 10px;
+    font-size: 16px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.search-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #0069d9;
+		}
+
+
+                /* swiperTwo */
+.mySwiperTwo {
+    position: relative;
+    height: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.mySwiperTwo {
+    background: #fff;
+    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    /* margin: 2rem 0; */
+    /* margin-bottom: 5rem; */
+}
+
+.mySwiperTwo .swiper {
+    width: 100%;
+    height: 100%;
+
+}
+
+.mySwiperTwo .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.mySwiperTwo .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiperTwo .swiper-pagination {
+    top: 10px;
+    position: absolute;
+    /* border: 2px solid red; */
+}
+
+.three {
+    height: 350px;
+    margin: 3rem 0;
+
+}
+
+.three h2 {
+    position: relative;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.three h2::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 10px;
+    width: 250px;
+    height: 2px;
+    background-color: var(--gold);
+}
+
+.three .item {
+    display: block;
+    margin: 0;
+    padding: 10px;
+    text-align: left;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.imgDiv {
+    width: 100%;
+    height: 170px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fas.fa-cart-plus {
+    font-size: 0.8rem;
+    color: #333;
+    margin-right: 0.5rem;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background-color: #333;
+    padding: 0.6rem;
+    border-radius: 50%;
+    color: var(--gold);
+    opacity: .7;
+}
+
+.item:hover .fas.fa-cart-plus {
+    opacity: 1;
+}
+
+.item h4:not(:first-of-type) {
+    font-weight: 100;
+}
+
+
+
+/*  */
+/* grid */
+.mySwiperGrid {
+    position: relative;
+    height: 100%;
+    height: 300px;
+}
+
+.mySwiperGrid {
+    background: #fff;
+    /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.mySwiperGrid .swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mySwiperGrid .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: calc((100% - 30px) / 2) !important;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+

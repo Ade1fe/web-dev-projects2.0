@@ -1,0 +1,346 @@
+
+/*  */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+:ROOT{
+    --gold: #FDBE39;
+    --white : #fff;
+    --black: #000;
+}
+body{
+    font-family: 'EB Garamond', serif;
+    /* margin-bottom: 2rem; */
+}
+
+nav {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    padding: 10px 0;
+    /* background-color: rgba(0, 0, 0, 0.9); */
+    
+}
+nav h3{
+    color: var(--black);
+    width: 100%;
+    margin-left: 2rem;
+    font-weight: bolder;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+nav ul li {
+    margin: 0 1.7rem;
+    
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    color: var(--black);
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+   
+}
+
+nav ul li a:hover {
+    color: var(--gold);
+}
+
+nav ul li.active a {
+    color: var(--gold);
+    border-bottom: var(--gold) 3px solid;
+}
+
+
+/* carousel */
+ .mySwiperOne {
+     position: relative;
+     height: 100%;
+     overflow: hidden;
+ }
+
+ .mySwiperOne {
+     background: #eee;
+     /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+     font-size: 14px;
+     color: #000;
+     margin: 0;
+     padding: 0;
+ }
+
+.mySwiperOne .swiper {
+     width: 100%;
+     height: 100%;
+ }
+
+.mySwiperOne .swiper-slide {
+     text-align: center;
+     font-size: 18px;
+     background: #fff;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+.mySwiperOne .swiper-slide img {
+     display: block;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+
+
+/* swiperTwo */
+.mySwiperTwo{
+        position: relative;
+        height: 100%;
+        height: 150px;
+        overflow: hidden;
+    }
+
+.mySwiperTwo {
+        background: #eee;
+        /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+        margin: 2rem 0;
+        /* margin-bottom: 5rem; */
+    }
+
+  .mySwiperTwo  .swiper {
+        width: 100%;
+        height: 100%;
+        
+    }
+
+   .mySwiperTwo .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+
+   .mySwiperTwo .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+.swiperTwo .swiper-pagination{
+    top: 10px;
+    position: absolute;
+    /* border: 2px solid red; */
+}
+
+
+/* three */
+.three{
+    height: 320px;
+    margin: 2rem 0;
+   
+}
+.three h2 {
+    position: relative;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.three h2::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 10px;
+    width: 250px;
+    height: 2px;
+    background-color: var(--gold);
+}
+.three .item{
+    display: block;
+    margin: 0;
+    padding: 10px;
+    text-align: left;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.imgDiv{
+    width: 100%;
+    height: 170px;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.fas.fa-cart-plus {
+    font-size: 0.8rem;
+    color: #333;
+    margin-right: 0.5rem;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background-color: #333;
+    padding: 0.6rem;
+    border-radius: 50%;
+    color: var(--gold);
+    opacity: .7;
+}
+.item:hover .fas.fa-cart-plus {
+opacity: 1;
+}
+.item h4:not(:first-of-type) {
+    font-weight: 100;
+}
+
+
+/*  Happy hour */
+.drink {
+    position: relative;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
+
+.drink::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 10px;
+    width: 150px !important;
+    height: 2px;
+    background-color: var(--gold);
+}
+
+
+
+/* grid */
+ .mySwiperGrid {
+     position: relative;
+     height: 100%;
+     height: 300px;
+ }
+
+ .mySwiperGrid {
+     background: #eee;
+     /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
+     font-size: 14px;
+     color: #000;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+ }
+
+.mySwiperGrid .swiper {
+     width: 100%;
+     height: 100%;
+     margin-left: auto;
+     margin-right: auto;
+ }
+
+.mySwiperGrid .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: calc((100% - 30px) / 2) !important;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.lastConatiner{
+   display: none;
+}
+
+
+
+
+
+
+
+
+@media (max-width:800px) {
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        /* background-color: var(--white) !important; */
+        background-color: rgba(0, 0, 0, 0.6);
+        background: transparent;
+        /* color: var(--white) !important; */
+        box-shadow: none;
+        /* padding: 20px 0; */
+        box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+        background-color: var(--white);
+        z-index: 9999;
+        /* margin-top: 3rem; */
+    }
+
+    nav {
+        background: none;
+        padding: 3px 0;
+    }
+
+    nav h3 {
+        display: none;
+    }
+
+    nav ul li a {
+        color: var(--black) !important;
+
+    }
+    .lastConatiner{
+    display: block;
+    height: 50px;
+    /* border: #000 2px solid; */
+    }        
+}
+
+
+@media (max-width:550px) {
+    nav ul li {
+        margin: 0 0.9rem;
+    }
+    .item h4{
+        font-size: 1rem;
+    }
+}
