@@ -1,0 +1,74 @@
+
+/*  */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:ROOT {
+    --gold: #FDBE39;
+    --white: #fff;
+    --black: #000;
+}
+
+body {
+    font-family: 'EB Garamond', serif;
+    /* margin-bottom: 2rem; */
+}
+.row{
+    /* border: 2px solid red; */
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 0.3rem 1rem;
+}
+.pic{
+    width: 70px;
+    height: 70px;
+}
+.pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.flex{
+    border: 2px solid black;
+}
+button{
+    padding: 0.5rem;
+    background-color: var(--gold);
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
+#myH3{
+    margin: 1rem;
+    font-size: 1rem;
+}
+
+
+@media (max-width:600px) {
+    .row{
+    display: block;
+    height: 170px;
+    width: 150px;
+    margin: auto;
+    padding: 10px;
+}
+.pic{
+    width: 100%;
+}
+#cart-items{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+button{
+    margin: 0.5rem 0;
+}
+
+}

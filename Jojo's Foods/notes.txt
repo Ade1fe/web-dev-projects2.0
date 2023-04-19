@@ -143,9 +143,9 @@ const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices) => {
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         const item = data.drinks ? data.drinks[0] : data.meals[Math.floor(Math.random() * data.meals.length)];
-        console.log(item);
+        // console.log(item);
         const swiperSlide = document.createElement('div');
         swiperSlide.className = 'swiper-slide item';
 
@@ -175,12 +175,9 @@ const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices) => {
         addToCartIcon.className = 'fas fa-cart-plus'; // replace with the class for your cart icon
         swiperSlide.appendChild(addToCartIcon);
 
-        // const h4_2 = document.createElement('h4');
-        // h4_2.textContent = 'Type: ' + (item.strAlcoholic || item.strMealType);
-        // swiperSlide.appendChild(h4_2);
         const h4_2 = document.createElement('h4');
-    h4_2.textContent = 'Type: ' + (item.strCategory || item.strMealType);
-    swiperSlide.appendChild(h4_2);
+         h4_2.textContent = 'Type: ' + (item.strCategory || item.strMealType || "N/A");
+        swiperSlide.appendChild(h4_2);
 
 
         const h4_3 = document.createElement('h4');
@@ -215,41 +212,106 @@ fetchAndCreateSwiperSlides('https://www.themealdb.com/api/json/v1/1/random.php',
 
 
 // grid
-  var swiper = new Swiper(".mySwiperGrid", {
-      slidesPerView: 7,
+var mySwiperGridOk = new Swiper('.mySwiperGrid', {
+  slidesPerView: 7,
+  spaceBetween: 10,
+  grid: {
+    rows: 2,
+    fill: 'row',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    // When window width is <= 480px
+    0: {
+       slidesPerView: 2.19,
       grid: {
         rows: 2,
-        fill: 'row'
+         fill: 'row',
       },
-      spaceBetween: 30,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
+    },
+    480: {
+      slidesPerView: 3.30,
+      grid: {
+        rows: 2,
+         fill: 'row',
       },
-    });
+    },
+    // When window width is <= 768px
+    768: {
+      slidesPerView: 5.18,
+      grid: {
+        rows: 2,
+         fill: 'row',
+      },
+    },
+    // When window width is <= 992px
+    992: {
+      slidesPerView: 6.10,
+       grid: {
+        rows: 2,
+         fill: 'row',
+      },
+    },
+    // When window width is <= 1200px
+    1200: {
+      slidesPerView: 6.50,
+       grid: {
+        rows: 2,
+         fill: 'row',
+      },
+    }
+  }
+});
 
 
 
 
-const url = `https://www.themealdb.com/api/json/v1/1/categories.php`;
+
+
+const categoryContainer = document.getElementById('category');
+
+categoryContainer.addEventListener('click', event => {
+  if (event.target.tagName === 'BUTTON') {
+    const category = event.target.textContent;
+    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then(response => response.json())
+      .then(data => {
+        // save the data to localStorage
+        localStorage.setItem('meals', JSON.stringify(data.meals));
+       // send the category to the h2 on single.html page
+       
+        localStorage.setItem('category', category);
+        // redirect to single.html page
+        window.location.href = '/pages/single.html';
+      })
+      .catch(error => console.log(error));
+  }
+});
+
+
+// www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic
+// www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic
+
+// Filter by Category
+// www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink
+// www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail
+
+
+// const apiKey = "<your_api_key_here>";
+const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`;
 
 fetch(url)
   .then(response => response.json())
   .then(data => {
-    const categories = data.categories;
-    const categoryContainer = document.getElementById('category');
-    
-    categories.forEach(category => {
-      const categoryElement = document.createElement('div');
-      categoryElement.textContent = category.strCategory;
-      categoryElement.classList.add('swiper-slide'); // add swiper-slide class
-      
-      // add click event listener to each category element
-      categoryElement.addEventListener('click', () => {
-        console.log(category.strCategory);
-      });
-      
-      categoryContainer.appendChild(categoryElement);
-    });
+    const drinks = data.drinks;
+    for (const drink of drinks) {
+      console.log(drink.strDrink);
+    }
   })
-  .catch(error => console.log(error));
+  .catch(error => console.error(error));
+
+
+//one

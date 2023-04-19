@@ -49,3 +49,6 @@ toggleNavLinks();
 
 // add an event listener to the window object to call the function when the screen width changes
 window.addEventListener('resize', toggleNavLinks);
+
+
+

@@ -1,19 +1,49 @@
-const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices, meals) => {
-  for (let i = 0; i < 100; i++) {
-    let item = i % 2 === 0 ? meals[i/2] : null;
-    if (!item) {
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-          item = data.drinks ? data.drinks[0] : data.meals[Math.floor(Math.random() * data.meals.length)];
-          createSwiperSlide(item, swiperWrapper, prices[i % prices.length]);
-        })
-        .catch(error => console.log(error));
-    } else {
-      createSwiperSlide(item, swiperWrapper, prices[i % prices.length]);
-    }
-  }
-};
+// retrieve the category text from local storage
+// const category = localStorage.getItem('category');
+
+// // set the category text to the h2 element on the singleTwo.html page
+// document.querySelector('.mySwiperTwo h2').textContent = category.toUpperCase();
+
+// // get cocktails data from local storage
+// const cocktails = JSON.parse(localStorage.getItem('cocktails'));
+
+// // wrapper for swiper slides
+// const swiperWrapper = document.querySelector('.swiper-wrapper');
+
+// // create swiper slides
+// cocktails.forEach(cocktail => {
+//   const swiperSlide = document.createElement('div');
+//   swiperSlide.className = 'swiper-slide item';
+
+//   const div = document.createElement('div');
+//   div.style.backgroundImage = `url(${cocktail.strDrinkThumb})`;
+//   div.className = 'categoryDiv';
+//   swiperSlide.appendChild(div);
+
+//   const h4 = document.createElement('h4');
+//   h4.textContent = cocktail.strDrink;
+//   swiperSlide.appendChild(h4);
+
+//   swiperWrapper.appendChild(swiperSlide);
+// });
+
+
+// const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices, cocktails) => {
+//   for (let i = 0; i < 100; i++) {
+//     let item = i % 2 === 0 ? cocktails[i/2] : null;
+//     if (!item) {
+//       fetch(apiUrl)
+//         .then(response => response.json())
+//         .then(data => {
+//           item = data.drinks[0];
+//           createSwiperSlide(item, swiperWrapper, prices[i % prices.length]);
+//         })
+//         .catch(error => console.log(error));
+//     } else {
+//       createSwiperSlide(item, swiperWrapper, prices[i % prices.length]);
+//     }
+//   }
+// };
 
 // const createSwiperSlide = (item, swiperWrapper, price) => {
 //   const swiperSlide = document.createElement('div');
@@ -22,23 +52,17 @@ const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices, meals) => {
 //   const imgDiv = document.createElement('div');
 //   imgDiv.className = 'imgDiv';
 //   const img = document.createElement('img');
-//   img.src = item.strDrinkThumb || item.strMealThumb;
-//   img.alt = item.strDrink || item.strMeal;
+//   img.src = item.strDrinkThumb;
+//   img.alt = item.strDrink;
 //   imgDiv.appendChild(img);
 //   swiperSlide.appendChild(imgDiv);
 
 //   const h4 = document.createElement('h4');
-//   if (item.strDrink && item.strDrink.length <= 15) {
-//     h4.textContent = item.strDrink;
-//   } else if (item.strMeal && item.strMeal.length <= 15) {
-//     h4.textContent = item.strMeal;
-//   } else {
-//     h4.textContent = (item.strDrink || item.strMeal).slice(0, 15) + '...';
-//   }
+//   h4.textContent = item.strDrink;
 //   swiperSlide.appendChild(h4);
 
 //   const h4_1 = document.createElement('h4');
-//   h4_1.textContent = 'Category: ' + (item.strCategory || item.strMeal);
+//   h4_1.textContent = 'Category: ' + item.strCategory;
 //   swiperSlide.appendChild(h4_1);
 
 //   const addToCartIcon = document.createElement('i');
@@ -46,7 +70,7 @@ const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices, meals) => {
 //   swiperSlide.appendChild(addToCartIcon);
 
 //   const h4_2 = document.createElement('h4');
-//   h4_2.textContent = 'Type: ' + (item.strCategory || item.strMealType || "N/A");
+//   h4_2.textContent = 'Type: ' + item.strAlcoholic;
 //   swiperSlide.appendChild(h4_2);
 
 //   const h4_3 = document.createElement('h4');
@@ -57,6 +81,54 @@ const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices, meals) => {
 // };
 
 
+// const addToCart = (item, price) => {
+//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//   const productIndex = cart.findIndex(p => p.name === item.strDrink || p.name === item.strMeal);
+//   if (productIndex !== -1) {
+//     // If the product already exists in the cart, update its quantity and price
+//     const quantity = prompt(`Enter the quantity of ${item.strDrink || item.strMeal} you want to add to cart:`);
+//     cart[productIndex].quantity += Number(quantity);
+//     cart[productIndex].price = price;
+//     localStorage.setItem('cart', JSON.stringify(cart));
+//     alert(`Added ${quantity} ${item.strDrink || item.strMeal} to cart!`);
+//   } else {
+//     // Otherwise, add a new product to the cart
+//     const quantity = prompt(`Enter the quantity of ${item.strDrink || item.strMeal} you want to add to cart:`);
+//     const product = {
+//       name: item.strDrink || item.strMeal,
+//       category: item.strCategory || item.strMeal,
+//       type: item.strCategory || item.strMealType || "N/A",
+//       price: price,
+//       quantity: Number(quantity),
+//       image: item.strDrinkThumb || item.strMealThumb
+//     };
+//     cart.push(product);
+//     localStorage.setItem('cart', JSON.stringify(cart));
+//     alert(`Added ${quantity} ${item.strDrink || item.strMeal} to cart!`);
+//   }
+//   console.log(cart);
+// };
+
+
+
+
+const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices, cocktails) => {
+  for (let i = 0; i < 100; i++) {
+    let item = i % 2 === 0 ? cocktails[i/2] : null;
+    if (!item) {
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          item = data.drinks[0];
+          createSwiperSlide(item, swiperWrapper, prices[i % prices.length]);
+        })
+        .catch(error => console.log(error));
+    } else {
+      createSwiperSlide(item, swiperWrapper, prices[i % prices.length]);
+    }
+  }
+};
+
 const createSwiperSlide = (item, swiperWrapper, price) => {
   const swiperSlide = document.createElement('div');
   swiperSlide.className = 'swiper-slide item';
@@ -64,32 +136,29 @@ const createSwiperSlide = (item, swiperWrapper, price) => {
   const imgDiv = document.createElement('div');
   imgDiv.className = 'imgDiv';
   const img = document.createElement('img');
-  img.src = item.strDrinkThumb || item.strMealThumb;
-  img.alt = item.strDrink || item.strMeal;
+  img.src = item.strDrinkThumb;
+  img.alt = item.strDrink;
   imgDiv.appendChild(img);
   swiperSlide.appendChild(imgDiv);
 
   const h4 = document.createElement('h4');
-  if (item.strDrink && item.strDrink.length <= 15) {
-    h4.textContent = item.strDrink;
-  } else if (item.strMeal && item.strMeal.length <= 15) {
-    h4.textContent = item.strMeal;
-  } else {
-    h4.textContent = (item.strDrink || item.strMeal).slice(0, 15) + '...';
-  }
+  h4.textContent = item.strDrink;
   swiperSlide.appendChild(h4);
 
   const h4_1 = document.createElement('h4');
-  h4_1.textContent = 'Category: ' + (item.strCategory || item.strMeal);
+  h4_1.textContent = 'Category: ' + item.strCategory;
   swiperSlide.appendChild(h4_1);
 
-  
-  const addToCartButton = document.createElement('i');
-  addToCartButton.className = 'fas fa-cart-plus';
-  swiperSlide.appendChild(addToCartButton);
+  const addToCartIcon = document.createElement('i');
+  addToCartIcon.className = 'fas fa-cart-plus'; // replace with the class for your cart icon
+  addToCartIcon.addEventListener('click', () => {
+    const quantity = prompt('How many items do you want to add to cart?');
+    addToCart(item, price, quantity);
+  });
+  swiperSlide.appendChild(addToCartIcon);
 
   const h4_2 = document.createElement('h4');
-  h4_2.textContent = 'Type: ' + (item.strCategory || item.strMealType || "N/A");
+  h4_2.textContent = 'Type: ' + item.strAlcoholic;
   swiperSlide.appendChild(h4_2);
 
   const h4_3 = document.createElement('h4');
@@ -97,36 +166,30 @@ const createSwiperSlide = (item, swiperWrapper, price) => {
   swiperSlide.appendChild(h4_3);
 
   swiperWrapper.appendChild(swiperSlide);
-
-  addToCartButton.addEventListener('click', () => {
-    addToCart(item, price);
-  });
 };
 
-const addToCart = (item, price) => {
+const addToCart = (item, price, quantity) => {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const productIndex = cart.findIndex(p => p.name === item.strDrink || p.name === item.strMeal);
+  const productIndex = cart.findIndex(p => p.name === item.strDrink);
   if (productIndex !== -1) {
     // If the product already exists in the cart, update its quantity and price
-    const quantity = prompt(`Enter the quantity of ${item.strDrink || item.strMeal} you want to add to cart:`);
-    cart[productIndex].quantity += Number(quantity);
+    cart[productIndex].quantity += parseInt(quantity);
     cart[productIndex].price = price;
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`Added ${quantity} ${item.strDrink || item.strMeal} to cart!`);
+    alert(`Added ${quantity} ${item.strDrink} to cart!`);
   } else {
     // Otherwise, add a new product to the cart
-    const quantity = prompt(`Enter the quantity of ${item.strDrink || item.strMeal} you want to add to cart:`);
     const product = {
-      name: item.strDrink || item.strMeal,
-      category: item.strCategory || item.strMeal,
-      type: item.strCategory || item.strMealType || "N/A",
+      name: item.strDrink,
+      category: item.strCategory,
+      type: item.strAlcoholic,
       price: price,
-      quantity: Number(quantity),
-      image: item.strDrinkThumb || item.strMealThumb
+      quantity: parseInt(quantity),
+      image: item.strDrinkThumb
     };
     cart.push(product);
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`Added ${quantity} ${item.strDrink || item.strMeal} to cart!`);
+    alert(`Added ${quantity} ${item.strDrink} to cart!`);
   }
   console.log(cart);
 };
@@ -136,18 +199,25 @@ const addToCart = (item, price) => {
 
 
 
-const meals = JSON.parse(localStorage.getItem('meals'));
-const apiUrl = 'https://www.themealdb.com/api/json/v1/1/random.php';
-const swiperWrapper = document.querySelector('.swiper-wrapper');
-const prices = [100, 200, 300, 400, 500];
 
-fetchAndCreateSwiperSlides(apiUrl, swiperWrapper, prices, meals);
+const cocktails = JSON.parse(localStorage.getItem('cocktails'));
+const apiUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+const swiperWrapper = document.querySelector('.swiper-wrapper');
+const prices = [2200, 3400, 1900, 4100, 5500, 4090, 2700, 6080, 4200, 2700, 3300, 4000,2200,3500, 1300];
+
+fetchAndCreateSwiperSlides(apiUrl, swiperWrapper, prices, cocktails);
+
 // retrieve the category text from local storage
 const category = localStorage.getItem('category');
 
-// set the category text to the h2 element on the single.html page
+// set the category text to the h2 element on the singleTwo.html page
 const h2 = document.querySelector('.mySwiperTwo h2');
 h2.textContent = category.toLocaleUpperCase();
+
+
+
+
+
 
 
 
@@ -242,27 +312,6 @@ var mySwiperGridOk = new Swiper('.mySwiperGrid', {
     }
   }
 });
-
-
-// const categoryContainer = document.getElementById('category');
-
-// categoryContainer.addEventListener('click', event => {
-//   if (event.target.tagName === 'BUTTON') {
-//     const category = event.target.textContent;
-//     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-//       .then(response => response.json())
-//       .then(data => {
-//         // save the data to localStorage
-//         localStorage.setItem('meals', JSON.stringify(data.meals));
-//        // send the category to the h2 on single.html page
-       
-//         localStorage.setItem('category', category);
-//         // redirect to single.html page
-//         window.location.href = '/pages/single.html';
-//       })
-//       .catch(error => console.log(error));
-//   }
-// });
 
 
 const categoryContainer = document.getElementById('category');

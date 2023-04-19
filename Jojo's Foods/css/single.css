@@ -79,8 +79,9 @@
 }
 
 .three {
-    height: 350px;
+    height: 300px;
     margin: 3rem 0;
+    padding-bottom: 4.5rem;
 
 }
 
@@ -95,7 +96,7 @@
     position: absolute;
     bottom: -2px;
     left: 10px;
-    width: 250px;
+    width: 150px;
     height: 2px;
     background-color: var(--gold);
 }
@@ -160,7 +161,7 @@
     font-size: 14px;
     color: #000;
     margin: 0;
-    padding: 0;
+    padding-bottom: 4rem;
     overflow: hidden;
 }
 
@@ -183,5 +184,36 @@
     align-items: center;
     margin: 10px 0;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.mySwiperGrid .swiper-slide button {
+    padding: 1rem 1.5rem;
+    background-color: transparent;
+    border: var(--gold) 2px solid;
+
+}
+
+.mySwiperGrid .swiper-slide:hover button {
+    background-color: #f4d48f;
+    color: var(--black);
+    border: #eee 2px solid;
+    font-weight: 500;
+}
+
+
+.mySwiperGrid h2 {
+    position: relative;
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+
+.mySwiperGrid h2::before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 10px;
+    width: 150px;
+    height: 2px;
+    background-color: var(--gold);
 }
 

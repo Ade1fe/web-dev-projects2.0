@@ -15,7 +15,7 @@
     <!-- header -->
     <div class="wrapper">
       <nav>
-        <h3>Jojo's Food</h3>
+        <h3>Jojo's Food single</h3>
         <ul>
           <li class="active">
             <a href="#" class="nav-link"><i class="fas fa-house"></i><span>Home</span></a>
@@ -26,8 +26,8 @@
           <li>
             <a href="#" class="nav-link"><i class="fas fa-user"></i><span>Profile</span></a>
           </li>
-          <li>
-            <a href="#" class="nav-link" ><i class="fas fa-gear"></i><span>Setting</span></a>
+         <li>
+            <a href="#" class="nav-link" > <i class="fas fa-question-circle"></i> </i><span>About</span></a>
           </li>
           <li>
             <a href="#" class="nav-link"> <i class="fas fa-search" aria-hidden="true"></i> <span>Search</span></a>
@@ -51,10 +51,22 @@
   </div>
 
 
-
-    <!-- grid -->
+ <!-- grid -->
     <div class="mySwiperGrid">
+        <h2>Our Categories</h2>
     <div class="swiper-wrapper itemss" id="category">
+       <div class="swiper-slide myCard">
+        <button>Alcoholic</button>
+      </div>
+      <div class="swiper-slide myCard">
+        <button id="alc">Non_Alcoholic</button>
+      </div>
+      <div class="swiper-slide myCard">
+        <button id="ordi">Ordinary_Drink</button>
+      </div>
+      <div class="swiper-slide myCard">
+        <button id="ck">Cocktail</button>
+      </div> 
       <div class="swiper-slide myCard">
         <button>Beef</button>
       </div>
@@ -74,7 +86,7 @@
         <button>Pasta</button>
       </div>
       <div class="swiper-slide myCard">
-        <button>Prk</button>
+        <button>Pork</button>
       </div>
       <div class="swiper-slide myCard">
         <button>SeaFood</button>
@@ -100,11 +112,20 @@
     </div>
   </div>
 
+<div id="notification-container"></div>
+
+
+
+ <footer>
+		<p>&copy; 2023 Jojo's Jumia</p>
+	</footer>
+
   <div class="lastConatiner"></div>
 
 
      <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
      <script src="/js/single.js"></script>
      <script src="/js/scriptTwo.js"></script>
+     <script src="/js/pop.js"></script>
 </body>
 </html>

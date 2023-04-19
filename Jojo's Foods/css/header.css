@@ -72,10 +72,39 @@ nav ul li.active a {
     display: none;
 }
 
+#notification-container {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 0px;
+    text-align: center;
+    z-index: 9999999;
+}
+
+.notification {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.notification .delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
 
 
 
 
+footer {
+    background-color: #eee;
+    color: var(--black);
+    padding: 10px;
+    text-align: center;
+}
 
 
 
@@ -117,8 +146,8 @@ nav ul li.active a {
 
     .lastConatiner {
         display: block;
-        height: 50px;
-        border: 2px solid red;
+        height: 47px;
+        /* border: 2px solid red; */
     }
 }
 
