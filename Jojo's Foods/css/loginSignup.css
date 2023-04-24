@@ -17,6 +17,11 @@
 body {
     
     font-family: 'EB Garamond', serif;
+    display: flex;
+    height: 100vh;
+    justify-content: space-evenly;
+    /* align-items: center; */
+    flex-direction: column;
     /* margin-bottom: 2rem; */
 }
 
@@ -115,7 +120,6 @@ button:hover {
 #chk:checked~.signup label {
     transform: scale(.6);
 }
-
 
 
 

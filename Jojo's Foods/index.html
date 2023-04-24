@@ -3,224 +3,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <title>Document</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
      <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
-      <link rel="stylesheet" href="./css/styles.css">
-       
-    <title>Document</title>
+      <link rel="stylesheet" href="/css/header.css">
+      <link rel="stylesheet" href="/css/loginSignup.css">
 </head>
 <body>
-    <!-- header -->
-    <div class="wrapper">
-      <nav>
-        <h3>Jojo's Food</h3>
-        <ul>
-          <li class="active">
-            <a href="#" class="nav-link"><i class="fas fa-house"></i><span>Home</span></a>
-          </li>
-          <li>
-            <a href="#" class="nav-link"><i class="fa fa-microchip" aria-hidden="true"></i><span>Orders</span></a>
-          </li>
-          <li>
-            <a href="#" class="nav-link"><i class="fas fa-user"></i><span>Profile</span></a>
-          </li>
-          <li>
-            <a href="#" class="nav-link" > <i class="fas fa-question-circle"></i> </i><span>About</span></a>
-          </li>
-          <li>
-            <a href="#" class="nav-link"> <i class="fas fa-search" aria-hidden="true"></i> <span>Search</span></a>
-          </li>
-        </ul>
-      </nav>
-    </div>
 
 
+<!-- signup -->
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
 
-      <!-- SwiperOne -->
-  <div class="mySwiperOne">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395__480.jpg" alt="">
-      </div>
-      <div class="swiper-slide">
-        <img src="https://cdn.pixabay.com/photo/2020/01/17/16/42/food-4773380__480.jpg" alt="">
-      </div>
-      <div class="swiper-slide">
-        <img src="https://cdn.pixabay.com/photo/2017/10/15/11/41/sushi-2853382__480.jpg" alt="">
-      </div>
-      <div class="swiper-slide">
-        <img src="https://cdn.pixabay.com/photo/2015/05/02/01/04/miso-soup-749368__480.jpg" alt="">
-      </div>
-      <div class="swiper-slide">
-        <img src="https://cdn.pixabay.com/photo/2017/06/23/23/57/bread-2436370__480.jpg" alt="">
-      </div>
-    </div>
-  </div>
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" name="txt" placeholder="User name" required="">
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Sign up</button>
+				</form>
+			</div>
 
+			<div class="login">
+				<form>
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required="">
+					<input type="password" name="pswd" placeholder="Password" required="">
+					<button>Login</button>
+				</form>
+			</div>
+	</div>
 
-<!-- mySwiperTwo -->
-    <div class="mySwiperTwo" style="background-color: #fff; padding: 1rem 0;">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
-      <div class="swiper-slide">Slide 4</div>
-      <div class="swiper-slide">Slide 5</div>
-      <div class="swiper-slide">Slide 6</div>
-      <div class="swiper-slide">Slide 7</div>
-      <div class="swiper-slide">Slide 8</div>
-      <div class="swiper-slide">Slide 9</div>
-    </div>
-    <!-- <div class="swiperTwo swiper-pagination"></div> -->
-  </div>
-
-
-<!-- Recommended Dishes -->
-
-    <div class="mySwiperTwo three" style="background-color: #fff;">
-        <h2>Recommended Dishes</h2>
-    <div class="swiper-wrapper" id="random-food">
-    </div>
-  </div>
-
-
-  <!-- Happy hour -->
-
-  <div class="mySwiperTwo three" style="background-color: #fff;">
-        <h2 class="drink">Happy Hour</h2>
-    <div class="swiper-wrapper" id="random-drink">
-    </div>
-  </div>
-
-
-    <!-- Happy hour -->
-
-  <div class="mySwiperTwo three" style="background-color: #fff;">
-        <h2 class="drink">Nice Desert</h2>
-    <div class="swiper-wrapper" id="random-desert">
-    </div>
-  </div>
-
-  
-
-
-  <!-- grid -->
-    <div class="mySwiperGrid">
-        <h2>Our Categories</h2>
-    <div class="swiper-wrapper itemss" id="category">
-       <div class="swiper-slide myCard">
-        <button>Alcoholic</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button id="alc">Non_Alcoholic</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button id="ordi">Ordinary_Drink</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button id="ck">Cocktail</button>
-      </div> 
-      <div class="swiper-slide myCard">
-        <button>Beef</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Chicken</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Dessert</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Lamb</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Miscellaneous</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Pasta</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Pork</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>SeaFood</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Side</button>
-      </div>
-     <div class="swiper-slide myCard">
-      <button>Starter</button>
-     </div>
-     <div class="swiper-slide myCard">
-      <button>Vegan</button>
-     </div>
-     <div class="swiper-slide myCard">
-      <button>Vegetarian</button>
-     </div>
-     <div class="swiper-slide myCard">
-      <button>Goat</button>
-     </div>
-     <div class="swiper-slide myCard">
-      <button>Breakfast</button>
-     </div>
-    </div>
-  </div>
-
-
-
-<!--  -->
-    <!-- <div class="mySwiperGrid">
-        <h2>Our Categories</h2>
-    <div class="swiper-wrapper itemss" id="category2">
-      <div class="swiper-slide myCard">
-        <button>Alcoholic</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Non_Alcoholic</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Ordinary_Drink</button>
-      </div>
-      <div class="swiper-slide myCard">
-        <button>Cocktail</button>
-      </div> 
-    </div>
-  </div> -->
-
-
-
-
-<div id="notification-container"></div>
-
-
- <footer>
-		<p>&copy; 2023 Jojo's Jumia</p>
-	</footer>
-
-
-
-  <div class="lastConatiner"></div>
-
-  
+<div id="notification-container-" ></div>
+<div id="notification-container" ></div>
 
 
 
 
 
-
-
-
-
-
-
-
-
-
- <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script src="./js/scriptOne.js"></script>
-<script src="/js/nonAlc.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="/js/single.js"></script>
 <script src="/js/pop.js"></script>
+<script src="/js/loginSignup.js"></script>
     
 </body>
 </html>

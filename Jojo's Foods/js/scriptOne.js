@@ -71,6 +71,10 @@ window.addEventListener('resize', toggleNavLinks);
  var mySwiperTwo = new Swiper(".mySwiperTwo", {
   slidesPerView: 6,
   spaceBetween: 30,
+  loop: true,
+  autoplay: {
+    delay: 2000
+  },
   freeMode: true,
   pagination: {
     el: ".swiper-pagination",
@@ -85,17 +89,17 @@ window.addEventListener('resize', toggleNavLinks);
     // when window width is <= 768px
     500: {
       slidesPerView: 4,
-      spaceBetween: 20
+      spaceBetween: 10
     },
     // when window width is <= 992px
     800: {
       slidesPerView: 5,
-      spaceBetween: 30
+      spaceBetween: 10
     },
     // when window width is <= 1200px
     1200: {
-      slidesPerView: 6,
-      spaceBetween: 40
+      slidesPerView: 7,
+      spaceBetween: 14
     }
   }
 });
@@ -103,7 +107,7 @@ window.addEventListener('resize', toggleNavLinks);
 
 
 // three
- var mySwiperTwo = new Swiper(".three", {
+ var three = new Swiper(".three", {
   slidesPerView: 6,
   spaceBetween: 10,
   freeMode: true,
@@ -239,7 +243,7 @@ const addToCart = (item, quantity) => {
 
 // myApi
 const fetchAndCreateSwiperSlides = (apiUrl, swiperWrapper, prices) => {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 50; i++) {
     fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
@@ -326,6 +330,25 @@ fetchAndCreateSwiperSlides('https://www.themealdb.com/api/json/v1/1/filter.php?c
 const swiperWrapper = document.getElementById('random-food');
 const prices = [2000, 2500, 4000, 1500, 3000, 2200, 4050, 3000, 4100];
 fetchAndCreateSwiperSlides('https://www.themealdb.com/api/json/v1/1/random.php', swiperWrapper, prices);
+
+
+const swiperWrapperAfrican = document.getElementById('random-african');
+const africanPrices = [3500, 1700, 3300, 2400, 1800, 1600, 1900, 4200, 2900 ];
+fetchAndCreateSwiperSlides('https://www.themealdb.com/api/json/v1/1/filter.php?a=Chinese', swiperWrapperAfrican, africanPrices);
+
+const swiperWrapperThree = document.getElementById('random-three');
+const threePrices = [3500, 1700, 3300, 2400, 1800, 1600, 1900, 4200, 2900 ];
+fetchAndCreateSwiperSlides('https://www.themealdb.com/api/json/v1/1/filter.php?a=American', swiperWrapperThree, threePrices);
+
+ const swiperWrapperTwo = document.getElementById('random-two');
+const twoPrices = [3500, 1700, 3300, 2400, 1800, 1600, 1900, 4200, 2900 ];
+fetchAndCreateSwiperSlides('https://www.themealdb.com/api/json/v1/1/filter.php?a=jamaican', swiperWrapperTwo, twoPrices);
+
+const swiperWrapperDrinks2 = document.getElementById('random-drink2');
+const drinksPrices2 = [500, 700, 1000, 1200, 1500, 1800, 2000, 2200, 2500];
+fetchAndCreateSwiperSlides('https://www.thecocktaildb.com/api/json/v1/1/random.php', swiperWrapperDrinks2, drinksPrices2);
+ 
+
 
 // localStorage.clear();
 

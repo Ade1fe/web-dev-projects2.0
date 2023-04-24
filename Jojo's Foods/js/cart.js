@@ -57,4 +57,5 @@ if (cart) {
   cartItemsWrapper.appendChild(noItemsMessage);
 }
 
+
 // localStorage.clear();
