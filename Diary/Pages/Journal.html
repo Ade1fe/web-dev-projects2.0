@@ -1,128 +1,130 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidebar menu With Sub-menus | Using HTML, CSS & JQuery</title>
     <link rel="stylesheet" href="../Css/Journal.css">
-    	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous"/>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
-    
-  </head>
-  <body>
- <header>
-      <h1>Jojo's <span>Diary</span></h1>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="aboutUs.html">About</a></li>
-          <li><a href="contactUs.html">Contact</a></li>
-        </ul>
-      </nav>
+
+</head>
+
+<body>
+    <header>
+        <h1>Jojo's <span>Diary</span></h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="aboutUs.html">About</a></li>
+                <li><a href="contactUs.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <hr class="hr">
 
     <div class="menu-btn">
-      <i class="fas fa-bars"></i>
+        <i class="fas fa-bars"></i>
     </div>
     <div class="side-bar" id="side">
-      <div class="close-btn">
-        <i class="fas fa-times"></i>
-      </div>
-
-      <h3 id="name">John Smith</h3>
-		<div class=" menu2">
-         <div class="item">
-          <a class="sub-btn"><i class="bi bi-person-circle"></i> Profile<i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="" class="sub-menu">
-             <li  class="sub-item" id="email"></li>
-            <li  class="sub-item" id="password"></li>
-          </ul>
+        <div class="close-btn">
+            <i class="fas fa-times"></i>
         </div>
 
-          <div class="item">
-          <a class="sub-btn"><i class="bi bi-star-fill"></i> Starred<i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="starred" class="sub-menu">
-          </ul>
+        <h3 id="name">John Smith</h3>
+        <div class=" menu2">
+            <div class="item">
+                <a class="sub-btn"><i class="bi bi-person-circle"></i> Profile<i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="" class="sub-menu">
+                    <li class="sub-item" id="email"></li>
+                    <li class="sub-item" id="password"></li>
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><i class="bi bi-star-fill"></i> Starred<i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="starred" class="sub-menu">
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><i class="bi bi-trash-fill"></i> Trash<i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="trash" class="sub-menu">
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><i class="bi bi-gear-wide-connected"></i> Settings<i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="" class="sub-menu">
+                    <li class="sub-item" id="changePassword">Change Password</li>
+                    <li class="sub-item" id="changeEmail">Change Email</li>
+                </ul>
+            </div>
+
         </div>
 
-         <div class="item">
-          <a class="sub-btn"><i class="bi bi-trash-fill"></i> Trash<i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="trash" class="sub-menu">
-          </ul>
-        </div>
 
-        <div class="item">
-          <a class="sub-btn"><i class="bi bi-gear-wide-connected"></i> Settings<i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="" class="sub-menu">
-              <li  class="sub-item" id="changePassword">Change Password</li>
-              <li  class="sub-item" id="changeEmail">Change Email</li>
-          </ul>
+
+        <div class="menu">
+            <div class="item">
+                <a class="sub-btn"><span>😎</span>Personal <span id="personal-span" class="subSpan"></span><i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="Personal" class="sub-menu">
+                    <!-- <li href="#" class="sub-item">Sub Item 01</li>
+            <li href="#" class="sub-item">Sub Item 02</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><span>🤙</span>Label <span id="label-span" class="subSpan"></span> <i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="Label" class="sub-menu">
+                    <!-- <li href="#" class="sub-item">Sub Item 01</li>
+            <li href="#" class="sub-item">Sub Item 02</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><span>💼</span>Work <span id="work-span" class="subSpan"></span><i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="Work" class="sub-menu">
+                    <!-- <li href="#" class="sub-item">Sub Item 01</li>
+            <li href="#" class="sub-item">Sub Item 02</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><span>📑</span>Design Insight <span id="design-span" class="subSpan"></span> <i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="Design Insight" class="sub-menu">
+                    <!-- <li href="#" class="sub-item">Sub Item 01</li>
+            <li href="#" class="sub-item">Sub Item 02</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
+                </ul>
+            </div>
+
+            <div class="item">
+                <a class="sub-btn"><span>📌</span>Business <span id="business-span" class="subSpan"></span> <i class="fas fa-angle-right dropdown"></i></a>
+                <ul id="Business" class="sub-menu">
+                    <!-- <li href="#" class="sub-item">Sub Item 01</li>
+            <li href="#" class="sub-item">Sub Item 02</li>
+            <li href="#" class="sub-item">Sub Item 03</li> -->
+                </ul>
+            </div>
+            <h3 id="new-note-btn">+ New Notes</h3>
+
         </div>
 
     </div>
-
-      
-
-      <div class="menu">
-      <div class="item">
-          <a class="sub-btn"><span>😎</span>Personal <span id="personal-span" class="subSpan"></span><i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="Personal" class="sub-menu" >
-            <!-- <li href="#" class="sub-item">Sub Item 01</li>
-            <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li> -->
-          </ul>
-        </div>
-
-        <div class="item">
-          <a class="sub-btn"><span>🤙</span>Label <span id="label-span" class="subSpan"></span> <i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="Label" class="sub-menu">
-            <!-- <li href="#" class="sub-item">Sub Item 01</li>
-            <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li> -->
-          </ul>
-        </div>
-
-        <div class="item">
-          <a class="sub-btn"><span>💼</span>Work <span id="work-span" class="subSpan"></span><i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="Work" class="sub-menu">
-            <!-- <li href="#" class="sub-item">Sub Item 01</li>
-            <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li> -->
-          </ul>
-        </div>
-
-         <div class="item">
-          <a class="sub-btn"><span>📑</span>Design Insight <span id="design-span" class="subSpan"></span> <i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="Design Insight" class="sub-menu">
-            <!-- <li href="#" class="sub-item">Sub Item 01</li>
-            <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li> -->
-          </ul>
-        </div>
-
-          <div class="item">
-          <a class="sub-btn"><span>📌</span>Business <span id="business-span" class="subSpan"></span> <i class="fas fa-angle-right dropdown"></i></a>
-          <ul  id="Business" class="sub-menu">
-            <!-- <li href="#" class="sub-item">Sub Item 01</li>
-            <li href="#" class="sub-item">Sub Item 02</li>
-            <li href="#" class="sub-item">Sub Item 03</li> -->
-          </ul>
-        </div>
-    <h3 id="new-note-btn">+ New Notes</h3>
-
-      </div>
-      
-    </div>
-      <!-- <div id="div"></div> -->
+    <!-- <div id="div"></div> -->
     <section class="main" id="main-content">
-      <!-- <h1>Sidebar Menu With<br>Sub-Menus</h1> -->
+        <!-- <h1>Sidebar Menu With<br>Sub-Menus</h1> -->
 
-      <!-- <button class="saveFile" id="saveFile">Save File</button> -->
+        <!-- <button class="saveFile" id="saveFile">Save File</button> -->
         <div class="showFolders"></div>
     </section>
 
@@ -130,17 +132,18 @@
 
 
     <footer>
-		<p>Copyrights © 2023<span> Jojo's-Diary</span>. Designed by O'Damisi</p>
-	</footer>
+        <p>Copyrights © 2023<span> Jojo's-Diary</span>. Designed by O'Damisi</p>
+    </footer>
 
-  
 
- 
- 
+
+
+
 
 
     <script src="../Js/Journal.js"></script>
 
 
-  </body>
+</body>
+
 </html>
