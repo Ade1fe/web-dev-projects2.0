@@ -3,14 +3,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--========== BOX ICONS ==========-->
+     <!--========== BOX ICONS ==========-->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="/assets/css/single.css">
-        <link rel="stylesheet" href="/assets/css/product.css">
+        <link rel="stylesheet" href="/assets/css/mySingle.css">
     <title>Document</title>
 </head>
 <body>
+    <!-- --------------------- -->
 <header>
   <nav>
     <div class="logo">
@@ -90,162 +92,28 @@
     </div>
 
 
-<!-- product container -->
 
-<div class="parent">
-    <!-- <section class="container"> -->
-        <div class="imgContainer">
-            <div class="divImg">
-                <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/96/612838/1.jpg?8890" alt="">
-            </div>
+    <!-- -------------------------------- -->
 
-           <div class="myImgs">
-             <div class="imgOne">
-                <img src="https://ng.jumia.is/unsafe/fit-in/150x150/filters:fill(white)/product/96/612838/1.jpg?8890" alt="">
-            </div>
-
-            <div class="imgTwo">
-                <img src="https://ng.jumia.is/unsafe/fit-in/150x150/filters:fill(white)/product/96/612838/2.jpg?7920" alt="">
-            </div>
-           </div>
-
-            <div class="text">
-                <p>Share this Product</p>
-                <i class='bx bxl-facebook-circle'></i>
-                <i class='bx bxl-twitter' ></i>
-            </div>
-
-        </div>
-
-        <!--  -->
-        <div class="productInfo">
-            <p id="productStore">Official Store</p>
-            <p id="productName">Guinness Malta Can 330ml x24 (Guinness)</p>
-            <div id="productStars">
-                <i class='bx bxs-star' ></i>
-                <i class='bx bxs-star' ></i>
-                <i class='bx bxs-star' ></i>
-                <i class='bx bxs-star' ></i>
-                <i class='bx bxs-star' ></i>
-                <p>(345 verified ratings)</p>
-            </div>
-            <div class="theProduct">
-                <h4>Flash Sales</h4>
-                <p id="productPrice">#4,200</p>
-                <p id="productPriceCross">#4100</p>
-            </div>
-
-            <button>Add to cart</button>
-
-            <p>PROMOTIONS</p>
-            <p> <i class='bx bxs-star' ></i> <span>Enjoy cheaper shipping fees when you select a PickUp Station at checkout.</span></p>
-            <p><i class='bx bxs-shield-plus'></i> <span>Transfer up to N200,000 to any bank in Nigeria for FREE!</span></p>
-            <p><p><i class='bx bxs-shield-plus'></i> <span>Transfer up to N200,000 to any bank in Nigeria for FREE!</span></p></p>
-
-
-        </div>
-
-        <!-- <p>Report incorrect product information</p> -->
-
-    </section>
-
-   <section class="holdMi">
-     <div class="side">
-        <h4>DELIVERY & RETURNS</h4>
-       <div class="">
-         <P>Jojo's Jumia</P>
-        <p>Free delivery on thousands of products in Lagos, Ibadan & Abuja Details</p>
-       </div>
-       <div class="opt">
-        <h4>Choose your location</h4>
-       <select>
-  <option value="Abia">Abia</option>
-  <option value="Adamawa">Adamawa</option>
-  <option value="Akwa Ibom">Akwa Ibom</option>
-  <option value="Anambra">Anambra</option>
-  <option value="Bauchi">Bauchi</option>
-  <option value="Bayelsa">Bayelsa</option>
-  <option value="Benue">Benue</option>
-  <option value="Borno">Borno</option>
-  <option value="Cross River">Cross River</option>
-  <option value="Delta">Delta</option>
-  <option value="Ebonyi">Ebonyi</option>
-  <option value="Edo">Edo</option>
-  <option value="Ekiti">Ekiti</option>
-  <option value="Enugu">Enugu</option>
-  <option value="FCT">Federal Capital Territory</option>
-  <option value="Gombe">Gombe</option>
-  <option value="Imo">Imo</option>
-  <option value="Jigawa">Jigawa</option>
-  <option value="Kaduna">Kaduna</option>
-  <option value="Kano">Kano</option>
-  <option value="Katsina">Katsina</option>
-  <option value="Kebbi">Kebbi</option>
-  <option value="Kogi">Kogi</option>
-  <option value="Kwara">Kwara</option>
-  <option value="Lagos">Lagos</option>
-  <option value="Nasarawa">Nasarawa</option>
-  <option value="Niger">Niger</option>
-  <option value="Ogun">Ogun</option>
-  <option value="Ondo">Ondo</option>
-  <option value="Osun">Osun</option>
-  <option value="Oyo">Oyo</option>
-  <option value="Plateau">Plateau</option>
-  <option value="Rivers">Rivers</option>
-  <option value="Sokoto">Sokoto</option>
-  <option value="Taraba">Taraba</option>
-  <option value="Yobe">Yobe</option>
-  <option value="Zamfara">Zamfara</option>
-</select>
-
-<select>
-  <option value="Ahmadu Bello Way">Ahmadu Bello Way</option>
-  <option value="Bourdillon Road">Bourdillon Road</option>
-  <option value="Broad Street">Broad Street</option>
-  <option value="Glover Road">Glover Road</option>
-  <option value="Herbert Macaulay Way">Herbert Macaulay Way</option>
-  <option value="Idowu Taylor Street">Idowu Taylor Street</option>
-  <option value="Isaac John Street">Isaac John Street</option>
-  <option value="Kofo Abayomi Street">Kofo Abayomi Street</option>
-  <option value="Ligali Ayorinde Street">Ligali Ayorinde Street</option>
-  <option value="Marina">Marina</option>
-  <option value="Moshood Abiola Way">Moshood Abiola Way</option>
-  <option value="Opebi Road">Opebi Road</option>
-  <option value="Ozumba Mbadiwe Avenue">Ozumba Mbadiwe Avenue</option>
-  <option value="Sanusi Fafunwa Street">Sanusi Fafunwa Street</option>
-  <option value="Walter Carrington Crescent">Walter Carrington Crescent</option>
-</select>
-
-       </div>
-
-      </div>
-
-      <div class="side">
-        <div class="">
-          <p><i class='bx bx-bus'></i> <span>Door Delivery</span></p>
-          <p>Delivery ₦ 520</p>
-          <p>Ready for delivery between 22 April & 25 April when you order within next 1hrs 53mins</p>
-        </div>
-
-        <div class="">
-          <p><i class='bx bxs-ev-station'></i> <span>Pickup Station</span></p>
-          <p>Delivery ₦ 520</p>
-          <p>Arriving at pickup station between 22 April & 25 April when you order within next 1hrs 53mins</p>
-        </div>
-
-
-          <div class="">
-          <p><i class='bx bxs-box'></i> <span>Return Policy</span></p>
-          <p>Delivery ₦ 520</p>
-          <p>Free return within 15 days for Official Store items and 7 days for other eligible items.See more</p>
-        </div>
-
-      </div>
-   <!-- </section> -->
-
-
+  <!-- Swiper -->
+  <div class="firstSwipper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Slide 1</div>
+      <div class="swiper-slide">Slide 2</div>
+      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
     </div>
+    <!-- <div class="swiper-pagination"></div> -->
+  </div>
+    
 
+
+  <!-- ---------------------------------------- -->
 <!-- ------------------------------------- -->
 
 <footer id="footer" class="footer-1">
@@ -334,11 +202,8 @@
 
 
 
-
-
-
-
-
-    <script src="/assets/js/single.js"></script>
+     <script src="/assets/js/single.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+      <script src="/assets/js/mySingle.js"></script>
 </body>
 </html>

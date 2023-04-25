@@ -66,15 +66,16 @@ img {
 
 
 .container{
-    /* border: 2px solid red; */
+    border: 2px solid blue;
     display: flex;
     gap: 0 10px;
-    width: 70%;
+    /* width: 100%; */
     padding: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 .imgContainer{
-    /* border: #000 1px solid; */
+    border: #000 1px solid;
+    width: 50%;
 }
 img{
     height: 100%;
@@ -87,7 +88,7 @@ img{
     border-bottom: #A5A1AA 1px solid;
 }
 .divImg{
-   max-width: 400px;
+   width: 300px;
    height: 300px;
 }
 .imgOne, .imgTwo{
@@ -101,7 +102,7 @@ img{
     border-radius: 50%;
 }
 .productInfo{
-    /* border: #5c4191 1px dashed; */
+    border: #5c4191 1px dashed;
     padding: 0 0.5rem;
 }
 #productStars{
@@ -129,6 +130,7 @@ img{
     padding: 0.5rem;
     background-color: var(--first-color);
     color: var(--body-color);
+    font-size: 16px;
 }
 
 button{
@@ -145,4 +147,80 @@ button{
     border: #5c4191 1px solid;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+
+/* product */
+.parent{
+    border: 2px solid red;
+    display: flex;
+    gap: 10px 20px;
+    justify-content: center;
+}
+.side{
+    border: 2px solid black;
+    max-width: 350px;
+    padding: 0.3rem;
+    margin: 20px 0;
+}
+.side h4, .side p{
+    margin: 0;
+    padding: 0.2rem;
+    font-size: 16px;
+}
+.side p{
+    font-size: 0.9rem;
+}
+.opt{
+    display: block;
+}
+select{
+    padding: 0.3rem;
+    width: 100%;
+    height: 40px;
+    font-size:16px;
+    margin-bottom: 5px ;
+}
+.side i{
+    padding: 0.1rem;
+    border: 1px solid;
+}
+
+
+
+
+@media (max-width:800px) {
+    .parent{
+        /* display: grid; */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .imgContainer{
+        /* width: 100%; */
+    }
+    .divImg{
+        width: 100%;
+        border: 2px solid red;
+    }
+    .productInfo{
+        width: 42%;
+    }
+    .holdMi{
+        display: flex;
+    }
+}
+
+
+@media (max-width:610px) {
+    .imgContainer , .productInfo{
+            width: 100%;
+        }
+}
+
+@media (max-width:450px) {
+
+    .holdMi {
+       display: grid;
+       justify-content: center;
+    }
 }
