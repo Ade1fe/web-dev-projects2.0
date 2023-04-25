@@ -1,167 +1,79 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Meal and Cocktail Search</title>
-    <style>
-      #searchContainer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-      #searchInput {
-        flex: 1;
-        margin-right: 10px;
-      }
-      #searchButton {
-        margin-right: 10px;
-      }
-      #resultsContainer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .resultCard {
-        width: 200px;
-        margin: 10px;
-        border: 1px solid #ccc;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .resultCard img {
-        max-width: 100%;
-        margin-bottom: 10px;
-      }
-      .resultCard h4 {
-        margin: 0;
-        font-size: 1.2em;
-        text-align: center;
-      }
-      .resultCard p {
-        margin: 0;
-        font-size: 0.9em;
-        text-align: center;
-        color: #999;
-      }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+      <link rel="stylesheet" href="/css/header.css">
+      <link rel="stylesheet" href="/css/search.css">
+    <title>Document</title>
+  
   </head>
   <body>
-    <h1>Meal and Cocktail Search</h1>
+
+
+        <!-- header -->
+       <div class="wrapper">
+      <nav>
+        <h3>Jojo's Food</h3>
+        <ul>
+          <li >
+            <a href="/pages/landingpage.html" class="nav-link"><i class="fas fa-house"></i><span>Home</span></a>
+          </li>
+          <li>
+            <a href="/pages/cart.html" class="nav-link"><i class="fa fa-microchip" aria-hidden="true"></i><span>Orders</span></a>
+          </li>
+          <li>
+            <a href="/pages/profile.html" class="nav-link"><i class="fas fa-user"></i><span>Profile</span></a>
+          </li>
+          <li >
+            <a href="/pages/AboutUs.html" class="nav-link" > <i class="fas fa-question-circle"></i> </i><span>About</span></a>
+          </li>
+          <li class="active"> 
+            <a href="/pages/search.html" class="nav-link"> <i class="fas fa-search" aria-hidden="true"></i> <span>Search</span></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+
+
+
+
+
+    <h2>Meal and Cocktail Search</h2>
     <div id="searchContainer">
       <input type="text" id="searchInput" placeholder="Search for a meal or cocktail..." />
+      <label for="countryInput">Country:</label>
+      <select id="countryInput" name="country"></select><br />
       <button id="searchButton" onclick="search()">Search</button>
     </div>
     <div id="resultsContainer"></div>
 
-    <script>
-      const drinksPrices = [500, 700, 1000, 1200, 1500, 1800, 2000, 2200, 2500];
+  
 
-      function generateRandomPrice() {
-        return drinksPrices[Math.floor(Math.random() * drinksPrices.length)];
-      }
 
-      function search() {
-        const input = document.getElementById('searchInput').value;
-        const mealUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${input}`;
-        const cocktailUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}`;
-        const resultsContainer = document.getElementById('resultsContainer');
-        resultsContainer.innerHTML = '';
+    <div id="notification-container"></div>
 
-        // Search for meals
-        fetch(mealUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            if (data.meals) {
-              for (let i = 0; i < Math.min(data.meals.length, 40); i++) {
-                const meal = data.meals[i];
-                const price = generateRandomPrice();
-                const mealCard = createMealCard(meal, price);
-                resultsContainer.appendChild(mealCard);
-              }
-            }
-          })
-          .catch((error) => {
-            console.error("There was a problem with the fetch operation:", error);
-          });
 
-        // Search for cocktails
-        fetch(cocktailUrl)
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            if (data.drinks) {
-              for (let i = 0; i < Math.min(data.drinks.length, 40); i++)
-          {
-            const drink = data.drinks[i];
-            const price = generateRandomPrice();
-            const drinkCard = createDrinkCard(drink, price);
-            resultsContainer.appendChild(drinkCard);
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
-      });
-  }
+<div class="lastConatiner"></div>
 
-  function createMealCard(meal, price) {
-    const card = document.createElement('div');
-    card.classList.add('resultCard');
 
-    const img = document.createElement('img');
-    img.src = meal.strMealThumb;
-    img.alt = meal.strMeal;
-    card.appendChild(img);
 
-    const name = document.createElement('h4');
-    name.textContent = meal.strMeal;
-    card.appendChild(name);
 
-    const type = document.createElement('p');
-    type.textContent = 'Meal';
-    card.appendChild(type);
 
-    const priceTag = document.createElement('p');
-    priceTag.textContent = `$${price}`;
-    card.appendChild(priceTag);
 
-    return card;
-  }
 
-  function createDrinkCard(drink, price) {
-    const card = document.createElement('div');
-    card.classList.add('resultCard');
 
-    const img = document.createElement('img');
-    img.src = drink.strDrinkThumb;
-    img.alt = drink.strDrink;
-    card.appendChild(img);
-
-    const name = document.createElement('h4');
-    name.textContent = drink.strDrink;
-    card.appendChild(name);
-
-    const type = document.createElement('p');
-    type.textContent = 'Cocktail';
-    card.appendChild(type);
-
-    const priceTag = document.createElement('p');
-    priceTag.textContent = `$${price}`;
-    card.appendChild(priceTag);
-
-    return card;
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="/js/single.js"></script>
+<script src="/js/pop.js"></script>
+<script src="/js/search.js"></script>
+    
   </body>
 </html>

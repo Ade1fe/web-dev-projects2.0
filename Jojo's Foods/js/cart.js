@@ -34,13 +34,19 @@ if (cart) {
     const deleteButton = document.createElement('button');
     deleteButton.className = 'delete-button';
     deleteButton.textContent = 'Delete';
-    deleteButton.addEventListener('click', () => {
-      const updatedCart = cart.filter((cartItem) => cartItem.name !== item.name);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      cartItemsWrapper.removeChild(cartItem);
-      total -= item.price * item.quantity;
-      totalPrice.textContent = `Total Price: #${total}`;
-    });
+   deleteButton.addEventListener('click', () => {
+  const updatedCart = cart.filter((cartItem) => cartItem.name !== item.name);
+  localStorage.setItem('cart', JSON.stringify(updatedCart));
+  cartItemsWrapper.removeChild(cartItem);
+  total -= item.price * item.quantity;
+  totalPrice.textContent = `Total Price: #${total}`;
+  
+  // Remove the item from local storage
+  const cartFromStorage = JSON.parse(localStorage.getItem('cart'));
+  const updatedCartFromStorage = cartFromStorage.filter((cartItem) => cartItem.name !== item.name);
+  localStorage.setItem('cart', JSON.stringify(updatedCartFromStorage));
+});
+
     cartItem.appendChild(deleteButton);
 
     cartItemsWrapper.appendChild(cartItem);
