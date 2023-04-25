@@ -50,29 +50,6 @@ button{
     font-size: 1rem;
 }
 
-
-/* @media (max-width:600px) {
-    .row{
-    display: block;
-    height: 170px;
-    width: 150px;
-    margin: auto;
-    padding: 10px;
-}
-.pic{
-    width: 100%;
-}
-#cart-items{
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-button{
-    margin: 0.5rem 0;
-}
-
-} */
-
  @media (max-width:600px) {
 h4{
     font-size: 13px;

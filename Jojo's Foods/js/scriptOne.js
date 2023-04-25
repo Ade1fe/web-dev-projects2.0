@@ -140,76 +140,6 @@ window.addEventListener('resize', toggleNavLinks);
 });
 
 
-// const addToCart = (item, quantity) => {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || {};
-//   if (cart[item.id]) {
-//     cart[item.id].quantity += quantity;
-//   } else {
-//     cart[item.id] = { ...item, quantity };
-//   }
-//   localStorage.setItem('cart', JSON.stringify(cart));
-//   alert(`${quantity} ${item.name}(s) added to cart!`);
-// }
-
-
-// const addToCart = (item, quantity) => {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//   const base64Image = item.imageDataUrl; // replace with the property that contains the base64-encoded image data
-//   const product = {
-//     name: item.strDrink || item.strMeal,
-//     category: item.strCategory || item.strMeal,
-//     type: item.strCategory || item.strMealType || 'N/A',
-//     price: prices[i % prices.length],
-//     quantity: quantity,
-//     image: base64Image,
-//   };
-//   if (cart[item.id]) {
-//     cart[item.id].quantity += quantity;
-//   } else {
-//     cart[item.id] = product;
-//   }
-//   localStorage.setItem('cart', JSON.stringify(cart));
-//   alert(`${quantity} ${item.name}(s) added to cart!`);
-// };
-
-
-// const addToCart = (item, quantity) => {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//   if (cart.some(cartItem => cartItem.id === item.id)) {
-//     cart.forEach(cartItem => {
-//       if (cartItem.id === item.id) {
-//         cartItem.quantity += quantity;
-//       }
-//     });
-//   } else {
-//     cart.push({
-//       id: item.id,
-//       name: item.name,
-//       image: item.image,
-//       price: item.price,
-//       quantity: quantity,
-//     });
-//   }
-//   localStorage.setItem('cart', JSON.stringify(cart));
-//   alert(`${quantity} ${item.name}(s) added to cart!`);
-// }
-
-
-// const addToCart = (item, quantity) => {
-//   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//   const product = {
-//     name: item.name,
-//     category: item.category,
-//     type: item.type,
-//     price: item.price,
-//     quantity: quantity,
-//     image: item.image
-//   };
-//   cart.push(product);
-//   localStorage.setItem('cart', JSON.stringify(cart));
-//   alert(`Added ${quantity} ${product.name} to cart!`);
-// }
-
 
 const addToCart = (item, quantity) => {
   const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -414,72 +344,6 @@ var mySwiperGridOk = new Swiper('.mySwiperGrid', {
 
 
 
-
-
-// const categoryContainer = document.getElementById('category');
-
-// categoryContainer.addEventListener('click', event => {
-//   if (event.target.tagName === 'BUTTON') {
-//     const category = event.target.textContent;
-//     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-//       .then(response => response.json())
-//       .then(data => {
-//         // save the data to localStorage
-//         localStorage.setItem('meals', JSON.stringify(data.meals));
-//        // send the category to the h2 on single.html page
-       
-//         localStorage.setItem('category', category);
-//         // redirect to single.html page
-//         window.location.href = '/pages/single.html';
-//       })
-//       .catch(error => console.log(error));
-//   }
-// });
-
-// const categoryContainer = document.getElementById('category');
-
-// categoryContainer.addEventListener('click', event => {
-//   if (event.target.tagName === 'BUTTON') {
-//     const category = event.target.textContent.toLowerCase();
-
-//     // Check if category belongs to CocktailDB or MealDB API
-//     const cocktailDBCategories = ['alcoholic', 'non alcoholic', 'cocktail'];
-//     const mealDBCategories = ['ordinary drink', 'dessert', 'seafood', 'chicken', 'pasta', 'beef', 'pork', 'vegetarian', 'vegan'];
-
-//     if (cocktailDBCategories.includes(category)) {
-//       fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
-//         .then(response => response.json())
-//         .then(data => {
-//           // save the data to localStorage
-//           localStorage.setItem('cocktails', JSON.stringify(data.drinks));
-          
-//           // send the category to the h2 on single.html page
-//           localStorage.setItem('category', category);
-
-//           // redirect to single.html page
-//           window.location.href = '/pages/single.html';
-//         })
-//         .catch(error => console.log(error));
-//     } else if (mealDBCategories.includes(category)) {
-//       fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
-//         .then(response => response.json())
-//         .then(data => {
-//           // save the data to localStorage
-//           localStorage.setItem('meals', JSON.stringify(data.meals));
-          
-//           // send the category to the h2 on single.html page
-//           localStorage.setItem('category', category);
-
-//           // redirect to single.html page
-//           window.location.href = '/pages/single.html';
-//         })
-//         .catch(error => console.log(error));
-//     }
-//   }
-// });
-
-
-
 const categoryContainer = document.getElementById('category');
 // Check if category belongs to CocktailDB or MealDB API
     const cocktailDBCategories = ['alcoholic', 'non alcoholic', 'cocktail'];
@@ -519,14 +383,6 @@ categoryContainer.addEventListener('click', event => {
 });
 
 
-
-
-// www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic
-// www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic
-
-// Filter by Category
-// www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink
-// www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail
 
 
 // const apiKey = "<your_api_key_here>";

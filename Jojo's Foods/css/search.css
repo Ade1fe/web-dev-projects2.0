@@ -56,6 +56,7 @@
         flex-direction: column;
         align-items: center;
         position: relative;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
       }
        .resultCard i{
         position: absolute;
@@ -79,27 +80,30 @@
       }
       h2{
         padding: 1rem;
+        text-align: center;
       }
 
+      .resultCard i{
+      padding: 0.5rem;
+      background: #666;
+      color: #FDBE39;
+      border-radius: 50%;
+      opacity: .8;
+    }
+    .resultCard:hover i{
+      opacity: 1;
+    }
+      
 
-      @media (max-width:500px) {
+
+      @media (max-width:750px) {
         .resultCard{
             width: 120px;
         }
         #searchInput, select {
             width: 150px;
         }
-          #searchContainer {
-        /* display: grid;
-        width:  95%;
-        justify-content: none;
-        align-items: center;
-        margin: 0px auto;
-        padding:0;
-        gap:0 10px; */
-        display: block;
-        margin: 5px 0;
-      }
+ 
         #searchInput, select {
             width: 90%;
             margin: 7px 0;
@@ -110,4 +114,18 @@
         h4{
             font-size: 13px !important;
         }
+      }
+
+      @media (max-width:570px) {
+            #searchContainer {
+        /* display: grid;
+        width:  95%;
+        justify-content: none;
+        align-items: center;
+        margin: 0px auto;
+        padding:0;
+        gap:0 10px; */
+        display: block;
+        margin: 5px 0;
+      }
       }
