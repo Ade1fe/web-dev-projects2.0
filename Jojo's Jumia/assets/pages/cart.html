@@ -1,211 +1,77 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/cart.css">
     <!--========== BOX ICONS ==========-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/single.css">
-    <link rel="stylesheet" href="/assets/css/mySingle.css">
-    <title>Document</title>
+    <title>Shopping Cart</title>
 </head>
+<!-- <p>${item.quantity} x $${item.price}</p> -->
+<!-- <h3>${item.name.length < 15 ? item.name : item.name.slice(0, 15) + '...'}</h3> -->
 
 <body>
-    <!-- --------------------- -->
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="#">Jojo's Jumia</a>
-            </div>
-            <div class="header__search">
-                <input type="search" placeholder="Search" class="header__input">
-                <i class='bx bx-search header__icon'></i>
-            </div>
-            <ul class="nav-links">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-btn mobile-hide"> <i class='bx bxs-category'></i> Products</a>
-                    <div class="dropdown-menu" id="list-s">
-                        <ul class="navItem" id="">
-                            <li href="#" class="nav__link" id="health+beauty">
-                                <i class='bx bx-heart'></i>
-                                <span class="nav__name">Health & Beauty</span>
-                            </li>
+    <h1>Shopping Cart</h1>
 
-                            <li href="#" class="nav__link " id="phone+tablet">
-                                <i class='bx bx-phone'></i>
-                                <span class="nav__name">Phone & Tablets</span>
-                            </li>
-
-                            <li href="#" class="nav__link " id="computer">
-                                <i class='bx bx-laptop'></i>
-                                <span class="nav__name">Computer</span>
-                            </li>
-
-                            <li href="#" class="nav__link">
-                                <i class='bx bx-book'></i>
-                                <span class="nav__name">Electronics</span>
-                            </li>
-
-                            <li href="#" class="nav__link " id="fashion-">
-                                <i class='bx bxl-shopify'></i>
-                                <span class="nav__name">Fashion</span>
-                            </li>
-
-                            <li href="#" class="nav__link " id="baby+product">
-                                <i class='bx bxs-baby-carriage'></i>
-                                <span class="nav__name">Baby Products</span>
-                            </li>
-
-                            <li href="#" class="nav__link " id="game">
-                                <i class='bx bxs-dice-3'></i>
-                                <span class="nav__name">Gaming</span>
-                            </li>
-                            <li href="#" class="nav__link " id="sport">
-                                <i class='bx bxs-cricket-ball'></i>
-                                <span class="nav__name">Sporting Goods</span>
-                            </li>
-                            <li href="#" class="nav__link " id="automobiles">
-                                <i class='bx bxs-car-mechanic'></i>
-                                <span class="nav__name">Automobiles</span>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="cartItem mobile-hide"><a href="#"><i class='bx bx-cart'></i> Cart</a></li>
-                <li class="AccItem mobile-hide"><a href="#"><i class='bx bxs-user-account' ></i> Account</a></li>
-            </ul>
-            <div class="burger">
-                <i class='bx bx-menu'></i>
-            </div>
-        </nav>
-    </header>
-
-    <div class="anything desktop-hide">
-        <ul class="copyPlace">
-            <li>
-                <ul class="productItems">
-
-                </ul>
-            </li>
-        </ul>
+    <div id="cart-items">
+        <!-- <div class="item-">
+            <img src="" alt="">
+            <h4>Price</h4>
+            <h4>Total Price</h4>
+        </div> -->
     </div>
 
-
-
-    <!-- -------------------------------- -->
-    <h1 id="product-name"></h1>
-    <!-- Swiper -->
-    <div class="firstSwipper">
-        <!-- <i class="bx bx-cart"></i> -->
-        <div class="swiper-wrapper">
-
-        </div>
-    </div>
-
-
-
-    <!-- ---------------------------------------- -->
+    <h2>Total price</h2>
+    <p id="total-price">$0.00</p>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
-        const apiKey = '34748321-56ec586673804760cca13f7f6';
+        const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+        const cartList = document.getElementById('cart-items');
+        const totalPrice = document.getElementById('total-price');
 
-        const heading = document.querySelector('h1');
-        heading.textContent = id;
+        let total = 0;
 
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
-        const fetchImages = async() => {
-            try {
-                const response = await fetch(`https://pixabay.com/api/?key=${apiKey}&q=${id}&image_type=photo&per_page=30`);
-                const data = await response.json();
-                swiperWrapper.innerHTML = ''; // clear any existing child elements
-                data.hits.forEach((hit) => {
-                    const slide = document.createElement('div');
-                    slide.classList.add('swiper-slide');
+        cartItems.forEach((item) => {
+            const container = document.createElement('div');
+            container.classList.add('container-');
+            container.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <p>${item.name}</p>
+            <p> $${item.price}</p>
+            <p>$${(item.quantity * item.price).toFixed(2)}</p>
+            <button class="delete-item"><i class='bx bxs-trash'></i></button>
+          `;
+            cartList.appendChild(container);
 
-                    // Display the image
-                    const image = document.createElement('img');
-                    image.setAttribute('src', hit.webformatURL);
-                    slide.appendChild(image);
+            // Add event listener to delete button
+            const deleteButton = container.querySelector('.delete-item');
+            deleteButton.addEventListener('click', () => {
+                // Remove item from local storage
+                const itemIndex = cartItems.findIndex((cartItem) => cartItem.id === item.id);
+                cartItems.splice(itemIndex, 1);
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-                    // Add an "add to cart" icon
-                    const addIcon = document.createElement('i');
-                    addIcon.className = 'bx bx-cart';
-                    addIcon.addEventListener('click', () => {
-                        const quantity = window.prompt(`Enter quantity for ${hit.tags}`);
-                        if (quantity) {
-                            const item = {
-                                name: hit.tags,
-                                price: (Math.random() * 1000).toFixed(2),
-                                quantity: parseInt(quantity),
-                                image: hit.webformatURL,
-                            };
-                            const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-                            cartItems.push(item);
-                            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                            console.log(localStorage.getItem('cartItems'));
-                        }
-                    });
-                    slide.appendChild(addIcon);
+                // Remove item from cart display
+                container.remove();
 
-                    // Display the item name
-                    const name = document.createElement('h2');
-                    if (hit.tags.length < 15) {
-                        name.textContent = hit.tags;
-                    } else {
-                        name.textContent = hit.tags.slice(0, 15) + '...';
-                    }
-                    slide.appendChild(name);
+                // Update total price
+                total -= item.quantity * item.price;
+                totalPrice.textContent = `$${total.toFixed(2)}`;
+            });
 
-                    // Add a random price
-                    const price = document.createElement('p');
-                    price.textContent = `$${(Math.random() * 1000).toFixed(2)}`;
-                    slide.appendChild(price);
+            total += item.quantity * item.price;
+        });
 
-                    swiperWrapper.appendChild(slide);
-                });
-
-                // Display cart items from localStorage
-                const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-                cartItems.forEach((item) => {
-                    const slide = document.createElement('div');
-                    slide.classList.add('swiper-slide');
-
-                    // Display the image
-                    const image = document.createElement('img');
-                    image.setAttribute('src', item.image);
-                    slide.appendChild(image);
-
-                    // Display the item name
-                    const name = document.createElement('h2');
-                    name.textContent = item.name;
-                    slide.appendChild(name);
-
-                    // Display the quantity and total price
-                    const quantity = document.createElement('p');
-                    quantity.textContent = `Quantity: ${item.quantity}`;
-                    slide.appendChild(quantity);
-                    const totalPrice = document.createElement('p');
-                    totalPrice.textContent = `Total: $${(item.price * item.quantity).toFixed(2)}`;
-                    slide.appendChild(totalPrice);
-
-                    swiperWrapper.appendChild(slide);
-                });
-            } catch (error) {
-                console.log(error);
-            }
-
-        };
-        // localStorage.clear();
-
-
-        fetchImages();
+        totalPrice.textContent = `$${total.toFixed(2)}`;
     </script>
 
 
+    <!-- - -->
     <!-- ------------------------------------- -->
 
     <footer id="footer" class="footer-1">
@@ -296,15 +162,6 @@
     </footer>
 
 
-
-
-
-
-
-
-    <script src="/assets/js/single.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="/assets/js/mySingle.js"></script>
 </body>
 
 </html>
