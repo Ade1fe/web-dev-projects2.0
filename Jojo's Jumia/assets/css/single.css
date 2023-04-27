@@ -1,12 +1,12 @@
-
 /*========== GOOGLE FONTS ==========*/
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 /*========== VARIABLES CSS ==========*/
+
 :root {
     --header-height: 3.5rem;
     --nav-width: 219px;
-
     /*========== Colors ==========*/
     --first-color: #6923D0;
     --first-color-light: #F4F0FA;
@@ -15,30 +15,29 @@
     --text-color-light: #A5A1AA;
     --body-color: #fff;
     --container-color: #FFFFFF;
-
     /*========== Font and typography ==========*/
     --body-font: 'Poppins', sans-serif;
     --normal-font-size: .938rem;
     --small-font-size: .75rem;
     --smaller-font-size: .75rem;
-
     /*========== Font weight ==========*/
     --font-medium: 500;
     --font-semi-bold: 600;
-
     /*========== z index ==========*/
     --z-fixed: 100;
 }
 
 @media screen and (min-width: 1024px) {
-    :root {
+     :root {
         --normal-font-size: 1rem;
         --small-font-size: .875rem;
         --smaller-font-size: .813rem;
     }
 }
 
+
 /*========== BASE ==========*/
+
 *,
 ::before,
 ::after {
@@ -47,7 +46,6 @@
 
 body {
     margin: var(--header-height) 0 0 0;
-   
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
@@ -64,21 +62,19 @@ img {
 }
 
 
-
-
-
 /* header */
+
 header {
     background-color: #333;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 9999;
+    z-index: 999999999999;
     background-color: var(--container-color);
-  box-shadow: 0 1px 0 rgba(22, 8, 43, 0.1);
-  padding: 0 1rem;
-  z-index: var(--z-fixed);
+    box-shadow: 0 1px 0 rgba(22, 8, 43, 0.1);
+    padding: 0 1rem;
+    /* z-index: var(--z-fixed); */
 }
 
 nav {
@@ -91,10 +87,10 @@ nav {
     padding: 0 20px;
 }
 
-.logo a{
+.logo a {
     color: var(--title-color);
-  font-weight: var(--font-medium);
-  font-size: 1.1rem;
+    font-weight: var(--font-medium);
+    font-size: 1.1rem;
     font-weight: bold;
     text-decoration: none;
 }
@@ -142,10 +138,11 @@ nav {
 .nav-links a:hover {
     color: var(--first-color);
 }
+
 .dropdown-menu {
     display: none;
     position: absolute;
-    margin-top:5px;
+    margin-top: 5px;
     z-index: 1;
     background-color: #fff;
     padding: 10px;
@@ -155,6 +152,7 @@ nav {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
+
 .dropdown-menu ul {
     list-style: none;
     margin: 0;
@@ -171,9 +169,10 @@ nav {
     color: #333;
     text-decoration: none;
 }
-.nav__link:hover{
+
+.nav__link:hover {
     background-color: #eee;
-    padding: 0.3rem ;
+    padding: 0.3rem;
     color: var(--first-color);
     cursor: pointer;
 }
@@ -192,9 +191,13 @@ nav {
     font-size: 24px;
 }
 
-.mobile-hide {display: none;}
+.mobile-hide {
+    display: none;
+}
 
-.mobile-show {display: block;}
+.mobile-show {
+    display: block;
+}
 
 .anything {
     display: none;
@@ -213,36 +216,40 @@ nav {
 .navItem .nav__link:hover ul {
     display: block;
 }
-.nav__link{
+
+.nav__link {
     /* position: relative; */
 }
-    .nav__link>ul {
-        display: none;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        line-height: 2.5em;
-        left: -100%;
-        border: #000 2px solid;
-    }
 
-    .nav__link> :where(ul)::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
+.nav__link>ul {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    line-height: 2.5em;
+    left: -100%;
+    border: #000 2px solid;
+}
+
+.nav__link> :where(ul)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 .anything li {
     list-style: none;
 }
-.copyPlace li{
+
+.copyPlace li {
     margin: 10px;
 }
+
 .copyPlace {
     margin: 0;
     padding: 0;
@@ -266,13 +273,17 @@ nav {
     width: 100%;
 }
 
+
 /* ------------------------------------------- */
+
 
 /*==================== 
 	Footer 
 ====================== */
 
+
 /* Main Footer */
+
 footer .main-footer {
     padding: 20px 0;
     background: #252525;
@@ -283,7 +294,9 @@ footer ul {
     list-style: none;
 }
 
+
 /* Copy Right Footer */
+
 .footer-copyright {
     background: #222;
     padding: 5px 0;
@@ -326,7 +339,9 @@ footer ul {
     margin: 2px 0 0;
 }
 
+
 /* Footer Top */
+
 .footer-top {
     background: #252525;
     padding-bottom: 30px;
@@ -334,7 +349,9 @@ footer ul {
     border-bottom: 3px solid #222;
 }
 
+
 /* Footer transparent */
+
 footer.transparent .footer-top,
 footer.transparent .main-footer {
     background: transparent;
@@ -344,7 +361,9 @@ footer.transparent .footer-copyright {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3);
 }
 
+
 /* Footer light */
+
 footer.light .footer-top {
     background: #f9f9f9;
 }
@@ -357,14 +376,18 @@ footer.light .footer-copyright {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
 }
 
+
 /* Footer 4 */
+
 .footer- .logo {
     display: inline-block;
 }
 
+
 /*==================== 
 	Widgets 
 ====================== */
+
 .widget {
     padding: 20px;
     margin-bottom: 40px;
@@ -487,59 +510,33 @@ ul.social-footer2 li a {
     -ms-transition: all 250ms ease-in-out 0s;
     -o-transition: all 250ms ease-in-out 0s;
     transition: all 250ms ease-in-out 0s;
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* --------------------------------------------- */
 
-
 @media screen and (max-width: 768px) {
-
     .nav-links a {
         margin-left: 0;
     }
-    .nav-links li{
+    .nav-links li {
         margin-top: 20px;
     }
-
     .burger {
         display: block;
     }
-
     .anything.active {
         transform: translateX(0%);
         display: block;
         height: 100vh;
-        
     }
-
-    
 }
 
 @media screen and (min-width: 768px) {
     .desktop-hide {
         display: none;
     }
-
     .mobile-hide {
         display: block;
     }
-
-
 }

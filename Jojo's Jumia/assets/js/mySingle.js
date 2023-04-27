@@ -46,28 +46,16 @@ elements.forEach(element => {
 });
 
 
+function redirectToSinglePage(id) {
+    const element = document.getElementById(id);
+    if (!element) return; // exit early if the element doesn't exist
+    element.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent the default action of the link
+        console.log("clicked", event.target); // Log the clicked element
+        window.location.href = `/assets/pages/mySingle.html?id=${id}`;
+    });
+}
 
-const fans = document.getElementById("fans");
-fans.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent the default action of the link
-    console.log("clicked", event.target); // Log the clicked element
-    const id = "fans";
-    window.location.href = `/assets/pages/mySingle.html?id=${id}`;
-});
+const ids = ["fans", "Refrigerator", "heels", "television", "bulbs", "phone+case", "quran", "phone+tablet", "lotion", "earpod", "fashion", "health+beauty", "grocery"];
 
-
-const shoes = document.getElementById("Refrigerator");
-shoes.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent the default action of the link
-    console.log("clicked", event.target); // Log the clicked element
-    const id = "Refrigerator";
-    window.location.href = `/assets/pages/mySingle.html?id=${id}`;
-});
-
-const heels = document.getElementById("heels");
-heels.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent the default action of the link
-    console.log("clicked", event.target); // Log the clicked element
-    const id = "heels";
-    window.location.href = `/assets/pages/mySingle.html?id=${id}`;
-});
+ids.forEach((id) => redirectToSinglePage(id));
