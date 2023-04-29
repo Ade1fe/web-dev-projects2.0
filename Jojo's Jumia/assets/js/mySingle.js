@@ -41,7 +41,7 @@ const elements = document.querySelectorAll('.nav__link');
 elements.forEach(element => {
     element.addEventListener('click', () => {
         const id = element.id;
-        window.location.href = `/assets/pages/mySingle.html?id=${id}`;
+        window.location.href = `/assets/pages/mySingleTwo.html?id=${id}`;
     });
 });
 
@@ -52,7 +52,7 @@ function redirectToSinglePage(id) {
     element.addEventListener("click", (event) => {
         event.preventDefault(); // Prevent the default action of the link
         console.log("clicked", event.target); // Log the clicked element
-        window.location.href = `/assets/pages/mySingle.html?id=${id}`;
+        window.location.href = `/assets/pages/mySingleTwo.html?id=${id}`;
     });
 }
 
