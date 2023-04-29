@@ -31,7 +31,7 @@
     display: flex;
     padding: 1rem;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-evenly !important;
     gap: 15px;
     /* align-items: center; */
 }
@@ -47,8 +47,13 @@ h3 {
     padding: 0;
 }
 
+.footer p {
+    margin: 10px 0;
+}
+
 .footer h2 {
-    color: var(--first-color);
+    color: var(--title-color);
+    font-size: 20px;
 }
 
 li {
@@ -59,3 +64,5 @@ li:hover {
     color: var(--first-color);
     cursor: pointer;
 }
+
+@media (max-width:550px) {}
