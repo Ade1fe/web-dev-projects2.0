@@ -57,11 +57,14 @@
       background-color: #eee;
       padding: 0.6rem;
   }
-  
+        .firstSwipper p{
+            font-size: 1rem;
+        }
   h2 {
       margin-top: 10px;
-      font-size: 1.3rem;
+      font-size: 1rem;
   }
+
   
   #product-name {
       text-transform: capitalize;

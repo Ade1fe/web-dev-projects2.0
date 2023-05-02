@@ -5,7 +5,7 @@
     
     body {
         margin: 0;
-        overflow: hidden;
+        /* overflow: hidden; */
     }
     
      :root {
@@ -33,6 +33,18 @@
     #cart-items {
         /* border: 2px solid black; */
     }
+    h1{
+        padding: 1rem;
+        text-align: center;
+    }
+    .footer{
+        background-color: #000;
+        color: #fff;
+        padding: 1rem;
+    }
+    .textBody p{
+        margin:10px 0;
+    }
     
     .container- {
         /* border: 2px solid red; */
@@ -51,6 +63,7 @@
     
     #total-price {
         padding: 0 1rem;
+        margin-bottom: 2rem;
     }
     
     .container- img {
@@ -58,6 +71,16 @@
         height: 100px;
         object-fit: cover;
     }
+        .contain {
+            /* border: 2px solid red; */
+            display: flex;
+            padding: 1rem;
+            flex-wrap: wrap;
+            justify-content: space-evenly !important;
+            gap: 15px;
+            /* align-items: center; */
+        }
+       
     
     button {
         color: var(--body-color);
@@ -94,5 +117,11 @@
         .container h3 {
             margin: 0;
             padding: 0;
+        }
+    }
+
+    @media (max-width:600px) {
+        .container- p {
+            font-size: 14px;
         }
     }
