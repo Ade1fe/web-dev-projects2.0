@@ -3,7 +3,6 @@ const cartItemsWrapper = document.querySelector('#cart-items');
 const myH3 =  document.querySelector('#myH3');
 
 console.log(cart);
-
 if (cart) {
   let total = 0;
 
@@ -24,28 +23,28 @@ if (cart) {
     cartItem.appendChild(name);
 
     const price = document.createElement('h4');
-    price.textContent = `Price: #${item.price}`;
+    price.textContent = `Quantity: ${item.quantity}`;
     cartItem.appendChild(price);
 
-    const totalPrice = document.createElement('h4');
-    totalPrice.textContent = `Total Price: #${item.price * item.quantity}`;
-    cartItem.appendChild(totalPrice);
+    const itemTotalPrice = document.createElement('h4');
+    itemTotalPrice.textContent = `Total Price: #${item.price * item.quantity}`;
+    cartItem.appendChild(itemTotalPrice);
 
     const deleteButton = document.createElement('button');
-    deleteButton.className = 'delete-button';
     deleteButton.textContent = 'Delete';
-   deleteButton.addEventListener('click', () => {
-  const updatedCart = cart.filter((cartItem) => cartItem.name !== item.name);
-  localStorage.setItem('cart', JSON.stringify(updatedCart));
-  cartItemsWrapper.removeChild(cartItem);
-  total -= item.price * item.quantity;
-  totalPrice.textContent = `Total Price: #${total}`;
-  
-  // Remove the item from local storage
-  const cartFromStorage = JSON.parse(localStorage.getItem('cart'));
-  const updatedCartFromStorage = cartFromStorage.filter((cartItem) => cartItem.name !== item.name);
-  localStorage.setItem('cart', JSON.stringify(updatedCartFromStorage));
-});
+    deleteButton.addEventListener('click', () => {
+      // Remove item from local storage
+      const itemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+      cart.splice(itemIndex, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Remove item from cart display
+      cartItem.remove();
+
+      // Update total price
+      total -= item.quantity * item.price;
+      totalPrice.textContent = `#${total.toFixed(2)}`;
+    });
 
     cartItem.appendChild(deleteButton);
 
@@ -62,6 +61,3 @@ if (cart) {
   noItemsMessage.textContent = 'No items in cart!';
   cartItemsWrapper.appendChild(noItemsMessage);
 }
-
-
-// localStorage.clear();

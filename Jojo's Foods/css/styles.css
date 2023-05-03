@@ -372,7 +372,7 @@ opacity: 1;
      height: 450px;
  }
  .mySwiperTwo{
-    height: 120px;
+    /* height: 120px; */
  }
     nav ul li {
         margin: 0 0.9rem;

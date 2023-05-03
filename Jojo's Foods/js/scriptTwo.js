@@ -38,9 +38,9 @@ const createSwiperSlide = (item, swiperWrapper, price) => {
   }
   swiperSlide.appendChild(h4);
 
-  const h4_1 = document.createElement('h4');
-  h4_1.textContent = 'Category: ' + (item.strCategory || item.strMeal);
-  swiperSlide.appendChild(h4_1);
+  // const h4_1 = document.createElement('h4');
+  // h4_1.textContent = 'Category: ' + (item.strCategory || item.strMeal);
+  // swiperSlide.appendChild(h4_1);
 
   
   const addToCartButton = document.createElement('i');
