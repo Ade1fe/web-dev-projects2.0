@@ -56,6 +56,6 @@ function redirectToSinglePage(id) {
     });
 }
 
-const ids = ["fans", "Refrigerator", "heels", "television", "bulbs", "phone+case", "quran", "phone+tablet", "lotion", "earpod", "fashion", "health+beauty", "grocery"];
+const ids = ["fans", "Refrigerator", "heels", "television", "bulbs", "phone+case", "quran", "phone+tablet", "lotion", "earpod", "fashion", "health+beauty", "grocery-"];
 
 ids.forEach((id) => redirectToSinglePage(id));
