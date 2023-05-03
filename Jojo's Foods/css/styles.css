@@ -368,6 +368,12 @@ opacity: 1;
 
 
 @media (max-width:550px) {
+     .mySwiperOne {
+     height: 450px;
+ }
+ .mySwiperTwo{
+    height: 120px;
+ }
     nav ul li {
         margin: 0 0.9rem;
     }

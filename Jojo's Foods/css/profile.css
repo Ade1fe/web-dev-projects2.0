@@ -98,5 +98,6 @@ textarea {
 }
 
 button[type="submit"] {
-    background-color: #4CAF
+    background-color: #4CAF;
+    margin-bottom: 2rem;
 }

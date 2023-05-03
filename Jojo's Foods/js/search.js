@@ -46,36 +46,44 @@ function search() {
       return Promise.all(responsePromises);
     })
     .then((data) => {
-   const meals = data[0].meals || [];
-const cocktails = data[1].drinks || [];
-const prices = [1800, 1400, 1100, 4300, 3000, 1200, 1300, 3050, 2200, 1300, 3300, 4000, 1400, 4500, 4300];
-let html = '';
-
-meals.forEach((meal) => {
-  const price = prices[Math.floor(Math.random() * prices.length)];
-  html += `
-    <div class="resultCard">
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-      <i class="fa fa-cart-plus" data-product="${meal.idMeal}"></i>
-      <h4>${meal.strMeal}</h4>
-      <p>${meal.strArea}</p>
-      <p>Price: #${price}</p>
-    </div>
-  `;
-});
-
-cocktails.forEach((cocktail) => {
-  const price = prices[Math.floor(Math.random() * prices.length)];
-  html += `
-    <div class="resultCard">
-      <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}">
-      <i class="fa fa-cart-plus" data-product="${cocktail.idDrink}"></i>
-      <h4>${cocktail.strDrink}</h4>
-      <p>${cocktail.strCategory}</p>
-      <p>Price: #${price}</p>
-    </div>
-  `;
-});
+      const meals = data[0].meals || [];
+      const cocktails = data[1].drinks || [];
+      const prices = [1800, 1400, 1100, 4300, 3000, 1200, 1300, 3050, 2200, 1300, 3300, 4000, 1400, 4500, 4300];
+      let html = '';
+      
+      if (meals.length === 0 && cocktails.length === 0) {
+        html = `<p>No results found for '${input}'</p>`;
+      } else {
+        meals.forEach((meal) => {
+          const price = prices[Math.floor(Math.random() * prices.length)];
+          if (meal.strMeal.toLowerCase().includes(input.toLowerCase())) {
+             html += `
+            <div class="resultCard">
+              <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+              <i class="fa fa-cart-plus" data-product="${meal.idMeal}"></i>
+              <h4>${meal.strMeal}</h4>
+              <p>${meal.strArea}</p>
+              <p>Price: #${price}</p>
+            </div>
+          `;
+          }
+        });
+        
+        cocktails.forEach((cocktail) => {
+          const price = prices[Math.floor(Math.random() * prices.length)];
+          if (cocktail.strDrink.toLowerCase().includes(input.toLowerCase())) {
+             html += `
+            <div class="resultCard">
+              <img src="${cocktail.strDrinkThumb}" alt="${cocktail.strDrink}">
+              <i class="fa fa-cart-plus" data-product="${cocktail.idDrink}"></i>
+              <h4>${cocktail.strDrink}</h4>
+              <p>${cocktail.strCategory}</p>
+              <p>Price: #${price}</p>
+            </div>
+          `;
+          }
+        });
+      }
 
       resultsContainer.innerHTML = html;
 

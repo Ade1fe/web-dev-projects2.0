@@ -72,9 +72,6 @@ window.addEventListener('resize', toggleNavLinks);
   slidesPerView: 6,
   spaceBetween: 30,
   loop: true,
-  autoplay: {
-    delay: 2000
-  },
   freeMode: true,
   pagination: {
     el: ".swiper-pagination",
@@ -88,18 +85,18 @@ window.addEventListener('resize', toggleNavLinks);
     },
     // when window width is <= 768px
     500: {
-      slidesPerView: 4,
+      slidesPerView: 4.10,
       spaceBetween: 10
     },
     // when window width is <= 992px
     800: {
-      slidesPerView: 5,
+      slidesPerView: 5.10,
       spaceBetween: 10
     },
     // when window width is <= 1200px
     1200: {
-      slidesPerView: 7,
-      spaceBetween: 14
+      slidesPerView: 7.10,
+      spaceBetween: 10
     }
   }
 });
