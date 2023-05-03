@@ -11,6 +11,13 @@
     <link rel="stylesheet" href="/assets/css/single.css">
     <link rel="stylesheet" href="/assets/css/mySingle.css">
 
+     <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/site.webmanifest">
+
+
     <link href='https://unpkg.com/boxicons@2.1.4/dist/boxicons.js' rel='stylesheet'>
 
     <!-- <meta name="description" content="Fitness and Wellness E-commerce website">
@@ -204,68 +211,39 @@
                     slide.appendChild(image);
 
                     // Add an "add to cart" icon
-                    const addIcon = document.createElement('i');
-                    addIcon.className = 'bx bx-cart';
-                    addIcon.addEventListener('click', () => {
-                        const quantity = window.prompt(`Enter quantity for ${hit.tags}`);
-                        if (quantity) {
-                            const item = {
-                                name: hit.tags,
-                                price: (Math.random() * 1000).toFixed(2),
-                                quantity: parseInt(quantity),
-                                image: hit.webformatURL,
-                            };
-                            const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-                            cartItems.push(item);
-                            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                            console.log(localStorage.getItem('cartItems'));
-                        }
-                    });
+                 const addIcon = document.createElement('i');
+            addIcon.className = 'bx bx-cart';
+        addIcon.addEventListener('click', () => {
+    const quantity = window.prompt(`Enter quantity for ${hit.tags}`);
+    if (quantity) {
+        const item = {
+            name: hit.tags,
+            price: (Math.random() * 1000).toFixed(2),
+            quantity: parseInt(quantity),
+            image: hit.webformatURL,
+        };
+        const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+        // Check if the item is already present in the cartItems array
+        const existingItemIndex = cartItems.findIndex((cartItem) => cartItem.name === item.name);
+        if (existingItemIndex !== -1) {
+            // Update the quantity of the existing item
+            cartItems[existingItemIndex].quantity += item.quantity;
+        } else {
+            // Add the new item to the cartItems array
+            cartItems.push(item);
+        }
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        console.log(localStorage.getItem('cartItems'));
+    }
+});
+
                     slide.appendChild(addIcon);
 
-                    // Display the item name
-                    const name = document.createElement('h2');
-                    if (hit.tags.length < 15) {
-                        name.textContent = hit.tags;
-                    } else {
-                        name.textContent = hit.tags.slice(0, 15) + '...';
-                    }
-                    slide.appendChild(name);
-
-                    // Add a random price
-                    const price = document.createElement('p');
-                    price.textContent = `$${(Math.random() * 1000).toFixed(2)}`;
-                    slide.appendChild(price);
-
                     swiperWrapper.appendChild(slide);
                 });
 
-                // Display cart items from localStorage
-                const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-                cartItems.forEach((item) => {
-                    const slide = document.createElement('div');
-                    slide.classList.add('swiper-slide');
-
-                    // Display the image
-                    const image = document.createElement('img');
-                    image.setAttribute('src', item.image);
-                    slide.appendChild(image);
-
-                    // Display the item name
-                    const name = document.createElement('h2');
-                    name.textContent = item.name;
-                    slide.appendChild(name);
-
-                    // Display the quantity and total price
-                    const quantity = document.createElement('p');
-                    quantity.textContent = `Quantity: ${item.quantity}`;
-                    slide.appendChild(quantity);
-                    const totalPrice = document.createElement('p');
-                    totalPrice.textContent = `Total: $${(item.price * item.quantity).toFixed(2)}`;
-                    slide.appendChild(totalPrice);
-
-                    swiperWrapper.appendChild(slide);
-                });
+                
+               
             } catch (error) {
                 console.log(error);
             }

@@ -72,10 +72,10 @@ categories.forEach(category => {
                 imageElement.alt = hit.tags;
                 const linkElement = document.createElement('a');
 
-                if (hit.tags.length < 25) {
+                if (hit.tags.length < 15) {
                     linkElement.textContent = hit.tags;
                 } else {
-                    const truncatedTags = hit.tags.substring(0, 25) + "...";
+                    const truncatedTags = hit.tags.substring(0, 15) + "...";
                     linkElement.textContent = truncatedTags;
                 }
 
@@ -128,15 +128,22 @@ const swiperSell = new Swiper('.swiper-containerThree', {
 
 // -----------------------
 function createSwiperWrapper(categories, prices, pricesCross, containerId) {
+function addtocart(itemName, itemImage, itemPrice, itemPriceCross) {
+    // Ask the user how many they want to buy
+    const quantity = parseInt(prompt(`How many ${itemName} do you want to buy?`));
 
-    function addtocart(itemName, itemImage, itemPrice, itemPriceCross) {
-        // Ask the user how many they want to buy
-        const quantity = parseInt(prompt(`How many ${itemName} do you want to buy?`));
+    // Get the existing cart items from localStorage, or create an empty array if it doesn't exist
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-        // Get the existing cart items from localStorage, or create an empty array if it doesn't exist
-        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    // Check if the item already exists in the cart
+    let existingItemIndex = cartItems.findIndex(item => item.name === itemName);
 
-        // Add the new item to the cart
+    if (existingItemIndex !== -1) {
+        // If the item already exists in the cart, update its quantity
+        cartItems[existingItemIndex].quantity += quantity;
+        alert(`${itemName} has been successfully added to your cart`);
+    } else {
+        // If the item does not exist in the cart, add it to the cart
         cartItems.push({
             name: itemName,
             image: itemImage,
@@ -144,10 +151,12 @@ function createSwiperWrapper(categories, prices, pricesCross, containerId) {
             priceCross: itemPriceCross,
             quantity: quantity
         });
-
-        // Store the updated cart items in localStorage
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        alert(`${itemName} has been added to your cart`);
     }
+
+    // Store the updated cart items in localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
 
 
     const swiperWrapper = document.querySelector(`#${containerId}`);
@@ -168,7 +177,7 @@ function createSwiperWrapper(categories, prices, pricesCross, containerId) {
                     imageWrapperElement.appendChild(imageElement);
                     const linkElement = document.createElement('h4');
 
-                    if (hit.tags.length < 25) {
+                    if (hit.tags.length < 15) {
                         linkElement.textContent = hit.tags;
                     } else {
                         const truncatedTags = hit.tags.substring(0, 15) + "...";
