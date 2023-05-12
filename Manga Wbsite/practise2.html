@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table id="googleTable">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author(s)</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<script>
+  const fetchBooks = async () => {
+    try {
+      const searchQuery = "search query"; // Replace with your search query
+      const maxResults = 5; // Maximum number of results to retrieve
+
+      const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(searchQuery)}&maxResults=${maxResults}`;
+
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (response.ok) {
+        const books = data.items || [];
+        const tableBody = document.querySelector("#googleTable tbody");
+
+        books.forEach((book) => {
+          const title = book.volumeInfo.title;
+          const authors = book.volumeInfo.authors || [];
+          const description = book.volumeInfo.description || "No description available.";
+          const infoLink = book.volumeInfo.infoLink;
+
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td><a href="${infoLink}" target="_blank">${title}</a></td>
+            <td>${authors.join(", ")}</td>
+            <td>${description}</td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+      } else {
+        console.log(`Request failed with status code: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  fetchBooks();
+</script>
+
+
+    
+</body>
+</html>

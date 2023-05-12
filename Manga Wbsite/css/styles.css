@@ -1,0 +1,283 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #073b4c;
+    --white-color: #fff;
+    --black-color: #000;
+    --default-color: #fff;
+    --hover-color: #90e0ef;
+    --white-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    --black-shadow: rgba(255, 255, 255, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.6) 0px 2px 4px -1px;
+    --header-bg: linear-gradient(to right, #000, #000);
+    --header-bgs: linear-gradient(to right, #db7c26, #c32f27);
+}
+
+body {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+body.active {
+    --white-color: #000;
+    --black-color: #fff;
+    --default-color: #fff;
+    --main-color: #40916c;
+    --hover-color: #90e0ef;
+    --white-shadow: var(--black-shadow);
+    --header-bgs: var(--header-bg);
+}
+
+header {
+    background-image: var(--header-bgs);
+    color: var(--default-color);
+    padding: 20px 10px;
+    box-shadow: var(--white-shadow);
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--default-color);
+}
+
+header li {
+    margin: 0 10px;
+}
+
+header i.bx {
+    margin-right: 5px;
+}
+
+header li a:hover {
+    cursor: pointer;
+    color: var(--hover-color);
+    font-weight: bold;
+}
+
+header li:first-child {
+    font-weight: bold;
+    font-size: 20px;
+    background-image: linear-gradient(to right, #9f5625, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header li:first-child {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+header li:last-child {
+    display: flex;
+    align-items: center;
+}
+
+header li:last-child i {
+    color: var(--hover-color);
+    font-size: 20px;
+}
+
+header li:last-child:hover i {
+    color: var(--hover-color);
+}
+
+header li:last-child:hover+li {
+    color: var(--hover-color);
+}
+
+
+/* Sidebar styles */
+#copyDiv{
+    display: none;
+}
+
+
+#copyDiv.open {
+    left: 0;
+    /* Move the sidebar to the visible position */
+}
+
+#copyDiv ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#copyDiv li {
+    margin-bottom: 10px;
+}
+
+#copyDiv a {
+    text-decoration: none;
+    color: #333;
+}
+
+#copyDiv a:hover {
+    color: #ff6600;
+}
+
+.menu-icon,
+.cancel-icon {
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+}
+
+
+/* headerTwo */
+/* Style for the header section */
+.headerTwo {
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/* Style for the outer unordered list */
+.headerTwo ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+}
+
+/* Style for the list items */
+.headerTwo li {
+    /* display: inline-block; */
+    margin-right: 10px;
+}
+
+/* Style for the links */
+.headerTwo a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px;
+}
+
+/* Style for the "More" link */
+.headerTwo .my {
+   
+}
+
+/* Style for the inner unordered list */
+.headerTwo .innerUl {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    padding: 10px;
+    left: 0;
+    border: 1px solid #ccc;
+}
+
+/* Show the inner list on hover */
+.headerTwo .my:hover .innerUl {
+    display: flex;
+    flex-wrap: wrap;
+    top: 2rem;
+    width: 80%;
+    gap: 20px;
+    padding: 1rem;
+    border-bottom: 2px solid var(--main-color);
+}
+
+/* Style for the inner list items */
+.headerTwo .innerUl li {
+    margin-bottom: 5px;
+}
+
+.headerTwo .innerUl li:hover{
+    color: var(--main-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+/* 800 */
+
+
+@media (max-width: 800px) {
+    #copyDiv {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 100%;
+            /* Initial position outside the viewport */
+            width: 200px;
+            height: 100%;
+            background-color: #f2f2f2;
+            padding: 20px;
+            transition: left 0.3s ease;
+            /* Add transition for smooth animation */
+    
+        }
+    header {
+        display: flex;
+        /* border: 2px solid green; */
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    header li:first-child {
+        margin-right: 300px;
+    }
+
+    .copy {
+        display: none;
+    }
+    .menu-icon,
+.cancel-icon {
+    display: block;
+}
+}
+
+
+
+
+/* 700 */
+@media (max-width: 700px) {
+
+    header li:first-child {
+        margin-right: 200px;
+    }
+}
+
+
+
+
+/* 550 */
+@media (max-width: 550px) {
+
+    header li:first-child {
+        margin-right: 100px;
+    }
+}
+
+
+
+/* 400 */
+@media (max-width: 400px) {
+
+    header li:first-child {
+        margin-right: 50px;
+    }
+}
