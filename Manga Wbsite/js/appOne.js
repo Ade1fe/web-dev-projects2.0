@@ -125,14 +125,10 @@ function fetchMangaDetails(mangaIds, swiperId) {
       .then(data => {
         const manga = data.data;
 
-        // Get the swiper wrapper element
         const swiperWrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
-
-        // Create a new swiper slide
         const swiperSlide = document.createElement("div");
         swiperSlide.classList.add("swiper-slide");
 
-        // Create and populate the elements
         const img = document.createElement("img");
         img.src = manga.images.jpg.large_image_url;
         img.alt = manga.title;
@@ -149,10 +145,9 @@ function fetchMangaDetails(mangaIds, swiperId) {
         }
 
         h4.textContent = title;
-        h4.style.cursor = "pointer"; // Set the cursor to indicate it's clickable
-
+        h4.style.cursor = "pointer";
         h4.addEventListener("click", () => {
-          window.open(manga.url, "_blank"); // Open manga URL in a new tab
+          window.open(manga.url, "_blank");
         });
 
         textBody.appendChild(h4);
@@ -164,10 +159,7 @@ function fetchMangaDetails(mangaIds, swiperId) {
           swiperSlide.appendChild(chapter);
         }
 
-        // Append the swiper slide to the swiper wrapper
         swiperWrapper.appendChild(swiperSlide);
-
-        console.log(data);
       })
       .catch(error => {
         console.error(error);
@@ -175,54 +167,106 @@ function fetchMangaDetails(mangaIds, swiperId) {
   });
 }
 
-
-
-
+function generateMangaIds(start, end, storageKey) {
+  const storedMangaIds = localStorage.getItem(storageKey);
+  if (storedMangaIds) {
+    return JSON.parse(storedMangaIds);
+  } else {
+    const mangaIds = [];
+    for (let i = start; i <= end; i++) {
+      mangaIds.push(i);
+    }
+    localStorage.setItem(storageKey, JSON.stringify(mangaIds));
+    return mangaIds;
+  }
+}
 
 const startId = 1;
 const endId = 10;
-
-// Check if mangaIds exist in localStorage
-const storedMangaIds = localStorage.getItem('mangaIds');
-let mangaIds;
-
-if (storedMangaIds) {
-  // Retrieve mangaIds from localStorage
-  mangaIds = JSON.parse(storedMangaIds);
-} else {
-  // Generate mangaIds array
-  mangaIds = [];
-  for (let i = startId; i <= endId; i++) {
-    mangaIds.push(i);
-  }
-  // Store mangaIds in localStorage
-  localStorage.setItem('mangaIds', JSON.stringify(mangaIds));
-}
+const mangaIds = generateMangaIds(startId, endId, 'mangaIds');
 
 const startIds = 10;
 const endIds = 20;
+const mangaId = generateMangaIds(startIds, endIds, 'mangaId');
 
-// Check if mangaId exist in localStorage
-const storedMangaId = localStorage.getItem('mangaId');
-let mangaId;
+fetchMangaDetails(mangaIds, 'swiperOne');
+fetchMangaDetails(mangaId, 'swiperTwo');
 
-if (storedMangaId) {
-  // Retrieve mangaId from localStorage
-  mangaId = JSON.parse(storedMangaId);
-} else {
-  // Generate mangaId array
-  mangaId = [];
-  for (let i = startIds; i <= endIds; i++) {
-    mangaId.push(i);
-  }
-  // Store mangaId in localStorage
-  localStorage.setItem('mangaId', JSON.stringify(mangaId));
+
+// ----------------
+
+function fetchMangaDetail(mangaIds) {
+  const apiUrl = 'https://api.jikan.moe/v4/manga/';
+
+  mangaIds.forEach(mangaId => {
+    const mangaUrl = `${apiUrl}${mangaId}/full`;
+
+    fetch(mangaUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const manga = data.data;
+
+        const recommendationContainer = document.querySelector('#recommendation');
+
+        const picDiv = document.createElement('div');
+        picDiv.classList.add('pic');
+
+        const img = document.createElement('img');
+        img.src = manga.images.jpg.large_image_url;
+        img.alt = manga.title;
+        picDiv.appendChild(img);
+
+        const conDiv = document.createElement('div');
+        conDiv.classList.add('con');
+
+        const p = document.createElement('p');
+        p.textContent = `Chapter ${manga.chapters}`;
+        conDiv.appendChild(p);
+
+        const h4 = document.createElement('h4');
+        let title = manga.title;
+        if (title.length > 15) {
+          title = title.slice(0, 15) + '...';
+        }
+        h4.textContent = title;
+        conDiv.appendChild(h4);
+
+        picDiv.appendChild(conDiv);
+
+        recommendationContainer.appendChild(picDiv);
+
+        h4.addEventListener('click', () => {
+          window.open(manga.url, '_blank');
+        });
+
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
 }
 
-fetchMangaDetails(mangaIds, 'swiperOne'); // Display in swiperOne container
-fetchMangaDetails(mangaId, 'swiperTwo'); // Display in swiperTwo container
+const start = 30;
+const end = 40;
+
+const storedManga = localStorage.getItem('mangaId');
+let manga;
+
+if (storedManga) {
+  manga = JSON.parse(storedManga);
+} else {
+  manga = Array.from({ length: end - start + 1 }, (_, index) => start + index);
+  localStorage.setItem('mangaId', JSON.stringify(manga));
+}
+
+fetchMangaDetail(manga);
 
 
-
+  // https://api.jikan.moe/v4/manga/{id}/recommendations
 
 

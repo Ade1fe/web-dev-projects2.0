@@ -178,11 +178,12 @@ body.active {
 /*  */
 .main-section {
     display: flex;
+    gap: 20px;
 }
 
 .main-content {
     /* flex: 1; */
-    width: 70%;
+    width: 68%;
     border: 2px solid red;
     /* Additional styles for the main content */
 }
@@ -196,50 +197,62 @@ body.active {
 }
 
 
-.advert-post {
-    display: grid;
-    margin-bottom: 20px;
+.history{
+    margin: 10px auto;
+    padding: 0.5rem 0.7rem;
+    width: 80%;
+    background-color: var(--harsh-light);
+    
+}
+.history h3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.advert-post img {
-    width: 100%;
-    height: auto;
-    height: 200px;
+/* recommendation */
+.pic{
+    border: 2px solid;
+    display: flex;
+}
+.pic img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+.pic .con{
+    border: 2px solid red;
 }
 
-.advert-details {
-    margin-left: 20px;
-}
 
-.advert-details h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
 
-.advert-details p {
-    margin-bottom: 10px;
-}
 
-.advert-details .date {
-    font-style: italic;
-}
 
-.advert-details .author {
-    font-weight: bold;
-}
 
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
 
-.btn:hover {
-    background-color: #0056b3;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

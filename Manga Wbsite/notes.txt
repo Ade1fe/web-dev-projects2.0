@@ -13,11 +13,13 @@ const url = `${endpoint}?${queryString}`;
 fetch(url)
   .then((response) => response.json())
   .then((data) => {
-    // Process the response data and populate HTML
     const jobList = data.results;
     const advertContainer = document.getElementById('advert-container');
+    let currentIndex = 0;
 
-    jobList.forEach((job) => {
+    function changeAdvert() {
+      const job = jobList[currentIndex];
+
       const advertPost = document.createElement('div');
       advertPost.classList.add('advert-post');
 
@@ -40,9 +42,14 @@ fetch(url)
       author.classList.add('author');
       author.textContent = job.author;
 
-      const jobDescription = document.createElement('p');
-      jobDescription.classList.add('advert-description');
-      jobDescription.textContent = job.description;
+    const jobDescription = document.createElement('p');
+jobDescription.classList.add('advert-description');
+jobDescription.textContent = job.description;
+
+if (jobDescription.textContent.length > 15) {
+  jobDescription.textContent = jobDescription.textContent.slice(0, 15) + "...";
+}
+
 
       const readMoreLink = document.createElement('a');
       readMoreLink.href = job.link;
@@ -55,13 +62,20 @@ fetch(url)
       advertDetails.innerHTML += ' by ';
       advertDetails.appendChild(author);
       advertDetails.appendChild(jobDescription);
-      advertDetails.appendChild(readMoreLink);
+      // advertDetails.appendChild(readMoreLink);
 
       advertPost.appendChild(advertImage);
       advertPost.appendChild(advertDetails);
 
+      advertContainer.innerHTML = ''; // Clear existing advertisement
       advertContainer.appendChild(advertPost);
-    });
+
+      currentIndex = (currentIndex + 1) % jobList.length; // Update current index for the next advertisement
+
+      setTimeout(changeAdvert, 3000); // Schedule the next advertisement change after 3 seconds
+    }
+
+    setTimeout(changeAdvert, 3000); // Start the advertisement rotation after 3 seconds
   })
   .catch((error) => {
     console.error('Error occurred:', error);

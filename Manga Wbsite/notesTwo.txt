@@ -1,101 +1,6 @@
-    
-
- $(document).ready(function() {
-  $('.search-bar').hide();
-
-  $('#icon-search').click(function() {
-    $('.search-bar').toggle();
-  });
-});
-
-
-    
-    
-    
-    
-    
-    
-    let themeButton = document.querySelector("#theme");
-    themeButton.onclick = () => {
-        if (themeButton.classList.contains('bx-moon')) {
-            themeButton.classList.replace('bx-moon', 'bx-sun');
-            document.body.classList.add('active');
-        } else {
-            themeButton.classList.replace('bx-sun', 'bx-moon');
-            document.body.classList.remove('active');
-        }
-    }
-
-
-
-
-
-    // -----------------
-      // Get the header element
-  const header = document.querySelector("header");
-
-  // Create a new div element to copy the content
-  let copyDiv = document.querySelector("#copyDiv");
-  
-
-  // Clone the header element and remove the .copy class from the cloned elements
-  const clonedHeader = header.cloneNode(true);
-  const clonedHeaderLiElements = clonedHeader.querySelectorAll("li.copy");
-  clonedHeaderLiElements.forEach((element) => {
-    element.classList.remove("copy");
-  });
-
-  // Copy the modified HTML content of the cloned header to the copyDiv
-  copyDiv.innerHTML = clonedHeader.innerHTML;
-
-  // Get the open and close buttons
-  let openBtn = document.querySelector("#openBtn");
-
-  openBtn.onclick = () => {
-    if (openBtn.classList.contains("bx-menu")) {
-      openBtn.classList.replace("bx-menu", "bx-x");
-      copyDiv.classList.add("open");
-    } else {
-      openBtn.classList.replace("bx-x", "bx-menu");
-      copyDiv.classList.remove("open");
-    }
-  };
-
-  // Get the last li element within the ul in copyDiv
-  const ul = copyDiv.querySelector("ul");
-  const lastLi = ul.lastElementChild;
-  lastLi.id = "menu-btn";
-  lastLi.remove();
-
-  console.log(lastLi);
-
-
-
-
-
-
-
-const menuTwo = document.querySelector("#menuTwo");
-menuTwo.addEventListener("click", () => {
-  if (menuTwo.classList.contains("bx-dots-vertical-rounded")) {
-    menuTwo.classList.replace("bx-dots-vertical-rounded", "bx-x");
-  } else {
-    menuTwo.classList.replace("bx-x", "bx-dots-vertical-rounded");
-  }
-
-  const smallHide = document.querySelectorAll(".small-hide");
-  smallHide.forEach(item => item.classList.toggle("activeTwo"));
-});
-
-
-
-
-
-
-// my adverts
 const pixabayApiKey = '34748321-56ec586673804760cca13f7f6';
 const pixabayBaseUrl = 'https://pixabay.com/api';
-const pixabayEndpoint = `${pixabayBaseUrl}/?key=${pixabayApiKey}&q=job&image_type=photo&per_page=40`;
+const pixabayEndpoint = `${pixabayBaseUrl}/?key=${pixabayApiKey}&q=job&image_type=photo&per_page=10`;
 
 const adzunaApiKey = '02786c33c3cf2d6b3ed4996c322f3e3f';
 const adzunaBaseUrl = 'https://api.adzuna.com/v1';
@@ -103,7 +8,7 @@ const adzunaEndpoint = `${adzunaBaseUrl}/api/jobs/gb/search/1`;
 const adzunaQueryParams = {
   app_id: '9f5cec5c',
   app_key: adzunaApiKey,
-  results_per_page: 40, // Adjust the number of jobs per page as desired
+  results_per_page: 10, // Adjust the number of jobs per page as desired
 };
 
 const advertContainer = document.getElementById('advert-container');
@@ -153,8 +58,8 @@ function fetchAdzunaJobs(imageList) {
         jobDescription.classList.add('advert-description');
         jobDescription.textContent = job.description;
 
-        if (jobDescription.textContent.length > 60) {
-          jobDescription.textContent = jobDescription.textContent.slice(0, 60) + '...';
+        if (jobDescription.textContent.length > 35) {
+          jobDescription.textContent = jobDescription.textContent.slice(0, 35) + '...';
         }
 
         const readMoreLink = document.createElement('a');

@@ -4,11 +4,13 @@
 }
 
 :root {
-    --main-color: #073b4c;
+    --main-color: #db7c26;
     --white-color: #fff;
     --black-color: #000;
     --default-color: #fff;
     --hover-color: #90e0ef;
+    --harsh-light: #f8f9fa;
+    --harsh-dark: #222;
     --white-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     --black-shadow: rgba(255, 255, 255, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.6) 0px 2px 4px -1px;
     --header-bg: linear-gradient(to right, #000, #000);
@@ -28,6 +30,7 @@ body.active {
     --hover-color: #90e0ef;
     --white-shadow: var(--black-shadow);
     --header-bgs: var(--header-bg);
+    --harsh-light: var(--harsh-dark);
 }
 .search-bar {
     display: flex;
@@ -241,6 +244,82 @@ header li:last-child:hover+li {
 #menuTwo{
     display: none;
 }
+
+
+
+/* adverts */
+
+.advert-post {
+    display: block;
+    margin-bottom: 20px;
+    /* border: 2px solid blue; */
+    height: 350px;
+    height: max-content;
+    padding-bottom: 1rem;
+    width: 350px;
+    background-color: var(--harsh-light);
+}
+
+.advert-post img {
+    width: 100%;
+    height: auto;
+    height: 200px;
+}
+
+.advert-details {
+    padding: 10px 20px;
+}
+
+.advert-details h2 {
+    font-size: 24px;
+    /* margin-bottom: 10px; */
+}
+
+.advert-details p {
+    margin-bottom: 5px;
+}
+
+.advert-details .date {
+    font-style: italic;
+}
+
+.advert-details .author {
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
