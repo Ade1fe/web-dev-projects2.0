@@ -1,60 +1,68 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello</h1>
+const apiKey = '02786c33c3cf2d6b3ed4996c322f3e3f';
+const baseUrl = 'https://api.adzuna.com/v1';
+const endpoint = `${baseUrl}/api/jobs/gb/search/1`;
+const queryParams = {
+  app_id: '9f5cec5c',
+  app_key: apiKey,
+};
+const queryString = Object.keys(queryParams)
+  .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
+  .join('&');
+const url = `${endpoint}?${queryString}`;
 
-    
-    <table id="mangaTable">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author(s)</th>
-                <th>Genres</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    // Process the response data and populate HTML
+    const jobList = data.results;
+    const advertContainer = document.getElementById('advert-container');
 
-    <h2 id="manga"></h2>
+    jobList.forEach((job) => {
+      const advertPost = document.createElement('div');
+      advertPost.classList.add('advert-post');
 
+      const advertImage = document.createElement('img');
+      advertImage.src = job.image;
+      advertImage.alt = 'Advert Image';
 
-    <script>
-        
-const mangaId = 1;
-const apiUrl = `https://api.jikan.moe/v4/manga/${mangaId}/full`;
+      const advertDetails = document.createElement('div');
+      advertDetails.classList.add('advert-details');
 
-fetch(apiUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.json();
+      const advertTitle = document.createElement('h2');
+      advertTitle.classList.add('advert-title');
+      advertTitle.textContent = job.title;
+
+      const datePosted = document.createElement('span');
+      datePosted.classList.add('date');
+      datePosted.textContent = job.posted_on;
+
+      const author = document.createElement('span');
+      author.classList.add('author');
+      author.textContent = job.author;
+
+      const jobDescription = document.createElement('p');
+      jobDescription.classList.add('advert-description');
+      jobDescription.textContent = job.description;
+
+      const readMoreLink = document.createElement('a');
+      readMoreLink.href = job.link;
+      readMoreLink.classList.add('btn');
+      readMoreLink.textContent = 'Read More';
+
+      advertDetails.appendChild(advertTitle);
+      advertDetails.innerHTML += 'Posted on ';
+      advertDetails.appendChild(datePosted);
+      advertDetails.innerHTML += ' by ';
+      advertDetails.appendChild(author);
+      advertDetails.appendChild(jobDescription);
+      advertDetails.appendChild(readMoreLink);
+
+      advertPost.appendChild(advertImage);
+      advertPost.appendChild(advertDetails);
+
+      advertContainer.appendChild(advertPost);
+    });
   })
-  .then(data => {
-    const chapters = data.data.chapters;
-    console.log(`Number of chapters: ${chapters}`);
-    const mangaElement = document.querySelector("#manga");
-    mangaElement.textContent = JSON.stringify(chapters);
-    localStorage.setItem("manga", JSON.stringify(chapters));
-    console.log(data);
-  })
-  .catch(error => {
-    console.error(error);
+  .catch((error) => {
+    console.error('Error occurred:', error);
   });
-
-  
-
-    </script>
-
-
-
-    
-</body>
-</html>

@@ -29,6 +29,38 @@ body.active {
     --white-shadow: var(--black-shadow);
     --header-bgs: var(--header-bg);
 }
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 75%;
+    margin: auto;
+    padding: 1rem;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    /* border-radius: 4px; */
+    margin-right: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.search-bar button {
+    padding: 8px 16px;
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    /* border-radius: 4px; */
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: -10px;
+    width: 100px;
+}
+
+.search-bar button:hover {
+    background-color: #45a049;
+}
 
 header {
     background-image: var(--header-bgs);
@@ -100,6 +132,7 @@ header li:last-child:hover+li {
 /* Sidebar styles */
 #copyDiv{
     display: none;
+    z-index: 99999999999;
 }
 
 
@@ -140,6 +173,7 @@ header li:last-child:hover+li {
 .headerTwo {
     background-color: #f2f2f2;
     padding: 20px;
+    position: relative;
 }
 
 /* Style for the outer unordered list */
@@ -190,6 +224,7 @@ header li:last-child:hover+li {
     gap: 20px;
     padding: 1rem;
     border-bottom: 2px solid var(--main-color);
+    z-index: 99999999999999;
 }
 
 /* Style for the inner list items */
@@ -203,7 +238,9 @@ header li:last-child:hover+li {
     cursor: pointer;
 }
 
-
+#menuTwo{
+    display: none;
+}
 
 
 
@@ -248,6 +285,10 @@ header li:last-child:hover+li {
 .cancel-icon {
     display: block;
 }
+ .headerTwo .my:hover .innerUl {
+     top: 100%;
+
+ }
 }
 
 
@@ -270,6 +311,7 @@ header li:last-child:hover+li {
     header li:first-child {
         margin-right: 100px;
     }
+   
 }
 
 
@@ -279,5 +321,19 @@ header li:last-child:hover+li {
 
     header li:first-child {
         margin-right: 50px;
+    }
+    #menuTwo {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        font-size: 20px;
+    }
+    .small-hide {
+        display: none;
+    }
+
+    .activeTwo {
+        display: block;
     }
 }

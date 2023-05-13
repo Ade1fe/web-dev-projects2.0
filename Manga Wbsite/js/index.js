@@ -1,3 +1,20 @@
+    
+
+ $(document).ready(function() {
+  $('.search-bar').hide();
+
+  $('#icon-search').click(function() {
+    $('.search-bar').toggle();
+  });
+});
+
+
+    
+    
+    
+    
+    
+    
     let themeButton = document.querySelector("#theme");
     themeButton.onclick = () => {
         if (themeButton.classList.contains('bx-moon')) {
@@ -8,6 +25,9 @@
             document.body.classList.remove('active');
         }
     }
+
+
+
 
 
     // -----------------
@@ -48,4 +68,30 @@
   lastLi.remove();
 
   console.log(lastLi);
+
+
+
+
+
+
+
+const menuTwo = document.querySelector("#menuTwo");
+menuTwo.addEventListener("click", () => {
+  if (menuTwo.classList.contains("bx-dots-vertical-rounded")) {
+    menuTwo.classList.replace("bx-dots-vertical-rounded", "bx-x");
+  } else {
+    menuTwo.classList.replace("bx-x", "bx-dots-vertical-rounded");
+  }
+
+  const smallHide = document.querySelectorAll(".small-hide");
+  smallHide.forEach(item => item.classList.toggle("activeTwo"));
+});
+
+
+
+
+
+
+// 
+
 

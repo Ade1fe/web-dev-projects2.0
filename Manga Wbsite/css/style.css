@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #db7c26;
+    --white-color: #fff;
+    --black-color: #000;
+    --default-color: #fff;
+    --hover-color: #90e0ef;
+    --harsh-light: #f8f9fa;
+    --harsh-dark: #222;
+    --white-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    --black-shadow: rgba(255, 255, 255, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.6) 0px 2px 4px -1px;
+    --header-bg: linear-gradient(to right, #000, #000);
+    --header-bgs: linear-gradient(to right, #db7c26, #c32f27);
+}
+
+body {
+    background-color: var(--white-color);
+    color: var(--black-color);
+}
+
+body.active {
+    --white-color: #000;
+    --black-color: #fff;
+    --default-color: #fff;
+    --main-color: #40916c;
+    --hover-color: #90e0ef;
+    --white-shadow: var(--black-shadow);
+    --header-bgs: var(--header-bg);
+    --harsh-light: var(--harsh-dark);
+}
+
+
+/* main page */
+.create-ad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    margin-bottom: 2rem ;
+    /* border: 2px solid red; */
+    position: relative;
+}
+
+.create-ad-container {
+    width: 40%;
+    background-image: var(--header-bgs);
+    padding: 1rem;
+    text-align: center;
+    margin: auto;
+}
+
+.create-ad-container h1 {
+    color: var(--white-color);
+}
+
+.register {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+}
+.register a{
+    text-decoration: none;
+    color: var(--white-color);
+    padding:0.5rem 1rem;
+    background-image: var(--header-bgs);
+    margin:10px 5px;
+}
+
+
+
+/* swiperOne */
+.oneT{
+    margin-bottom: 2rem;
+    border: 2px solid black;
+}
+
+  .mySwiperOne {
+      position: relative;
+      height: 100%;
+      height: 300px;
+      overflow: hidden;
+  }
+
+  .mySwiperOne {
+      background: var(--white-color);
+      margin: 0;
+      padding: 0;
+      padding-bottom: 6rem;
+      /* border: 2px solid red; */
+  }
+
+ .mySwiperOne .swiper {
+      width: 100%;
+      height: 100%;
+  }
+  .mySwiperOne h2{
+   background-image: var(--header-bgs);
+   width: 200px;
+   padding:0.3rem 1rem ;
+   margin: 1.5rem 1rem;
+   text-align: center;
+   color: var(--white-color);
+   position: relative;
+  }
+  .mySwiperOne h2::before {
+      width: 10px;
+      height: 200px;
+      position: absolute;
+      content: '';
+      display: block;
+      background-color: var(--main-color);
+      left: -0px;
+  }
+
+ .mySwiperOne .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: block;
+      justify-content: center;
+      align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  }
+
+ .mySwiperOne .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      height: 240px;
+      object-fit: cover;
+      position: relative;
+  }
+ .mySwiperOne .swiper-slide p{
+    position: absolute;
+    bottom: 70px;
+    left: 10%;
+    color: var(--black-color);
+    background-color: rgba(0, 0, 0, 0.1);
+    font-weight: bolder;
+
+ }
+ .mySwiperOne .swiper-slide .text-body{
+    padding: 0.5rem;
+    font-size: 16px;
+    font-weight: 100;
+ }
+  .mySwiperOne .swiper-slide .text-body h4:hover{
+    color: var(--hover-color);
+  }
+
+
+  /* more add */
+  .adv{
+    margin: 1rem 0;
+  }
+.first-ad{
+    width: 80%;
+    margin:0.5rem auto;
+    padding: 1.5rem 1rem;
+    /* border: 2px solid red; */
+    line-height: 1.5rem;
+    background-color: var(--harsh-light);
+}
+
+.first-ad p span{
+    color: var(--main-color);
+}
+
+
+
+/*  */
+.main-section {
+    display: flex;
+}
+
+.main-content {
+    /* flex: 1; */
+    width: 70%;
+    border: 2px solid red;
+    /* Additional styles for the main content */
+}
+
+.mySwiperTwo h2{
+    width: 250px;
+}
+
+.sidebar {
+    /* Styles for the sidebar */
+}
+
+
+.advert-post {
+    display: grid;
+    margin-bottom: 20px;
+}
+
+.advert-post img {
+    width: 100%;
+    height: auto;
+    height: 200px;
+}
+
+.advert-details {
+    margin-left: 20px;
+}
+
+.advert-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.advert-details p {
+    margin-bottom: 10px;
+}
+
+.advert-details .date {
+    font-style: italic;
+}
+
+.advert-details .author {
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+@media (min-width:800px) {
+    .create-ad{
+        height: 60vh;
+    }
+}
+
+@media (max-width:800px) {
+    .create-ad{
+        height: 60vh;
+    }
+}
+
+
+
+
+@media (max-width:769px) {
+    .create-ad-container {
+            width: 80%;
+        }
+
+}
+
+
+@media (max-width:550px) {
+
+
+
+}
+
+
+@media (max-width:400px) {
+
+}

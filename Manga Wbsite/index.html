@@ -3,23 +3,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- swiper-js -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <!-- box icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
     <!-- custom css -->
-    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/index.css">
+     <link rel="stylesheet" href="/css/style.css" />
     <!-- jquery -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.0.js"
-      integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="crossorigin="anonymous"></script>
     <title>Document</title>
   </head>
   <body>
+
     <!-- header -->
+    <div class="search-bar">
+      <input type="text" placeholder="manga">
+      <button>Search</button>
+    </div>
+
   <header>
   <ul>
     <li>Mangaowl</li>
@@ -28,7 +30,7 @@
     <li class="copy"><a href="#">Aura Scans</a></li>
     <li class="copy"><a href="#">Contact Us</a></li>
     <li class="copy"><a href="#">Blog</a></li>
-    <li class="dontCopy"><i class="bx bx-search-alt"></i></li>
+    <li class="dontCopy" id="icon-search"><i class="bx bx-search-alt"></i></li>
     <li class="dontCopy"><a href="#">Search</a></li>
     <li class="copy"><i id="theme" class="bx bx-moon"></i></li>
     <li class="dontCopy"><i class="bx bx-menu menu-icon" id="openBtn"></i></li>
@@ -40,17 +42,18 @@
 
 
 <!-- header 2 -->
+
 <section class="headerTwo">
     <ul>
         <li><a href="">YAOI</a></li>
        <li><a href="">SMUT</a></li>
         <li><a href="">BL</a></li>
-        <li><a href="">ROMANCE</a></li>
-        <li><a href="">COMEDY</a></li>
-        <li><a href="">SHOUJO</a></li>
-        <li><a href="">SHOUNEN</a></li>
-        <li><a href="">ACTION</a></li>
-        <li class="my"><a href="">MORE</a>
+        <li><a href="" class="small-hide">ROMANCE</a></li>
+        <li><a href=""  class="small-hide">COMEDY</a></li>
+        <li><a href=""  class="small-hide">SHOUJO</a></li>
+        <li><a href=""  class="small-hide">SHOUNEN</a></li>
+        <li><a href=""  class="small-hide">ACTION</a></li>
+        <li class=" my small-hide">MORE <i class='bx bxs-right-arrow'></i>
         <ul class="innerUl">
         <li>DRAMA</li>
         <li>ADVENTURE</li>
@@ -75,7 +78,98 @@
       </ul>   
     </li>
     </ul>
+     <i class='bx bx-dots-vertical-rounded'  id="menuTwo"></i>
 
+</section>
+
+
+
+<!-- main page -->
+
+<section class="create-ad">
+
+ <div class="create-ad-container">
+  <h1 id="app-title">Download Official Mangaowl Android App</h1>
+</div>
+
+  <div class="register">
+    <a href="">Sign in</a> <a href="">Sign up</a>
+  </div>
+</section>
+
+
+
+
+
+<!--  -->
+  <!-- Swiper -->
+ <section class="oneT">
+   <div class="mySwiperOne" id="swiperOne">
+    <h2>HOT UPDATES</h2>
+    <div class="swiper-wrapper">
+      <!-- <div class="swiper-slide">
+        <img src="" alt="">
+        <p></p>
+        <div class="text-body">
+          <h4>Title</h4>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div class="swiper-pagination"></div> -->
+  </div>
+ </section>
+
+
+
+ <!-- more add -->
+
+<section class="adv">
+  <div class="first-ad">
+    <p>We're re-building nove site. Please support us on: <span>👉https://novelbuddy.com</span></p>
+    <p>You can login with MangaBuddy account. Many novels will be updated. Hope you enjoy it!!!</p>
+  </div>
+     <div class="first-ad">
+   <p>We do not allow harmful content including but not limited to child pornography, terrorism, discrimination, sexism, racism, human rights violation. Please report such content here: <span> 👉 REPORT US</span></p>
+  </div>
+</section>
+
+
+
+
+<!--  -->
+<section class="main-section">
+  <div class="main-content">
+    <div class="mySwiperOne mySwiperTwo" id="swiperTwo">
+    <h2>LATEST UPDATES</h2>
+    <div class="swiper-wrapper">
+      <!-- <div class="swiper-slide">
+        <img src="" alt="">
+        <p></p>
+        <div class="text-body">
+          <h4>Title</h4>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div class="swiper-pagination"></div> -->
+  </div>
+    <!-- Main Content Here -->
+  </div>
+  <aside class="sidebar">
+    <!-- Sidebar Content Here -->
+  <div class="advert-post">
+  <img src="" alt="Advert Image">
+  <div class="advert-details">
+    <h2 class="advert-title"></h2>
+    <p>Posted on <span class="date"></span> by <span class="author"></span></p>
+    <p class="advert-description"></p>
+    <a href="#" class="btn">Read More</a>
+  </div>
+</div>
+
+<div id="advert-container"></div>
+
+
+  </aside>
 </section>
 
 
@@ -90,9 +184,9 @@
 
 
 
-
-
-
+  <!-- swiper-js -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/appOne.js"></script>
   </body>
 </html>
