@@ -78,27 +78,32 @@ main{
 }
  
 /* our partners */
- .container-fluid {
+ .c-fluid {
      overflow: hidden;
+     /* margin-bottom: 3rem; */
+     border: 2px solid red;
  }
 
- .container-fluid .slider {
+ .c-fluid .slider {
      animation: slidein 30s linear infinite;
      white-space: nowrap;
  }
+ .rounded h1{
+    color: var(--black) !important;
+ }
 
- .container-fluid .slider .logos {
+ .c-fluid .slider .logos {
      width: 100%;
      display: inline-block;
      margin: 0px 0;
  }
 
- .container-fluid .slider .logos img {
+ .c-fluid .slider .logos img {
      width: 200px;
      margin: 0 40px;
  }
 
- .container-fluid .slider .logos .fab {
+ .c-fluid .slider .logos .fab {
      width: calc(100% / 5);
      animation: fade-in 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) forwards;
  }
@@ -126,6 +131,49 @@ main{
 
 
 
+ .carousel-item {
+     height: 100%;
+ }
+
+ .card {
+     height: 100%;
+     border: none;
+ }
+
+ .card-img-top {
+     height: 200px;
+ }
+
+ .carousel-indicators {
+     bottom: 0;
+ }
+
+ .carousel-control-prev,
+ .carousel-control-next {
+     width: 5%;
+ }
+
+ .carousel-control-prev-icon,
+ .carousel-control-next-icon {
+     height: 100%;
+     transform: translateY(-50%);
+     top: 50%;
+     display: flex;
+     align-items: center;
+ }
+
+ .carousel-control-prev-icon:before,
+ .carousel-control-next-icon:before {
+     font-family: "Font Awesome 5 Free";
+     font-weight: 900;
+     font-size: 2rem;
+     content: '\f104';
+ }
+
+ .carousel-control-next-icon:before {
+     content: '\f105';
+ }
+
 
 
 
@@ -151,6 +199,8 @@ main{
     color: var(--white)!important;
     padding: 20px 0;
     box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+   
+    z-index: 9999;
 }
 nav{
     background: none;
@@ -173,7 +223,7 @@ nav ul li a {
 .carousel-caption {
     height: 70% !important;
 }
- .container-fluid .slider .logos img {
+ .c-fluid .slider .logos img {
      width: 100px;
      margin: 0 15px;
  }

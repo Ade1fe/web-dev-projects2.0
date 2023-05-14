@@ -487,12 +487,12 @@
         .secondchild{
             height: 100%;
         }
-                .carDa {
-                    margin-top: 5rem;
-                    display: grid;
-                    width: 100%;
-                    grid-template-columns: repeat(1, 1fr);
-                }
+        .carDa {
+            margin-top: 5rem;
+            display: grid;
+            width: 100%;
+            grid-template-columns: repeat(1, 1fr);
+        }
              
 
         .my-fix{
