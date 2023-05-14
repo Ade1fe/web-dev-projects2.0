@@ -194,6 +194,7 @@ fetchMangaDetails(mangaId, 'swiperTwo');
 
 
 // ----------------
+//main-container function
 
 function fetchMangaDetail(mangaIds) {
   const apiUrl = 'https://api.jikan.moe/v4/manga/';
@@ -224,17 +225,17 @@ function fetchMangaDetail(mangaIds) {
         const conDiv = document.createElement('div');
         conDiv.classList.add('con');
 
-        const p = document.createElement('p');
-        p.textContent = `Chapter ${manga.chapters}`;
-        conDiv.appendChild(p);
-
-        const h4 = document.createElement('h4');
+          const h4 = document.createElement('h4');
         let title = manga.title;
         if (title.length > 15) {
           title = title.slice(0, 15) + '...';
         }
         h4.textContent = title;
         conDiv.appendChild(h4);
+
+        const p = document.createElement('p');
+        p.textContent = `Chapter ${manga.chapters}`;
+        conDiv.appendChild(p);
 
         picDiv.appendChild(conDiv);
 
@@ -270,3 +271,46 @@ fetchMangaDetail(manga);
   // https://api.jikan.moe/v4/manga/{id}/recommendations
 
 
+// review section
+function getReviews() {
+  const mangaId = 1; // Replace 12345 with the actual ID of the manga
+
+  fetch(`https://api.jikan.moe/v4/manga/${mangaId}/reviews`)
+    .then(response => response.json())
+    .then(data => {
+      const reviewContainer = document.getElementById('review-container');
+
+      if (data.data && data.data.length > 0) {
+        // Iterate over the reviews and create the HTML structure for each review
+        data.data.forEach(review => {
+          const reviewPost = document.createElement('div');
+          reviewPost.className = 'review-post';
+
+          const reviewImage = document.createElement('img');
+          reviewImage.src = review.user.images.jpg.image_url;
+          reviewImage.alt = review.user.username;
+
+          const reviewText = document.createElement('div');
+          reviewText.className = 'review-text';
+
+          const reviewTitle = document.createElement('h4');
+          reviewTitle.textContent = review.user.username;
+
+          const reviewContent = document.createElement('p');
+          reviewContent.textContent = review.review;
+
+          // Append the elements to the review container
+          reviewText.appendChild(reviewTitle);
+          reviewText.appendChild(reviewContent);
+          reviewPost.appendChild(reviewImage);
+          reviewPost.appendChild(reviewText);
+          reviewContainer.appendChild(reviewPost);
+        });
+      } else {
+        console.log('No reviews found for the manga.');
+      }
+    })
+    .catch(error => console.log(error));
+}
+
+getReviews();

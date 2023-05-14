@@ -211,17 +211,24 @@ body.active {
 }
 
 /* recommendation */
+.recommdation{
+    background-color: var(--harsh-light);
+}
 .pic{
-    border: 2px solid;
+    /* border: 2px solid; */
     display: flex;
+    align-items: center;
+    margin: 10px 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .pic img{
     width: 70px;
-    height: 70px;
+    height: 90px;
     object-fit: cover;
 }
 .pic .con{
-    border: 2px solid red;
+    /* border: 2px solid red; */
+    margin-left: 3px;
 }
 
 
