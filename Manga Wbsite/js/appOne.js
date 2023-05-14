@@ -167,27 +167,24 @@ function fetchMangaDetails(mangaIds, swiperId) {
   });
 }
 
-function generateMangaIds(start, end, storageKey) {
-  const storedMangaIds = localStorage.getItem(storageKey);
-  if (storedMangaIds) {
-    return JSON.parse(storedMangaIds);
-  } else {
-    const mangaIds = [];
-    for (let i = start; i <= end; i++) {
-      mangaIds.push(i);
-    }
-    localStorage.setItem(storageKey, JSON.stringify(mangaIds));
-    return mangaIds;
+function generateMangaIds(start, end) {
+  const mangaIds = [];
+  for (let i = start; i <= end; i++) {
+    mangaIds.push(i);
   }
+  return mangaIds;
 }
+
 
 const startId = 1;
 const endId = 10;
-const mangaIds = generateMangaIds(startId, endId, 'mangaIds');
+const mangaIds = generateMangaIds(startId, endId);
+console.log(mangaIds); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-const startIds = 10;
+
+const startIds = 10;  
 const endIds = 20;
-const mangaId = generateMangaIds(startIds, endIds, 'mangaId');
+const mangaId = generateMangaIds(startIds, endIds);
 
 fetchMangaDetails(mangaIds, 'swiperOne');
 fetchMangaDetails(mangaId, 'swiperTwo');
@@ -252,19 +249,11 @@ function fetchMangaDetail(mangaIds) {
   });
 }
 
-const start = 30;
-const end = 40;
 
-const storedManga = localStorage.getItem('mangaId');
-let manga;
 
-if (storedManga) {
-  manga = JSON.parse(storedManga);
-} else {
-  manga = Array.from({ length: end - start + 1 }, (_, index) => start + index);
-  localStorage.setItem('mangaId', JSON.stringify(manga));
-}
-
+const start = 1;
+const end = 10;
+const manga = generateMangaIds(start, end);
 fetchMangaDetail(manga);
 
 
@@ -272,7 +261,7 @@ fetchMangaDetail(manga);
 
 
 // review section
-let displayedReviews = 5; // Number of reviews to display initially
+let displayedReviews = 15; // Number of reviews to display initially
 const reviewsPerPage = 1; // Number of reviews to fetch per page
 
 function getReviews(mangaId, page) {
@@ -284,68 +273,70 @@ function getReviews(mangaId, page) {
       if (data.data && data.data.length > 0) {
         // Iterate over the reviews and create the HTML structure for each review
         data.data.forEach(review => {
-          const reviewPost = document.createElement('div');
-          reviewPost.className = 'review-post';
+          if (displayedReviews > 0) {
+            const reviewPost = document.createElement('div');
+            reviewPost.className = 'review-post';
 
-          const reviewImage = document.createElement('img');
-          reviewImage.src = review.user.images.jpg.image_url;
-          reviewImage.alt = review.user.username;
+            const reviewImage = document.createElement('img');
+            reviewImage.src = review.user.images.jpg.image_url;
+            reviewImage.alt = review.user.username;
 
-          const reviewText = document.createElement('div');
-          reviewText.className = 'review-text';
+            const reviewText = document.createElement('div');
+            reviewText.className = 'review-text';
 
-          const reviewTitle = document.createElement('h4');
-          reviewTitle.textContent = review.user.username;
+            const reviewTitle = document.createElement('h4');
+            reviewTitle.textContent = review.user.username;
 
-         const reviewContent = document.createElement('p');
-reviewContent.textContent = review.review;
+            const reviewContent = document.createElement('p');
+            reviewContent.textContent = review.review;
 
-const maxLength = 30; // Maximum number of characters to display
-const ellipsis = "...";
+            const maxLength = 30; // Maximum number of characters to display
+            const ellipsis = "...";
 
-if (reviewContent.textContent.length > maxLength) {
-  const truncatedText = reviewContent.textContent.slice(0, maxLength) + ellipsis;
-  reviewContent.textContent = truncatedText;
+            if (reviewContent.textContent.length > maxLength) {
+              const truncatedText = reviewContent.textContent.slice(0, maxLength) + ellipsis;
+              reviewContent.textContent = truncatedText;
 
-  const readMoreButton = document.createElement('button');
-  readMoreButton.textContent = 'Read More';
+              const readMoreButton = document.createElement('button');
+              readMoreButton.textContent = 'Read More';
 
-  let isExpanded = false; // Track whether the full content is expanded or not
+              let isExpanded = false; // Track whether the full content is expanded or not
 
-  readMoreButton.addEventListener('click', () => {
-    if (isExpanded) {
-      // If already expanded, truncate the content again
-      reviewContent.textContent = truncatedText;
-      readMoreButton.textContent = 'Read More';
-    } else {
-      // If not expanded, show the full content
-      reviewContent.textContent = review.review;
-      readMoreButton.textContent = 'Read Less';
-    }
+              readMoreButton.addEventListener('click', () => {
+                if (isExpanded) {
+                  // If already expanded, truncate the content again
+                  reviewContent.textContent = truncatedText;
+                  readMoreButton.textContent = 'Read More';
+                } else {
+                  // If not expanded, show the full content
+                  reviewContent.textContent = review.review;
+                  readMoreButton.textContent = 'Read Less';
+                }
 
-    isExpanded = !isExpanded; // Toggle the expanded state
-  });
+                isExpanded = !isExpanded; // Toggle the expanded state
+              });
 
-  reviewText.appendChild(reviewContent);
-  reviewText.appendChild(document.createElement('br'));
-  reviewText.appendChild(readMoreButton);
-} else {
-  reviewText.appendChild(reviewContent);
-}
+              reviewText.appendChild(reviewContent);
+              reviewText.appendChild(document.createElement('br'));
+              reviewText.appendChild(readMoreButton);
+            } else {
+              reviewText.appendChild(reviewContent);
+            }
 
+            // Append the elements to the review container
+            reviewText.appendChild(reviewTitle);
+            reviewPost.appendChild(reviewImage);
+            reviewPost.appendChild(reviewText);
+            reviewContainer.appendChild(reviewPost);
 
-          // Append the elements to the review container
-          reviewText.appendChild(reviewTitle);
-          reviewText.appendChild(reviewContent);
-          reviewPost.appendChild(reviewImage);
-          reviewPost.appendChild(reviewText);
-          reviewContainer.appendChild(reviewPost);
+            displayedReviews--; // Decrement the number of displayed reviews
+          }
         });
 
-        if (displayedReviews < data.pagination.last_visible_page * reviewsPerPage) {
-          // If there are more reviews to fetch, show the "Show More" button
+        if (displayedReviews <= 0) {
+          // If all reviews are displayed, hide the "Show More" button
           const showMoreButton = document.getElementById('show-more-button');
-          showMoreButton.style.display = 'block';
+          showMoreButton.style.display = 'none';
         }
       } else {
         console.log(`No reviews found for manga ID: ${mangaId}.`);
@@ -361,7 +352,7 @@ function showMoreReviews() {
   const mangaIds = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
 
   mangaIds.forEach(mangaId => {
-    const pagesToFetch = Math.ceil((displayedReviews + reviewsPerPage) / reviewsPerPage);
+    const pagesToFetch = Math.ceil(displayedReviews / reviewsPerPage);
     for (let page = 1; page <= pagesToFetch; page++) {
       getReviews(mangaId, page);
     }
@@ -371,15 +362,19 @@ function showMoreReviews() {
 }
 
 // Call the getReviews function for the initial set of reviews
-const mg = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
+const mangaIDs = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
 
-mg.forEach(mg => {
+mangaIDs.forEach(mangaIDs => {
   const pagesToFetch = Math.ceil(displayedReviews / reviewsPerPage);
   for (let page = 1; page <= pagesToFetch; page++) {
-    getReviews(mg, page);
+    getReviews(mangaIDs, page);
   }
 });
 
 // Add event listener to the "Show More" button
 const showMoreButton = document.getElementById('show-more-button');
 showMoreButton.addEventListener('click', showMoreReviews);
+
+
+
+localStorage.clear();
