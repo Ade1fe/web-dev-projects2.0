@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <h1>Hello</h1>
+
+
+    <script>
+        async function fetchAndStoreResult() {
+            const url = 'https://api.jikan.moe/v4/manga'; // Replace 1 with the ID of the manga you want to fetch
+            const options = {
+                method: 'GET',
+            };
+
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                localStorage.setItem('apiResult', JSON.stringify(result));
+                console.log(result);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchAndStoreResult();
+    </script>
+
+</body>
+
+</html>
