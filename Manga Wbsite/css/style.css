@@ -178,12 +178,13 @@ body.active {
 /*  */
 .main-section {
     display: flex;
-    gap: 20px;
+    gap: 20px 10px;
+    justify-content: space-evenly;
 }
 
 .main-content {
     /* flex: 1; */
-    width: 68%;
+    width: 70%;
     border: 2px solid red;
     /* Additional styles for the main content */
 }
@@ -194,6 +195,7 @@ body.active {
 
 .sidebar {
     /* Styles for the sidebar */
+    border: 2px solid;
 }
 
 
@@ -239,6 +241,7 @@ body.active {
     border: #40916c 2px solid;
     display: flex;
     gap: 10px;
+    margin-bottom: 1rem;
 }
 
 .review-post img{
@@ -249,7 +252,9 @@ body.active {
 }
 
 
-
+#show-more-button{
+    margin-bottom: 3rem;
+}
 
 
 

@@ -268,7 +268,7 @@ function getReviews(mangaId, page) {
   fetch(`https://api.jikan.moe/v4/manga/${mangaId}/reviews?page=${page}&limit=${reviewsPerPage}`)
     .then(response => response.json())
     .then(data => {
-      const reviewContainer = document.getElementById('review-container');
+      const reviewContainer = document.querySelector('.review');
 
       if (data.data && data.data.length > 0) {
         // Iterate over the reviews and create the HTML structure for each review
@@ -286,12 +286,11 @@ function getReviews(mangaId, page) {
 
             const reviewTitle = document.createElement('h4');
             reviewTitle.textContent = review.user.username;
-            reviewText.appendChild(reviewTitle);
 
             const reviewContent = document.createElement('p');
             reviewContent.textContent = review.review;
 
-            const maxLength = 120; // Maximum number of characters to display
+            const maxLength = 30; // Maximum number of characters to display
             const ellipsis = "...";
 
             if (reviewContent.textContent.length > maxLength) {
@@ -325,7 +324,7 @@ function getReviews(mangaId, page) {
             }
 
             // Append the elements to the review container
-          
+            reviewText.appendChild(reviewTitle);
             reviewPost.appendChild(reviewImage);
             reviewPost.appendChild(reviewText);
             reviewContainer.appendChild(reviewPost);
@@ -337,7 +336,7 @@ function getReviews(mangaId, page) {
         if (displayedReviews <= 0) {
           // If all reviews are displayed, hide the "Show More" button
           const showMoreButton = document.getElementById('show-more-button');
-          showMoreButton.style.display = 'block';
+          showMoreButton.style.display = 'none';
         }
       } else {
         console.log(`No reviews found for manga ID: ${mangaId}.`);
@@ -348,8 +347,7 @@ function getReviews(mangaId, page) {
 
 function showMoreReviews() {
   const showMoreButton = document.getElementById('show-more-button');
-  showMoreButton.style.display = 'none'; // Hide the "Show More" button temporarily
-
+  showMoreButton.style.display = 'block'; //
   const mangaIds = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
 
   mangaIds.forEach(mangaId => {
@@ -365,16 +363,17 @@ function showMoreReviews() {
 // Call the getReviews function for the initial set of reviews
 const mangaIDs = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
 
-mangaIDs.forEach(mangaIDs => {
+mangaIDs.forEach(mangaId => {
   const pagesToFetch = Math.ceil(displayedReviews / reviewsPerPage);
   for (let page = 1; page <= pagesToFetch; page++) {
-    getReviews(mangaIDs, page);
+    getReviews(mangaId, page);
   }
 });
 
 // Add event listener to the "Show More" button
 const showMoreButton = document.getElementById('show-more-button');
 showMoreButton.addEventListener('click', showMoreReviews);
+
 
 
 
