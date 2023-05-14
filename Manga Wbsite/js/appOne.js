@@ -272,10 +272,11 @@ fetchMangaDetail(manga);
 
 
 // review section
-function getReviews() {
-  const mangaId = 1; // Replace 12345 with the actual ID of the manga
+let displayedReviews = 5; // Number of reviews to display initially
+const reviewsPerPage = 1; // Number of reviews to fetch per page
 
-  fetch(`https://api.jikan.moe/v4/manga/${mangaId}/reviews`)
+function getReviews(mangaId, page) {
+  fetch(`https://api.jikan.moe/v4/manga/${mangaId}/reviews?page=${page}&limit=${reviewsPerPage}`)
     .then(response => response.json())
     .then(data => {
       const reviewContainer = document.getElementById('review-container');
@@ -296,8 +297,42 @@ function getReviews() {
           const reviewTitle = document.createElement('h4');
           reviewTitle.textContent = review.user.username;
 
-          const reviewContent = document.createElement('p');
-          reviewContent.textContent = review.review;
+         const reviewContent = document.createElement('p');
+reviewContent.textContent = review.review;
+
+const maxLength = 30; // Maximum number of characters to display
+const ellipsis = "...";
+
+if (reviewContent.textContent.length > maxLength) {
+  const truncatedText = reviewContent.textContent.slice(0, maxLength) + ellipsis;
+  reviewContent.textContent = truncatedText;
+
+  const readMoreButton = document.createElement('button');
+  readMoreButton.textContent = 'Read More';
+
+  let isExpanded = false; // Track whether the full content is expanded or not
+
+  readMoreButton.addEventListener('click', () => {
+    if (isExpanded) {
+      // If already expanded, truncate the content again
+      reviewContent.textContent = truncatedText;
+      readMoreButton.textContent = 'Read More';
+    } else {
+      // If not expanded, show the full content
+      reviewContent.textContent = review.review;
+      readMoreButton.textContent = 'Read Less';
+    }
+
+    isExpanded = !isExpanded; // Toggle the expanded state
+  });
+
+  reviewText.appendChild(reviewContent);
+  reviewText.appendChild(document.createElement('br'));
+  reviewText.appendChild(readMoreButton);
+} else {
+  reviewText.appendChild(reviewContent);
+}
+
 
           // Append the elements to the review container
           reviewText.appendChild(reviewTitle);
@@ -306,11 +341,45 @@ function getReviews() {
           reviewPost.appendChild(reviewText);
           reviewContainer.appendChild(reviewPost);
         });
+
+        if (displayedReviews < data.pagination.last_visible_page * reviewsPerPage) {
+          // If there are more reviews to fetch, show the "Show More" button
+          const showMoreButton = document.getElementById('show-more-button');
+          showMoreButton.style.display = 'block';
+        }
       } else {
-        console.log('No reviews found for the manga.');
+        console.log(`No reviews found for manga ID: ${mangaId}.`);
       }
     })
     .catch(error => console.log(error));
 }
 
-getReviews();
+function showMoreReviews() {
+  const showMoreButton = document.getElementById('show-more-button');
+  showMoreButton.style.display = 'none'; // Hide the "Show More" button temporarily
+
+  const mangaIds = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
+
+  mangaIds.forEach(mangaId => {
+    const pagesToFetch = Math.ceil((displayedReviews + reviewsPerPage) / reviewsPerPage);
+    for (let page = 1; page <= pagesToFetch; page++) {
+      getReviews(mangaId, page);
+    }
+  });
+
+  displayedReviews += reviewsPerPage;
+}
+
+// Call the getReviews function for the initial set of reviews
+const mg = [1, 2]; // Replace with the actual manga IDs you want to fetch reviews for
+
+mg.forEach(mg => {
+  const pagesToFetch = Math.ceil(displayedReviews / reviewsPerPage);
+  for (let page = 1; page <= pagesToFetch; page++) {
+    getReviews(mg, page);
+  }
+});
+
+// Add event listener to the "Show More" button
+const showMoreButton = document.getElementById('show-more-button');
+showMoreButton.addEventListener('click', showMoreReviews);
