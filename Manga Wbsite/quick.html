@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+    <title>Document</title>
+</head>
+<body>
+
+    <section class="headerTwo">
+  <ul>
+    <li><a href="#" class="genre-link" data-genre="yaoi">YAOI</a></li>
+    <li><a href="#" class="genre-link" data-genre="smut">SMUT</a></li>
+    <li><a href="#" class="genre-link" data-genre="bl">BL</a></li>
+    <li><a href="#" class="small-hide genre-link" data-genre="romance">ROMANCE</a></li>
+    <li><a href="#" class="small-hide genre-link" data-genre="comedy">COMEDY</a></li>
+    <li><a href="#" class="small-hide genre-link" data-genre="shoujo">SHOUJO</a></li>
+    <li><a href="#" class="small-hide genre-link" data-genre="shounen">SHOUNEN</a></li>
+    <li><a href="#" class="small-hide genre-link" data-genre="action">ACTION</a></li>
+    <li class="my small-hide">MORE <i class='bx bxs-right-arrow'></i>
+      <ul class="innerUl">
+        <li><a href="#" class="genre-link" data-genre="drama">DRAMA</a></li>
+        <li><a href="#" class="genre-link" data-genre="adventure">ADVENTURE</a></li>
+        <li><a href="#" class="genre-link" data-genre="doujinshi">DOUJINSHI</a></li>
+        <li><a href="#" class="genre-link" data-genre="ecchi">ECCHI</a></li>
+        <li><a href="#" class="genre-link" data-genre="fantasy">FANTASY</a></li>
+        <li><a href="#" class="genre-link" data-genre="harem">HAREM</a></li>
+        <li><a href="#" class="genre-link" data-genre="historical">HISTORICAL</a></li>
+        <li><a href="#" class="genre-link" data-genre="horror">HORROR</a></li>
+        <li><a href="#" class="genre-link" data-genre="josei">JOSEI</a></li>
+        <li><a href="#" class="genre-link" data-genre="manga">MANGA</a></li>
+        <li><a href="#" class="genre-link" data-genre="manhua">MANHUA</a></li>
+        <li><a href="#" class="genre-link" data-genre="manhwa">MANHWA</a></li>
+        <li><a href="#" class="genre-link" data-genre="mature">MATURE</a></li>
+        <li><a href="#" class="genre-link" data-genre="mystery">MYSTERY</a></li>
+        <li><a href="#" class="genre-link" data-genre="psychological">PSYCHOLOGICAL</a></li>
+        <li><a href="#" class="genre-link" data-genre="sci-fi">SCI-FI</a></li>
+        <li><a href="#" class="genre-link"  data-genre="SEINEN">SEINEN</a></li>
+          <li><a href="#" class="genre-link"  data-genre="Award Winning">SEINEN</a></li>
+        </ul>
+        <li>
+        </ul>
+             <i class='bx bx-dots-vertical-rounded' id="menuTwo"></i>
+</section>
+
+    
+
+
+
+    <script>
+// function fetchMangaGenre(mangaId) {
+//   const apiUrl = 'https://api.jikan.moe/v4/manga/';
+//   const mangaUrl = `${apiUrl}${mangaId}/full`;
+
+//   return fetch(mangaUrl)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       const manga = data.data;
+//       return manga.genres[0].name; // Assuming only one genre is present
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// }
+
+// fetchMangaGenre(1)
+//   .then(genre => {
+//     console.log(`Genre: ${genre}`);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+
+function displayMangasByGenre(genre) {
+  const genreMap = {
+    // Replace with the genre map obtained from the previous function
+    "yaoi": [{ id: 1, manga: { title: "Manga 1" } }, { id: 2, manga: { title: "Manga 2" } }],
+    "smut": [{ id: 3, manga: { title: "Manga 3" } }, { id: 4, manga: { title: "Manga 4" } }],
+    "bl": [{ id: 5, manga: { title: "Manga 5" } }, { id: 6, manga: { title: "Manga 6" } }],
+    // Add more genres and associated manga data as needed
+  };
+
+  const mangas = genreMap[genre];
+
+  if (mangas) {
+    console.log(`Mangas related to genre: ${genre}`);
+    console.log(mangas);
+  } else {
+    console.log(`No mangas found for genre: ${genre}`);
+  }
+}
+
+// Add event listeners to the genre links
+const genreLinks = document.querySelectorAll('.genre-link');
+genreLinks.forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    const genre = event.target.dataset.genre;
+    displayMangasByGenre(genre);
+  });
+});
+
+
+
+
+// Function to fetch manga genre
+// function fetchMangaGenre(mangaId) {
+//   const apiUrl = 'https://api.jikan.moe/v4/manga/';
+//   const mangaUrl = `${apiUrl}${mangaId}/full`;
+
+//   return fetch(mangaUrl)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       const manga = data.data;
+//       return manga.genres[0].name; // Assuming only one genre is present
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// }
+
+// // Event listener for genre links
+// const genreLinks = document.querySelectorAll('.genre-link');
+// genreLinks.forEach(link => {
+//   link.addEventListener('click', e => {
+//     e.preventDefault();
+//     const genre = link.dataset.genre;
+//     fetchMangaGenreByGenre(genre);
+//   });
+// });
+
+// // Function to fetch manga by genre
+// function fetchMangaGenreByGenre(genre) {
+//   const apiUrl = 'https://api.jikan.moe/v4/genre/manga/';
+//   const genreUrl = `${apiUrl}${genre}/1`;
+
+//   return fetch(genreUrl)
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error(`HTTP error! Status: ${response.status}`);
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       const mangaList = data.data.manga;
+
+//       // Process the manga list here
+//       mangaList.forEach(manga => {
+//         // Do something with each manga
+//         console.log(`Manga ID: ${manga.mal_id}`);
+//       });
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// }
+
+
+
+    </script>
+</body>
+</html>

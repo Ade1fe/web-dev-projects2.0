@@ -88,3 +88,67 @@ function fetchAdzunaJobs(imageList) {
       console.error('Error occurred:', error);
     });
 }
+
+
+//-----------------------------------------
+
+
+function fetchMangaDetails(mangaIds, swiperId) {
+  const apiUrl = 'https://api.jikan.moe/v4/manga/';
+
+  mangaIds.forEach(mangaId => {
+    const mangaUrl = `${apiUrl}${mangaId}/full`;
+
+    fetch(mangaUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        const manga = data.data;
+        console.log(`Manga ID: ${mangaId}`);
+        console.log(`Genre: ${manga.genre}`);
+
+        const swiperWrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
+        const swiperSlide = document.createElement("div");
+        swiperSlide.classList.add("swiper-slide");
+
+        const img = document.createElement("img");
+        img.src = manga.images.jpg.large_image_url;
+        img.alt = manga.title;
+        swiperSlide.appendChild(img);
+
+        const textBody = document.createElement("div");
+        textBody.classList.add("text-body");
+
+        const h4 = document.createElement("h4");
+        let title = manga.title;
+
+        if (title.length > 15) {
+          title = title.slice(0, 15) + "...";
+        }
+
+        h4.textContent = title;
+        h4.style.cursor = "pointer";
+        h4.addEventListener("click", () => {
+          window.open(manga.url, "_blank");
+        });
+
+        textBody.appendChild(h4);
+        swiperSlide.appendChild(textBody);
+
+        if (manga.chapters > 0) {
+          const chapter = document.createElement("p");
+          chapter.textContent = `Chapter ${manga.chapters}`;
+          swiperSlide.appendChild(chapter);
+        }
+
+        swiperWrapper.appendChild(swiperSlide);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+}

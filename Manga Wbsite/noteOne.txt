@@ -107,8 +107,119 @@ var mySwiperTwo = new Swiper(".mySwiperTwo", {
 
 
     // -------------------------------------------------------------
+// function fetchMangaDetails(mangaIds, swiperId) {
+//   const apiUrl = 'https://api.jikan.moe/v4/manga/';
 
-// Fetch manga details and populate genre map
+//   const genreMap = {};
+
+//   mangaIds.forEach(mangaId => {
+//     const mangaUrl = `${apiUrl}${mangaId}/full`;
+
+//     fetch(mangaUrl)
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         return response.json();
+//       })
+//       .then(data => {
+//         const manga = data.data;
+//         const genre = manga.genres[0].name; // Assuming only one genre is present
+
+//         if (!genreMap[genre]) {
+//           genreMap[genre] = [];
+//         }
+
+//         genreMap[genre].push({
+//           id: mangaId,
+//           manga: manga
+//         });
+
+//         const swiperWrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
+//         const swiperSlide = document.createElement("div");
+//         swiperSlide.classList.add("swiper-slide");
+
+//         const img = document.createElement("img");
+//         img.src = manga.images.jpg.large_image_url;
+//         img.alt = manga.title;
+//         swiperSlide.appendChild(img);
+
+//         const textBody = document.createElement("div");
+//         textBody.classList.add("text-body");
+
+//         const h4 = document.createElement("h4");
+//         let title = manga.title;
+
+//         if (title.length > 15) {
+//           title = title.slice(0, 15) + "...";
+//         }
+
+//         h4.textContent = title;
+//         h4.style.cursor = "pointer";
+//         h4.addEventListener("click", () => {
+//           window.open(manga.url, "_blank");
+//         });
+
+//         textBody.appendChild(h4);
+//         swiperSlide.appendChild(textBody);
+
+//         if (manga.chapters > 0) {
+//           const chapter = document.createElement("p");
+//           chapter.textContent = `Chapter ${manga.chapters}`;
+//           swiperSlide.appendChild(chapter);
+//         }
+
+//         swiperWrapper.appendChild(swiperSlide);
+//       })
+//       .catch(error => {
+//         console.error(error);
+//       });
+//   });
+
+//   console.log('Genre Map:', genreMap);
+// }
+
+
+
+
+
+
+
+// function displayMangasByGenre(genre) {
+//   const genreMap = {
+//     // Replace with the genre map obtained from the previous function
+//     "yaoi": [{ id: 1, manga: { title: "Manga 1", chapters: 10, images: { jpg: { large_image_url: "image1.jpg" } } } }, { id: 2, manga: { title: "Manga 2", chapters: 5, images: { jpg: { large_image_url: "image2.jpg" } } } }],
+//     "smut": [{ id: 3, manga: { title: "Manga 3", chapters: 7, images: { jpg: { large_image_url: "image3.jpg" } } } }, { id: 4, manga: { title: "Manga 4", chapters: 3, images: { jpg: { large_image_url: "image4.jpg" } } } }],
+//     "bl": [{ id: 5, manga: { title: "Manga 5", chapters: 12, images: { jpg: { large_image_url: "image5.jpg" } } } }, { id: 6, manga: { title: "Manga 6", chapters: 8, images: { jpg: { large_image_url: "image6.jpg" } } } }],
+//     // Add more genres and associated manga data as needed
+//   };
+
+//   const mangas = genreMap[genre];
+
+//   if (mangas) {
+//     console.log(`Mangas related to genre: ${genre}`);
+//     mangas.forEach(manga => {
+//       const { title, chapters, images } = manga.manga;
+//       const imageUrl = images.jpg.large_image_url;
+//       console.log(`Title: ${title}`);
+//       console.log(`Chapters: ${chapters}`);
+//       console.log(`Image URL: ${imageUrl}`);
+//     });
+//   } else {
+//     console.log(`No mangas found for genre: ${genre}`);
+//   }
+// }
+
+// // Add event listeners to the genre links
+// const genreLinks = document.querySelectorAll('.genre-link');
+// genreLinks.forEach(link => {
+//   link.addEventListener('click', event => {
+//     event.preventDefault();
+//     const genre = event.target.dataset.genre;
+//     displayMangasByGenre(genre);
+//   });
+// });
+
 function fetchMangaDetails(mangaIds, swiperId) {
   const apiUrl = 'https://api.jikan.moe/v4/manga/';
 
@@ -175,69 +286,38 @@ function fetchMangaDetails(mangaIds, swiperId) {
         }
 
         swiperWrapper.appendChild(swiperSlide);
+
+        // Store genreMap in localStorage
+        localStorage.setItem('genreMap', JSON.stringify(genreMap));
       })
       .catch(error => {
         console.error(error);
       });
   });
 
-  // Store the genreMap object in localStorage
-// Store genreMap in localStorage
-localStorage.setItem('genreMap', JSON.stringify(genreMap));
-
-
-
-
-  console.log('Genre Map:', genreMap, " one") ;
+  console.log('Genre Map:', genreMap);
 }
 
+function displayGenre(genre) {
+  const genreMap = JSON.parse(localStorage.getItem('genreMap'));
 
- 
+  if (genreMap) {
+    const mangas = genreMap[genre];
 
-// Function to display mangas by genre
-function displayMangasByGenre(genre) {
-  // Retrieve genreMap from localStorage
-   const genreMap = JSON.parse(localStorage.getItem('genreMap'));
-  // Retrieve mangas from genreMap
-   console.log('Genre Map:', genreMap, " two") ;
-  if (genreMap && genreMap[genre]) {
-    console.log(`Mangas related to genre: ${genre}`);
-    genreMap[genre].forEach(manga => {
-      const { id, manga: { title, chapters, images } } = manga;
-      const imageUrl = images.jpg.large_image_url;
-      console.log(`Title: ${title}`);
-      console.log(`Chapters: ${chapters}`);
-      console.log(`Image URL: ${imageUrl}`);
-    });
-  } else {
-    console.log(`No mangas found for genre: ${genre}`);
-  }
-}
-
-
-
-function openModal() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "block";
-}
-
-function initializeModal() {
-  var modal = document.getElementById("myModal");
-  var span = document.getElementsByClassName("close")[0];
-
-  // Function to close the modal
-  function closeModal() {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = closeModal;
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
+    if (mangas) {
+      console.log(`Mangas related to genre: ${genre}`);
+      mangas.forEach(manga => {
+        const { title, chapters, images } = manga.manga;
+        const imageUrl = images.jpg.large_image_url;
+        console.log(`Title: ${title}`);
+        console.log(`Chapters: ${chapters}`);
+        console.log(`Image URL: ${imageUrl}`);
+      });
+    } else {
+      console.log(`No mangas found for genre: ${genre}`);
     }
+  } else {
+    console.log('Genre Map not found in localStorage. Fetch manga details first.');
   }
 }
 
@@ -247,22 +327,112 @@ genreLinks.forEach(link => {
   link.addEventListener('click', event => {
     event.preventDefault();
     const genre = event.target.dataset.genre;
-    // Call displayMangasByGenre to display mangas based on genre
-    displayMangasByGenre(genre);
-
-    openModal(); // Call the openModal function to display the modal
+    displayGenre(genre);
   });
 });
 
-// Call the initializeModal function to set up modal functionality
-initializeModal();
+// Usage example:
+// Usage example (continued):
+const mangaIds = [11, 12, 13, 15, 19];
+const swiperId = 'mySwiper';
+
+fetchMangaDetails(mangaIds, swiperId);
 
 
 
 
 
+// function displayMangasByGenre(genre) {
+//   const genreMap = {
+//     // Replace with the genre map obtained from the previous function
+//     "yaoi": [{ id: 1, manga: { title: "Manga 1" } }, { id: 2, manga: { title: "Manga 2" } }],
+//     "smut": [{ id: 3, manga: { title: "Manga 3" } }, { id: 4, manga: { title: "Manga 4" } }],
+//     "bl": [{ id: 5, manga: { title: "Manga 5" } }, { id: 6, manga: { title: "Manga 6" } }],
+//     // Add more genres and associated manga data as needed
+//   };
 
-    // ------------------------------------------------
+//   const mangas = genreMap[genre];
+
+//   if (mangas) {
+//     console.log(`Mangas related to genre: ${genre}`);
+//     console.log(mangas);
+//   } else {
+//     console.log(`No mangas found for genre: ${genre}`);
+//   }
+// }
+
+// // Add event listeners to the genre links
+// const genreLinks = document.querySelectorAll('.genre-link');
+// genreLinks.forEach(link => {
+//   link.addEventListener('click', event => {
+//     event.preventDefault();
+//     const genre = event.target.dataset.genre;
+//     displayMangasByGenre(genre);
+//   });
+// });
+
+
+// function fetchMangaDetails(mangaIds, swiperId) {
+//   const apiUrl = 'https://api.jikan.moe/v4/manga/';
+
+//   mangaIds.forEach(mangaId => {
+//     const mangaUrl = `${apiUrl}${mangaId}/full`;
+
+//     fetch(mangaUrl)
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         return response.json();
+//       })
+//       .then(data => {
+//         const manga = data.data;
+//         console.log(`Manga ID: ${mangaId}`);
+//         console.log(`Genre: ${manga.genres[0].name}`); // Assuming only one genre is present
+
+//         const swiperWrapper = document.querySelector(`#${swiperId} .swiper-wrapper`);
+//         const swiperSlide = document.createElement("div");
+//         swiperSlide.classList.add("swiper-slide");
+
+//         const img = document.createElement("img");
+//         img.src = manga.images.jpg.large_image_url;
+//         img.alt = manga.title;
+//         swiperSlide.appendChild(img);
+
+//         const textBody = document.createElement("div");
+//         textBody.classList.add("text-body");
+
+//         const h4 = document.createElement("h4");
+//         let title = manga.title;
+
+//         if (title.length > 15) {
+//           title = title.slice(0, 15) + "...";
+//         }
+
+//         h4.textContent = title;
+//         h4.style.cursor = "pointer";
+//         h4.addEventListener("click", () => {
+//           window.open(manga.url, "_blank");
+//         });
+
+//         textBody.appendChild(h4);
+//         swiperSlide.appendChild(textBody);
+
+//         if (manga.chapters > 0) {
+//           const chapter = document.createElement("p");
+//           chapter.textContent = `Chapter ${manga.chapters}`;
+//           swiperSlide.appendChild(chapter);
+//         }
+
+//         swiperWrapper.appendChild(swiperSlide);
+//       })
+//       .catch(error => {
+//         console.error(error);
+//       });
+//   });
+// }
+
+
 
 function generateMangaIds(start, end) {
   const mangaIds = [];

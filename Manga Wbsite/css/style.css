@@ -268,7 +268,7 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     background-color: var(--main-color);
 }
 
-
+/* grid */
 
 
 
@@ -314,7 +314,16 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     .create-ad-container {
             width: 80%;
         }
-
+    .main-section{
+        display: block;
+    }
+    .main-content{
+        width: 98%;
+        order: 2;
+    }
+    aside{
+        order: 1;
+    }
 }
 
 
