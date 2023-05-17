@@ -3,120 +3,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/single.css">
     <title>Document</title>
-    <style>
-        section{
-            display: flex;
-            gap: 20px;
-        }
-        .container{
-            border: 1px solid red;
-            display: flex;
-        }
-        .img-container{
-            width: 100px;
-            height: 100px;
-            position: relative;
-        }
-        .img-container img{
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-        #manga-chapter{
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 99999;
-        }
-    </style>
 </head>
 <body>
 
-        <section>
-             <div class="container">
+
+<section id="container">
+  <!-- Manga template -->
+  <div class="container">
     <div class="img-container">
-      <img src="" alt="" id="manga-image">
-      <p id="manga-chapter"></p>
+      <img src="https://cdn.myanimelist.net/images/manga/3/253274l.jpg" alt="" id="manga-image">
+       <p id="manga-chapter">Chapter: 103</p>
     </div>
     <div class="text-container">
-      <h3 id="manga-title"></h3>
-      <h4 id="manga-genre"></h4>
-      <p id="manga-description"></p>
+      <h3 id="manga-title">Beck</h3>
+      <h4 id="manga-genre">Genre: Award Winning, Comedy, Drama, Romance, Slice of Life</h4>
+       
     </div>
+    <!-- End of manga template -->
   </div>
+</section>
+
+<script>
+  // Retrieve the genre and mangaData parameters from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const genre = urlParams.get('genre');
+  const mangaData = JSON.parse(urlParams.get('mangaData'));
+
+  // Get the container element
+  const container = document.querySelector('#container');
+
+  // Filter the manga data based on the genre
+  const matchingManga = Object.values(mangaData).filter(manga =>
+    manga.genres.some(g => g.toLowerCase() === genre.toLowerCase())
+  );
+
+  // Check if matching manga is found
+  if (matchingManga.length > 0) {
+    matchingManga.forEach(manga => {
+      // Create container for manga information
+      const mangaContainer = document.createElement('div');
+      mangaContainer.classList.add('container');
+
+      // Create img container
+      const imgContainer = document.createElement('div');
+      imgContainer.classList.add('img-container');
+
+      // Create manga image
+      const mangaImage = document.createElement('img');
+      mangaImage.src = manga.imageTitle;
+      mangaImage.alt = manga.title;
+      imgContainer.appendChild(mangaImage);
+
+    
+      mangaContainer.appendChild(imgContainer);
+
+      // Create text container
+      const textContainer = document.createElement('div');
+      textContainer.classList.add('text-container');
+
+      // Create manga title
+      const mangaTitle = document.createElement('h3');
+      mangaTitle.textContent = manga.title;
+      textContainer.appendChild(mangaTitle);
+
+        // Create manga chapter
+      const mangaChapter = document.createElement('p');
+      mangaChapter.textContent = `Chapter: ${manga.chapters}`;
+     textContainer.appendChild(mangaChapter);
 
 
-        </section>
 
+      // Create manga genre
+      const mangaGenre = document.createElement('h4');
+      mangaGenre.textContent = `Genre: ${manga.genres.join(', ')}`;
+      textContainer.appendChild(mangaGenre);
 
+      mangaContainer.appendChild(textContainer);
+      
 
-        <script>
-// Retrieve the genre and mangaData parameters from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const genre = urlParams.get('genre');
-const mangaData = JSON.parse(urlParams.get('mangaData'));
+      // Append manga container to the main container
+      container.appendChild(mangaContainer);
+    });
+  } else {
+    // Handle case when no matching manga is found
+    container.innerHTML = '<p>No manga found with the specified genre.</p>';
+  }
+</script>
 
-// Get the container element
-const container = document.querySelector('.container');
-
-// Filter the manga data based on the genre
-const matchingManga = Object.values(mangaData).filter(manga =>
-  manga.genres.some(g => g.toLowerCase() === genre.toLowerCase())
-);
-
-// Check if matching manga is found
-if (matchingManga.length > 0) {
-  matchingManga.forEach(manga => {
-    // Create container for manga information
-    const mangaContainer = document.createElement('div');
-    mangaContainer.classList.add('container');
-
-    // Create img container
-    const imgContainer = document.createElement('div');
-    imgContainer.classList.add('img-container');
-
-    // Create manga image
-    const mangaImage = document.createElement('img');
-    mangaImage.src = manga.imageTitle;
-    mangaImage.alt = manga.title;
-    imgContainer.appendChild(mangaImage);
-
-    // Create manga chapter
-    const mangaChapter = document.createElement('p');
-    mangaChapter.textContent = `Chapter: ${manga.chapters}`;
-    imgContainer.appendChild(mangaChapter);
-
-    mangaContainer.appendChild(imgContainer);
-
-    // Create text container
-    const textContainer = document.createElement('div');
-    textContainer.classList.add('text-container');
-
-    // Create manga title
-    const mangaTitle = document.createElement('h3');
-    mangaTitle.textContent = manga.title;
-    textContainer.appendChild(mangaTitle);
-
-    // Create manga genre
-    const mangaGenre = document.createElement('h4');
-    mangaGenre.textContent = `Genre: ${manga.genres.join(', ')}`;
-    textContainer.appendChild(mangaGenre);
-
-    // Create manga description
-    const mangaDescription = document.createElement('p');
-    mangaDescription.textContent = manga.description;
-    textContainer.appendChild(mangaDescription);
-
-    mangaContainer.appendChild(textContainer);
-
-    // Append manga container to the main container
-    container.appendChild(mangaContainer);
-  });
-} else {
-  // Handle case when no matching manga is found
-  container.innerHTML = '<p>No manga found with the specified genre.</p>';
-}
 
 
         </script>

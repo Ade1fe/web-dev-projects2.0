@@ -115,15 +115,16 @@ function handleGenreLinkClick(event) {
 function showModal(message) {
   const modal = document.getElementById('modal');
   const modalMessage = document.getElementById('modal-message');
+  const closeBtn = document.querySelector('.close-btn');
 
   modalMessage.textContent = message;
   modal.style.display = 'flex'; // Show the modal
 
-  // Hide the modal after a certain time
-  setTimeout(() => {
-    modal.style.display = 'none'; // Hide the modal
-  }, 3000); // Hide after 3 seconds (adjust as needed)
+  closeBtn.addEventListener('click', () => {
+    modal.style.display = 'none'; // Hide the modal when close button is clicked
+  });
 }
+
 
 // Add click event listener to genre links
 const genreLinks = document.querySelectorAll('.genre-link');
