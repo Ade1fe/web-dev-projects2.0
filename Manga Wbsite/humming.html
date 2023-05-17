@@ -1,63 +1,40 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- swiper-js -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <!-- box icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
-    <!-- custom css -->
-    <link rel="stylesheet" href="/css/index.css">
-     <link rel="stylesheet" href="/css/style.css" />
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.js"  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-  </head>
-  <body>
+</head>
+<style>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none; /* Hide the modal by default */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-    <!-- header -->
-    <div class="search-bar">
-      <input type="text" placeholder="manga">
-      <button>Search</button>
-    </div>
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+}
 
-  <header>
-    <div class="logo">
-      <h2>Mangaowl</h2>
-    </div>
-  <ul>
-    <li class="copy"><a href="#">Home</a></li>
-    <li class="copy"><a href="#">All Manga</a></li>
-    <li class="copy"><a href="https://asurascans.us/">Aura Scans</a></li>
-    <li class="copy"><a href="#">Contact Us</a></li>
-    <li class="copy"><a href="#">Blog</a></li>
-    <li class="dontCopy" id="icon-search"><i class="bx bx-search-alt"></i></li>
-    <li class="dontCopy search"><a href="#">Search</a></li>
-    <li class="copy"><i id="theme" class="bx bx-moon"></i></li>
-    <li class="dontCopy"><i class="bx bx-menu menu-icon" id="openBtn"></i></li>
-  </ul>
-</header>
-
-<div id="copyDiv">
-</div>
+#modal-message {
+  margin: 0;
+}
 
 
-<!-- header 2 -->
+</style>
+<body>
 
 
-    <section class="headerTwo">
-  <ul>
-    <li><a href="#" class="genre-link" data-genre="yaoi">YAOI</a></li>
-    <li><a href="#" class="genre-link" data-genre="smut">SMUT</a></li>
-    <li><a href="#" class="genre-link" data-genre="boys love">BL</a></li>
-    <li><a href="#" class="small-hide genre-link" data-genre="romance">ROMANCE</a></li>
-    <li><a href="#" class="small-hide genre-link" data-genre="comedy">COMEDY</a></li>
-    <li><a href="#" class="small-hide genre-link" data-genre="shoujo">SHOUJO</a></li>
-    <li><a href="#" class="small-hide genre-link" data-genre="shounen">SHOUNEN</a></li>
-    <li><a href="#" class="small-hide genre-link" data-genre="action">ACTION</a></li>
-    <li class="my small-hide">MORE <i class='bx bxs-right-arrow'></i>
-   <ul class="innerUl">
+<ul class="innerUl">
   <li><a href="#" class="genre-link" data-genre="drama">DRAMA</a></li>
   <li><a href="#" class="genre-link" data-genre="adventure">ADVENTURE</a></li>
   <li><a href="#" class="genre-link" data-genre="doujinshi">DOUJINSHI</a></li>
@@ -172,13 +149,6 @@
   <li><a href="#" class="genre-link" data-genre="zombies">ZOMBIES</a></li>
 </ul>
 
-
-             <i class='bx bx-dots-vertical-rounded' id="menuTwo"></i>
-</section>
-
-
-
-
 <div class="modal" id="modal">
   <div class="modal-content">
     <p id="modal-message"></p>
@@ -186,264 +156,250 @@
 </div>
 
 
-<!-- main page -->
 
-<section class="create-ad">
+<script>
+// const numberOfManga = 100; // Number of manga IDs to retrieve
+// const mangaIds = []; // Array to store manga IDs
 
- <div class="create-ad-container">
-  <h1 id="app-title">Download Official Mangaowl Android App</h1>
-</div>
+// // Generate an array of manga IDs
+// for (let i = 1; i <= numberOfManga; i++) {
+//   mangaIds.push(i);
+// }
 
-  <div class="register">
-    <a href="">Sign in</a> <a href="">Sign up</a>
-  </div>
-</section>
+// const genreMap = {}; // Object to store genres by manga ID
+
+// // Fetch manga data for each ID and group genres
+// Promise.all(
+//   mangaIds.map(mangaId => {
+//     const url = `https://api.jikan.moe/v4/manga/${mangaId}/full`;
+//     return fetch(url)
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.data && data.data.genres) {
+//           const genres = data.data.genres;
+//           const genreNames = genres.map(genre => genre.name);
+
+//           genreMap[mangaId] = genreNames;
+//         }
+//       })
+//       .catch(error => {
+//         console.error(`Error fetching data for manga ID ${mangaId}:`, error);
+//       });
+//   })
+// )
+//   .then(() => {
+//     // Store genreMap in local storage
+//  localStorage.setItem('mangaGenres', JSON.stringify(genreMap));
+
+// const storedGenres = localStorage.getItem('mangaGenres');
+// console.log('Stored manga genres:', storedGenres);
 
 
-
-
-
-<!--  -->
-  <!-- Swiper -->
- <section class="oneT">
-   <div class="mySwiperOne" id="swiperOne">
-    <h2>HOT UPDATES</h2>
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
- </section>
-
-
-
- <!-- more add -->
-
-<section class="adv">
-  <div class="first-ad">
-    <p>We're re-building nove site. Please support us on: <span>👉https://novelbuddy.com</span></p>
-    <p>You can login with MangaBuddy account. Many novels will be updated. Hope you enjoy it!!!</p>
-  </div>
-     <div class="first-ad">
-   <p>We do not allow harmful content including but not limited to child pornography, terrorism, discrimination, sexism, racism, human rights violation. Please report such content here: <span> 👉 REPORT US</span></p>
-  </div>
-</section>
+//     console.log('Manga genres grouped and stored in local storage.');
+//   })
+//   .catch(error => {
+//     console.error('Error:', error);
+//   });
 
 
 
+// // ------------------------
+// // Retrieve stored genres from local storage
+// const storedGenres = localStorage.getItem('mangaGenres');
 
-<!--  -->
-<section class="main-section">
-  <div class="main-content">
-    <div class="mySwiperOne mySwiperTwo" style="padding-bottom: 6rem;" id="swiperTwo">
-    <h2>LATEST UPDATES</h2>
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-  <!-- part 2 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperThree">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 3 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperFour">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 4 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperFive">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 5 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperSix">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 6 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperSeven">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 7 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperEight">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 8 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperNine">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-    <!-- part 9 -->
-      <div class="mySwiperOne mySwiperTwo" id="swiperTen">
-    <!-- <h2>LATEST UPDATES</h2> -->
-    <div class="swiper-wrapper">
-      <!-- <div class="swiper-slide">
-        <img src="" alt="">
-        <p></p>
-        <div class="text-body">
-          <h4>Title</h4>
-        </div>
-      </div> -->
-    </div>
-    <!-- <div class="swiper-pagination"></div> -->
-  </div>
-  
-    <!-- Main Content Here -->
-  </div>
-  <aside class="sidebar">
-    <!-- Sidebar Content Here -->
- 
+// // Check if a genre exists in the genreMap object (case-insensitive)
+// function checkGenreExists(genre) {
+//   return genreMap && Object.values(genreMap).some(genres =>
+//     genres.some(g => g.toLowerCase() === genre.toLowerCase())
+//   );
+// }
 
-<div id="advert-container">
-   <!-- <div class="advert-post">
-  <img src="" alt="Advert Image">
-  <div class="advert-details">
-    <h2 class="advert-title"></h2>
-    <p>Posted on <span class="date"></span> by <span class="author"></span></p>
-    <p class="advert-description"></p>
-    <a href="#" class="btn">Read More</a>
-  </div>
-</div> -->
-</div>
+// // Update HTML elements based on genre existence
+// function updateGenreElements() {
+//   const genreLinks = document.querySelectorAll('.genre-link');
 
-<!-- second-->
-<!-- history -->
-<div class="history">
-  <h3><a href="">History</a>  <span>view more<i class='bx bx-chevron-right'></i></span></h3>
-</div>
+//   genreLinks.forEach(link => {
+//     const genre = link.dataset.genre;
 
-<!-- recommendation -->
-<div class="recommdation" id="recommendation">
-  <!-- <div class="pic">
-    <img src="" alt="">
-    <div class="con">
-      <p></p>
-      <h4>Title</h4>
-    </div>
-  </div> -->
-</div>
+//     if (checkGenreExists(genre)) {
+//       link.classList.add('genre-exists');
+//     } else {
+//       link.classList.remove('genre-exists');
+//     }
+//   });
+// }
 
-<!-- review -->
+// // Call the function to update genre elements
+// updateGenreElements();
 
-<div class="main-review">
-  <div class="review" id="review-container">
-    <h3>Review</h3>
-   <!-- <div class="inner-review"> -->
-     <!-- <div class="review-post">
-      <img src="" alt="">
-      <div class="review-text">
-        <h4>Title</h4>
-        <p></p>
-      </div>
-    </div> -->
 
-   
-   </div>
- <button id="show-more-button">Show More Reviews</button>
-</div>
-   
+// // Function to handle genre link click
+// function handleGenreLinkClick(event) {
+//   event.preventDefault();
+
+//   const clickedLink = event.target;
+//   const genre = clickedLink.dataset.genre;
+
+//   if (checkGenreExists(genre)) {
+//     // Genre exists, perform desired action
+//     console.log(`Genre "${genre}" exists.`);
+//   } else {
+//     // Genre doesn't exist
+//     console.log(`Genre "${genre}" does not exist.`);
+//   }
+// }
+
+// // Add click event listener to genre links
+// const genreLinks = document.querySelectorAll('.genre-link');
+// genreLinks.forEach(link => {
+//   link.addEventListener('click', handleGenreLinkClick);
+// });
+
+// // Call the function to update genre elements
+// updateGenreElements();
+
+
+
+const numberOfManga = 500; // Number of manga IDs to retrieve
+const mangaIds = []; // Array to store manga IDs
+
+// Generate an array of manga IDs
+for (let i = 1; i <= numberOfManga; i++) {
+  mangaIds.push(i);
+}
+
+const mangaData = {}; // Object to store manga data by manga ID
+
+// Fetch manga data for each ID and store the desired data
+Promise.all(
+  mangaIds.map(mangaId => {
+    const url = `https://api.jikan.moe/v4/manga/${mangaId}/full`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.data) {
+          const manga = data.data;
+
+           const mangaInfo = {
+            title: manga.title,
+            imageTitle: manga.images.jpg.large_image_url,
+            chapters: manga.chapters,
+            genres: manga.genres.map(genre => genre.name)
+          };
+
+          mangaData[mangaId] = mangaInfo;
+        }
+      })
+      .catch(error => {
+        console.log(`Error fetching data for manga ID ${mangaId}:`, error);
+      });
+  })
+)
+  .then(() => {
+    // Store mangaData in local storage
+    localStorage.setItem('mangaData', JSON.stringify(mangaData));
+
+    const storedMangaData = localStorage.getItem('mangaData');
+    console.log('Stored manga data:', storedMangaData);
+
+    console.log('Manga data stored in local storage.');
+
+    // Call the function to update genre elements
+    updateGenreElements();
+  })
+  .catch(error => {
+    console.log('Error:', error);
+  });
+
+// Retrieve stored manga data from local storage
+const storedMangaData = localStorage.getItem('mangaData');
+
+// Check if a genre exists in the mangaData object (case-insensitive)
+function checkGenreExists(genre) {
+  return mangaData && Object.values(mangaData).some(manga =>
+    manga.genres.some(g => g.toLowerCase() === genre.toLowerCase())
+  );
+}
+
+// Update HTML elements based on genre existence
+function updateGenreElements() {
+  const genreLinks = document.querySelectorAll('.genre-link');
+
+  genreLinks.forEach(link => {
+    const genre = link.dataset.genre;
+
+    if (checkGenreExists(genre)) {
+      link.classList.add('genre-exists');
+    } else {
+      link.classList.remove('genre-exists');
+    }
+  });
+}
+
+// Call the function to update genre elements
+updateGenreElements();
+
+// Update genre link click handlers
+// Assuming you have retrieved and stored the mangaData in localStorage as follows:
+// const storedMangaData = localStorage.getItem('mangaData');
+
+// Convert the stored mangaData from a string to an object
+// const mangaData = JSON.parse(storedMangaData);
+
+// Function to handle genre link click
+function handleGenreLinkClick(event) {
+  event.preventDefault();
+
+  const clickedLink = event.target;
+  const genre = clickedLink.dataset.genre;
+
+  const matchingManga = Object.values(mangaData).filter(manga =>
+    manga.genres.some(g => g.toLowerCase() === genre.toLowerCase())
+  );
+
+  if (matchingManga.length > 0) {
+    console.log(`Manga with genre "${genre}":`);
+    matchingManga.forEach(manga => {
+      console.log(`- Manga Title: ${manga.title}`);
+      console.log(`- Manga image: ${manga.imageTitle}`);
+      console.log(`  Chapters: ${manga.chapters}`);
+      console.log(`  Genres: ${manga.genres.join(', ')}`);
+    });
+
+    // Redirect to single.html page with genre parameter
+    window.location.href = `../pages/single.html?genre=${encodeURIComponent(genre)}&mangaData=${encodeURIComponent(JSON.stringify(mangaData))}`;
+  } else {
+    console.log(`No manga found with genre "${genre}".`);
+    showModal(`No manga found with genre "${genre}".`);
+  }
+}
+
+
+
+function showModal(message) {
+  const modal = document.getElementById('modal');
+  const modalMessage = document.getElementById('modal-message');
+
+  modalMessage.textContent = message;
+  modal.style.display = 'flex'; // Show the modal
+
+  // Hide the modal after a certain time
+  setTimeout(() => {
+    modal.style.display = 'none'; // Hide the modal
+  }, 3000); // Hide after 3 seconds (adjust as needed)
+}
+
+
+// Add click event listener to genre links
+const genreLinks = document.querySelectorAll('.genre-link');
+genreLinks.forEach(link => {
+  link.addEventListener('click', handleGenreLinkClick);
+});
+
+
+
+
+</script>
     
-  <!-- </div> -->
-
- 
-
-  </aside>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- swiper-js -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/appOne.js"></script>
-  </body>
+</body>
 </html>

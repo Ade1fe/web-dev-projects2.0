@@ -78,7 +78,7 @@ body.active {
 /* swiperOne */
 .oneT{
     margin-bottom: 2rem;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
   .mySwiperOne {
@@ -185,10 +185,16 @@ body.active {
 .main-content {
     /* flex: 1; */
     width: 67%;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     /* Additional styles for the main content */
 }
-
+aside{
+    width: 30%;
+}
+.mySwiperTwo{
+    /* border: 2px solid red; */
+    padding-bottom: 1rem;
+}
 .mySwiperTwo h2{
     width: 250px;
 }
@@ -232,6 +238,7 @@ body.active {
 .pic .con{
     /* border: 2px solid red; */
     margin-left: 3px;
+  
 }
 
 /* review */
@@ -251,6 +258,10 @@ body.active {
     padding: 10px 6px;
     margin: 10px 0;
 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.review-text{
+      width: 100%;
+    /* border: 2px saddlebrown solid; */
 }
 
 .review-post img{
@@ -319,9 +330,13 @@ box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
     .main-content{
         width: 98%;
+        margin: auto;
         order: 2;
     }
     aside{
+        /* width: 97%; */
+        width: 90%;
+        margin: auto;
         order: 1;
     }
 }

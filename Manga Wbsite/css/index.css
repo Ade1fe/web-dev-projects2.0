@@ -20,6 +20,7 @@
 body {
     background-color: var(--white-color);
     color: var(--black-color);
+    /* border: 2px solid red; */
 }
 
 body.active {
@@ -70,14 +71,22 @@ header {
     color: var(--default-color);
     padding: 20px 10px;
     box-shadow: var(--white-shadow);
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid green; */
+  
+}
+.logo{
+    margin-left: 20px;
 }
 
 header ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    gap: 30px;
     justify-content: space-between;
 }
 
@@ -100,7 +109,7 @@ header li a:hover {
     font-weight: bold;
 }
 
-header li:first-child {
+header .logo {
     font-weight: bold;
     font-size: 20px;
     background-image: linear-gradient(to right, #9f5625, #ff0000);
@@ -108,10 +117,6 @@ header li:first-child {
     -webkit-text-fill-color: transparent;
 }
 
-header li:first-child {
-    font-weight: bold;
-    font-size: 20px;
-}
 
 header li:last-child {
     display: flex;
@@ -119,8 +124,8 @@ header li:last-child {
 }
 
 header li:last-child i {
-    color: var(--hover-color);
-    font-size: 20px;
+    color: var(--white-color);
+    font-size: 30px;
 }
 
 header li:last-child:hover i {
@@ -192,8 +197,8 @@ header li:last-child:hover+li {
 
 /* Style for the list items */
 .headerTwo li {
-    /* display: inline-block; */
-    margin-right: 10px;
+    display: inline-block;
+    /* margin-right: 10px; */
 }
 
 /* Style for the links */
@@ -222,7 +227,7 @@ header li:last-child:hover+li {
 .headerTwo .my:hover .innerUl {
     display: flex;
     flex-wrap: wrap;
-    top: 2rem;
+    top: 1.2rem;
     width: 80%;
     gap: 20px;
     padding: 1rem;
@@ -261,29 +266,8 @@ header li:last-child:hover+li {
   }
 
   /* Modal content styles */
-  .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-    
-  }
 
-  /* Close button styles */
-  .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-  }
 
-  .close:hover,
-  .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-  }
 
 
 /* adverts */
@@ -370,7 +354,7 @@ header li:last-child:hover+li {
 /* 800 */
 
 
-@media (max-width: 800px) {
+@media (max-width: 860px) {
     #copyDiv {
             display: block;
             position: fixed;
@@ -382,18 +366,44 @@ header li:last-child:hover+li {
             background-color: #f2f2f2;
             padding: 20px;
             transition: left 0.3s ease;
+            z-index: 99999999999999999;
             /* Add transition for smooth animation */
+            background-image: var(--header-bgs);
     
         }
+       #copyDiv:first-child{
+        margin-bottom: 2rem;
+       
+       }
+         #copyDiv li:first-child{
+            margin-top: 4rem;
+         }
+        #copyDiv li{
+            margin: 10px 0;
+            /* border: 2px solid red; */
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            color: var(--white-color);
+            border-bottom: 1px solid #a5a3a3;
+        }
+         #copyDiv li a{
+            color: var(--white-color);
+         }
+    #copyDiv li a:hover{
+        color: #ddd;
+    }
     header {
         display: flex;
         /* border: 2px solid green; */
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
     }
-
+    .logo{
+    margin-left: 0px;
+}
     header li:first-child {
-        margin-right: 300px;
+        /* margin-right: 300px; */
     }
 
     .copy {
@@ -407,6 +417,7 @@ header li:last-child:hover+li {
      top: 100%;
 
  }
+ 
 }
 
 
@@ -416,7 +427,16 @@ header li:last-child:hover+li {
 @media (max-width: 700px) {
 
     header li:first-child {
-        margin-right: 200px;
+        /* margin-right: 220px; */
+    }
+    header ul{
+        margin: 0;
+        padding: 0;
+        justify-content: left;
+    }
+    header li{
+        margin: 0;
+        padding: 0;
     }
 }
 
@@ -426,9 +446,7 @@ header li:last-child:hover+li {
 /* 550 */
 @media (max-width: 550px) {
 
-    header li:first-child {
-        margin-right: 100px;
-    }
+   
    
 }
 
@@ -438,7 +456,7 @@ header li:last-child:hover+li {
 @media (max-width: 400px) {
 
     header li:first-child {
-        margin-right: 50px;
+        /* margin-right: 50px; */
     }
     #menuTwo {
         display: block;
@@ -450,8 +468,14 @@ header li:last-child:hover+li {
     .small-hide {
         display: none;
     }
-
+    .logo{
+        padding: 0;
+    }
+   
     .activeTwo {
         display: block;
+    }
+    .search{
+        display: none;
     }
 }

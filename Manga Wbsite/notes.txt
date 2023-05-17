@@ -273,8 +273,8 @@ function fetchMangaDetail(mangaIds) {
 }
 
 window.onload = () => {
-  const start = 540;
-  const end = 570;
+  const start = 240;
+  const end = 270;
   const manga = generateMangaIds(start, end);
   fetchMangaDetail(manga);
 
@@ -313,7 +313,7 @@ const endId7 = 140;
 const mangaId7 = generateMangaIds(startId7, endId7);
 
 const startId8 = 140;
-const endId8 = 190;
+const endId8 = 180;
 const mangaId8 = generateMangaIds(startId8, endId8);
 
 const startId9 = 180;
@@ -321,7 +321,7 @@ const endId9 = 220;
 const mangaId9 = generateMangaIds(startId9, endId9);
 
 const startId10 = 220;
-const endId10 = 260;
+const endId10 = 240;
 const mangaId10 = generateMangaIds(startId10, endId10);
 
 fetchMangaDetails(mangaId1, 'swiperOne');

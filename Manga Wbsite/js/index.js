@@ -43,6 +43,7 @@
   const clonedHeaderLiElements = clonedHeader.querySelectorAll("li.copy");
   clonedHeaderLiElements.forEach((element) => {
     element.classList.remove("copy");
+    
   });
 
   // Copy the modified HTML content of the cloned header to the copyDiv
@@ -61,11 +62,19 @@
     }
   };
 
-  // Get the last li element within the ul in copyDiv
   const ul = copyDiv.querySelector("ul");
   const lastLi = ul.lastElementChild;
   lastLi.id = "menu-btn";
   lastLi.remove();
+
+  const sixthLi = ul.children[5];
+  sixthLi.remove();
+
+  const seventhLi = ul.children[6];
+  seventhLi.remove();
+
+  const eighthLi = ul.children[5];
+  eighthLi.remove();
 
   console.log(lastLi);
 
