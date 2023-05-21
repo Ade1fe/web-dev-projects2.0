@@ -274,7 +274,7 @@ function fetchMangaDetail(mangaIds) {
 
 window.onload = () => {
   const start = 540;
-  const end = 570;
+  const end = 580;
   const manga = generateMangaIds(start, end);
   fetchMangaDetail(manga);
 
@@ -462,7 +462,7 @@ showMoreButton.addEventListener('click', showMoreReviews);
 
 
 
-localStorage.clear();
+// localStorage.clear();
 
 
 
