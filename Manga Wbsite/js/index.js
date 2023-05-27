@@ -196,4 +196,27 @@ menuTwo.addEventListener("click", () => {
 
 // -----------------------------------------
 
+// Create an array with letters A to Z
+var letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+
+// Get the container element where the buttons will be added
+var container = document.getElementById("button-container");
+
+// Create buttons for each letter
+letters.forEach(function(letter) {
+  // Create a button element
+  var button = document.createElement("button");
+  
+  // Set the button text to the current letter
+  button.textContent = letter;
+  
+  // Add a click event listener to the button
+  button.addEventListener("click", function() {
+    // Handle button click event here
+    console.log("Button " + letter + " clicked!");
+  });
+  
+  // Append the button to the container
+  container.appendChild(button);
+});
 
