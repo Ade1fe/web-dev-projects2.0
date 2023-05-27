@@ -1,0 +1,27 @@
+
+
+
+
+.containerOne {
+    overflow: hidden;
+    border: 2px solid red;
+  }
+  
+  .marquee {
+    display: flex;
+    animation: scroll-right 10s linear infinite;
+  }
+  
+  .marquee span {
+    white-space: nowrap;
+  }
+  
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
