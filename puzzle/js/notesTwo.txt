@@ -1,0 +1,42 @@
+
+const displayResult = document.querySelector(".layerTwo");
+const displayTitle = document.querySelector(".title h2");
+
+let shuffledWords;
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+async function fetchData() {
+  const words = ["late", "dog", "happy", "big", "leave"];
+  shuffledWords = shuffleArray(words).map(word => word.toUpperCase());
+
+  shuffledWords.forEach((word) => {
+    displayTitle.innerHTML += ` ${word}`;
+  });
+}
+
+function createResult() {
+  shuffledWords.forEach((word) => {
+    const letters = word.split('');
+
+   
+    letters.forEach((letter) => {
+      const p = document.createElement('p');
+      p.classList.add('letter');
+      // p.textContent = letter;
+      displayResult.appendChild(p);
+    });
+
+  
+  });
+}
+
+fetchData();
+createResult();
+

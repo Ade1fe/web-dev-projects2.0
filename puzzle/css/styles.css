@@ -2,6 +2,27 @@
 
 
 
+:root {
+  --color-background: #000119;
+  /* --color-background: #fff; */
+  --color: #fff;
+  --stroke-width: calc(1em / 16);
+  /* --font-size: 9vim; */
+  --font-weight: 700;
+  --letter-spacing: calc(1em / 8);
+  --light-blue:#00a2ff;
+  --light-green : #09f1b8;
+}
+
+
+
+
+body{
+  background-color: var(--color-background);
+  color: var(--color);
+  /* font-size: 14px; */
+}
+
 .containerOne {
     overflow: hidden;
     border: 2px solid red;
@@ -10,6 +31,7 @@
   .marquee {
     display: flex;
     animation: scroll-right 10s linear infinite;
+    border: 2px solid red;
   }
   
   .marquee span {
@@ -25,3 +47,103 @@
     }
   }
   
+
+.inner-container{
+  border: 2px solid blue;
+}
+.flexy{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+}
+.layerOne{
+  border: 2px solid yellow;
+  display: flex;
+  gap: 10px 20px;
+  justify-content: space-evenly;
+}
+/* layerTwo */
+.layerTwo{
+  border: 1px solid red;
+  width: 40%;
+  padding: 1rem;
+  
+}
+.letter{
+  border: 1px solid white;
+  display: inline;
+ padding: 1rem;
+}
+
+/* layerThree */
+
+.layerThree {
+  border: 2px solid green;
+  width: 45%;
+}
+
+.alpha {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.alphabet-button {
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: var(--color);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(255, 255, 255, 0.3) 0px 2px 8px 0px;
+}
+
+
+
+
+
+
+/* modal */
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 300px;
+  text-align: center;
+}
+
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#openBtn {
+  margin-top: 20px;
+}
+
+
+
+
+
+
+
+
