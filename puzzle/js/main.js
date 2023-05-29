@@ -1,6 +1,4 @@
 
-
-
 $(document).ready(function() {
     const loader = $('.loader');
     const logo = $('.logo');
@@ -27,21 +25,7 @@ $(document).ready(function() {
 
 
 
-  // Get the parent container A-Z
-  var alphabetContainer = document.getElementById('alphabet-container');
-
-  // Add event listener to the parent container
-  alphabetContainer.addEventListener('click', function(event) {
-    // Check if the clicked element has the 'alphabet-button' class
-    if (event.target.classList.contains('alphabet-button')) {
-      var letter = event.target.getAttribute('data-letter');
-      showAlert(letter);
-    }
-  });
-
-  function showAlert(letter) {
-    alert(letter);
-  }
+ 
 
 
 
@@ -82,13 +66,12 @@ closeBtn.addEventListener('click', closeModal);
 
 
 
-
-
-
+//fetch
 const displayResult = document.querySelector(".layerTwo");
 const displayTitle = document.querySelector(".title h2");
 
 let shuffledWords;
+let currentIndex = 0;
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -98,90 +81,140 @@ function shuffleArray(array) {
   return array;
 }
 
+
+
 async function fetchData() {
+  console.log("1");
   const words = ["late", "dog", "happy", "big", "leave"];
+  shuffledWords = shuffleArray(words);
+  displayTitle.textContent = shuffledWords[currentIndex];
+  console.log("2");
 
-  const antonyms = await getAntonyms(words);
-  // console.log(antonyms);
+  const antonyms = await getAntonyms(shuffledWords[currentIndex]);
 
-  shuffledWords = shuffleArray(words).map(word => word.toUpperCase());
+  const matchingAntonyms = antonyms.find(
+    item => item.word && item.word.toLowerCase() === shuffledWords[currentIndex].toLowerCase()
+  );
 
-  shuffledWords.forEach(async (word) => {
-    displayTitle.innerHTML += ` ${word}`;
+  console.log("3");
 
-    const matchingAntonyms = antonyms.find(item => item.word.toLowerCase() === word.toLowerCase());
-    if (matchingAntonyms) {
-      console.log(`Matching Antonyms for ${matchingAntonyms.word}:`, matchingAntonyms.antonyms);
+  if (matchingAntonyms && matchingAntonyms.antonyms) {
+    console.log(`Current Item: ${shuffledWords[currentIndex]}`);
+    console.log(`Matching Antonyms for ${matchingAntonyms.word}:`, matchingAntonyms.antonyms);
+    console.log("4");
 
-      // // Update HTML with antonyms
-      const antonymsContainer = document.createElement('div');
-      const wordTitle = document.createElement('h3');
-      wordTitle.textContent = `${matchingAntonyms.word}:`;
-      antonymsContainer.appendChild(wordTitle);
+    // Update HTML with antonyms
+    const antonymsContainer = document.createElement('div');
+    const wordTitle = document.createElement('h3');
+    wordTitle.textContent = `${matchingAntonyms.word}:`;
+    antonymsContainer.appendChild(wordTitle);
 
-      const antonymsList = document.createElement('ul');
-      matchingAntonyms.antonyms.forEach(antonym => {
-        const listItem = document.createElement('li');
-        listItem.textContent = antonym.word;
-        antonymsList.appendChild(listItem);
+    const antonymsList = document.createElement('ul');
+    antonymsList.setAttribute('id', 'antonyms-list');
 
-        const letters = antonym.word.split('');
+    const antonyms = matchingAntonyms.antonyms;
 
-   
-        letters.forEach((letter) => {
-          const p = document.createElement('p');
-          p.classList.add('letter');
-          // p.textContent = letter;
-          displayResult.appendChild(p);
-        });
-
-
+    if (antonyms.length > 0) {
+      const listItem = document.createElement('li');
+      const letters = antonyms[0].split('');
+      letters.forEach((letter) => {
+        const span = document.createElement('span');
+        span.classList.add('letter');
+        listItem.appendChild(span);
       });
-
-      // antonymsContainer.appendChild(antonymsList);
-      // displayResult.appendChild(antonymsContainer);
-
-
-
-
+      antonymsList.appendChild(listItem);
     }
+
+    // Append the antonyms list to the displayResult container
+    displayResult.appendChild(antonymsContainer);
+    displayResult.appendChild(antonymsList);
+
+    const alphabetButtons = document.querySelectorAll('.alphabet-button');
+
+alphabetButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const letter = button.dataset.letter;
+    const listItem = document.querySelector('#antonyms-list li');
+    const letters = listItem.querySelectorAll('.letter');
+
+    const antWord = antonyms[0];
+    const wordArray = antWord.split('');
+
+    wordArray.forEach((wordLetter, index) => {
+      if (wordLetter.toLowerCase() === letter.toLowerCase()) {
+        letters[index].textContent = letter;
+      }
+    });
+
+    const filledSpans = listItem.querySelectorAll('.letter:not(:empty)');
+
+        if (filledSpans.length === letters.length) {
+      letters.forEach((letter, index) => {
+        letter.textContent = wordArray[index].toUpperCase();
+      });
+      setTimeout(passItem, 1500); // Delay the execution of passItem by 1 second
+    }
+
   });
+});
+
+
+
+  }
 }
 
-async function getAntonyms(words) {
-  const antonymsPromises = words.map(async (word, index) => {
-    const url = `https://api.datamuse.com/words?rel_ant=${word}`;
-    const response = await fetch(url);
-    const data = await response.json();
 
+
+
+
+
+
+
+
+function displayNextWord() {
+  currentIndex++; // Increment the index to move to the next word
+  if (currentIndex < shuffledWords.length) {
+    displayTitle.textContent = shuffledWords[currentIndex];
+    fetchData(); // Call fetchData again to populate the antonyms for the next word
+  } else {
+    console.log("No more words to display.");
+  }
+}
+
+
+
+function passItem() {
+  console.log("Word completed!");
+  displayResult.innerHTML = ""; // Clear the current word's antonyms from the display
+  displayNextWord(); // Call the function to display the next word
+}
+
+
+
+
+
+async function getAntonyms(word) {
+  try {
+    const response = await fetch(`https://api.datamuse.com/words?rel_ant=${word}`);
+    const data = await response.json();
     const antonyms = [];
 
     if (data.length > 0) {
-      const definition = await getDefinition(data[0].word);
+      const antonymWords = data.map(item => item.word);
       antonyms.push({
-        word: data[0].word,
-        definition: definition
+        word: word,
+        antonyms: antonymWords
       });
     }
 
-    // console.log(`${index}:`, antonyms[0]);
+    console.log(`Antonyms for ${word}:`, antonyms);
 
-    return {
-      word,
-      antonyms
-    };
-  });
-
-  const antonymsData = await Promise.all(antonymsPromises);
-  return antonymsData;
+    return antonyms;
+  } catch (error) {
+    console.error('Error retrieving antonyms:', error);
+    return [];
+  }
 }
-
-
-
-
-
-
-
 
 async function getDefinition(word) {
   const url = `https://api.datamuse.com/words?sp=${word}&md=d`;
@@ -201,5 +234,5 @@ async function getDefinition(word) {
   }
 }
 
+console.log("Calling fetchData");
 fetchData();
-

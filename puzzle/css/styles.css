@@ -71,8 +71,7 @@ body{
 }
 .letter{
   border: 1px solid white;
-  display: inline;
- padding: 1rem;
+ padding: 0.5rem 1rem;
 }
 
 /* layerThree */
