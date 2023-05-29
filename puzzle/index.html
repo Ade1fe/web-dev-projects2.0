@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/loader.css">
     <link rel="stylesheet" href="/css/logo.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Document</title>
 </head>
 <body>
@@ -40,13 +41,14 @@
         
         <div class="inner-container">
             <div class="layerOne">
-                <button>go back</button>
-                <h4>level</h4>
-                <h4>coins or point</h4>
+                <button class="alphabet-button"><i class="bi bi-skip-backward"></i></button>
+                <h4 id="level"> Level <br> 1</h4>
+                <h4 id="score">0 <i class="bi bi-coin"></i></h4>
             </div>
 
             <div class="title">
                 <h2>My title goes here</h2>
+                <h3 id="defs"></h3>
             </div>
 
          <div class="flexy">
@@ -96,8 +98,8 @@
 
       <div id="modal" class="modal">
         <div class="modal-content">
-          <h2>Hurray! You cleared this level</h2>
-          <button id="closeBtn">Close</button>
+          <h2>.modal-content</h2>
+          <button id="closeBtn">x</button>
         </div>
       </div>
       
